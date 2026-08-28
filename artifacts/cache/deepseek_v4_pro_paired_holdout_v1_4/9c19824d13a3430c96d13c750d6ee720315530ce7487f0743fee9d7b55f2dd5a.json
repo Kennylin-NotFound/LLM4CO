@@ -1,0 +1,37 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:20:10.397062Z",
+  "latency_ms": 2139.220800017938,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 640,
+    "prompt_cache_miss_tokens": 3058,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "5b63b0ad-c5f0-4211-8e9b-047218f97892",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "residual_compute_ratio",
+        "op": "set_weight",
+        "weight": 0.5
+      }
+    ],
+    "rationale": "Increase weight on residual_compute_ratio to encourage spreading services across nodes, reducing load imbalance while preserving feasibility."
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"residual_compute_ratio\",\n      \"weight\": 0.5\n    }\n  ],\n  \"rationale\": \"Increase weight on residual_compute_ratio to encourage spreading services across nodes, reducing load imbalance while preserving feasibility.\"\n}",
+  "replayed": false,
+  "request_fingerprint": "739d3fd671562dc57a86b08a45995352b2efbfe0ca94bf48c60211989f4a3a4c",
+  "request_id": "req_739d3fd671562dc5",
+  "usage": {
+    "input_tokens": 3698,
+    "output_tokens": 78
+  }
+}

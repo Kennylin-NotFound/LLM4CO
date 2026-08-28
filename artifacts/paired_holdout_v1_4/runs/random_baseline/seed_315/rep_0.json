@@ -1,0 +1,101 @@
+{
+  "backend_failures": 0,
+  "billed_input_tokens": 0,
+  "billed_output_tokens": 0,
+  "budget": {
+    "max_evaluator_calls": 4,
+    "max_wall_time_seconds": 30.0
+  },
+  "cached_responses": 0,
+  "calls_to_first_feasible": 0,
+  "candidate_set_gap_pct": 33.22569466432697,
+  "code_tree_hash": "63afec577ca425ea0cb016b2095d15d2d68d53b8f153648839d54514d61ee1f9",
+  "config_hash": "ff49879dbe290682810373f8c96f330d04f44f7e03d7445f0b1c0025f46923e7",
+  "estimated_cost_cny": 0.0,
+  "evaluator_calls": 4,
+  "experiment_id": "deepseek_v4pro_paired_holdout_v1_4",
+  "final_feasible": true,
+  "infrastructure_failure": false,
+  "llm_calls": 0,
+  "llm_repetition": 0,
+  "method_family": "non_llm",
+  "method_id": "random_baseline",
+  "model_snapshot": "not_applicable",
+  "observed_system_fingerprints": [],
+  "prompt_hash": null,
+  "protocol_hash": "5395a6514e2ac08dff8746ada9f5f864da3b29a2f61b71b12e9b05ca0526d308",
+  "provider": "deterministic",
+  "request_parameters": {},
+  "result_payload": {
+    "best_signature": "6c854d33c4b79a1037291a92271579a3fe314779992752d9ae5591ede90ee2b9",
+    "candidates_evaluated": 4,
+    "interface_version": "1.0.0",
+    "objective": {
+      "e2e_latency_ms": 133.12545687626184,
+      "energy_proxy": 0.0,
+      "load_imbalance": 0.816496580927726,
+      "metric_version": "0.1.0",
+      "migration_cost": 1.0,
+      "planning_time_ms": 1.9567999988794327,
+      "weighted_objective": 133.4071065343546
+    },
+    "optimality_proven": false,
+    "placement_assignments_considered": 4,
+    "plan": {
+      "candidate_id": "random_0002",
+      "method": "random_baseline",
+      "migrations": [
+        {
+          "cost": 1.0,
+          "service_id": "respond",
+          "source_node": "sat-b",
+          "target_node": "sat-c"
+        }
+      ],
+      "placement": {
+        "analyze": "sat-a",
+        "ingest": "sat-a",
+        "respond": "sat-c"
+      },
+      "resource_snapshot": {},
+      "routes": [
+        {
+          "edge_id": "analyze-respond",
+          "path": [
+            "sat-a",
+            "sat-c"
+          ]
+        },
+        {
+          "edge_id": "ingest-analyze",
+          "path": [
+            "sat-a"
+          ]
+        }
+      ],
+      "run_id": "baseline",
+      "status": "complete"
+    },
+    "planning_time_ms": 1.9567999988794327,
+    "scope": "best of up to 4 seeded unique eligible placements",
+    "solver_name": "random_baseline",
+    "status": "feasible",
+    "trace": [],
+    "verification": {
+      "feasible": true,
+      "verifier_version": "0.1.0",
+      "violations": []
+    }
+  },
+  "run_key": "random_baseline__s315__r0",
+  "runner_version": "1.0.0",
+  "scenario_hash": "f9de2c7afccde95eaccf94f01f37da09ac16bf83228f7b91368b41c442e8f9b7",
+  "scenario_profile": "objective_control",
+  "scenario_seed": 315,
+  "schema_failures": 0,
+  "status": "feasible",
+  "stop_reason": "feasible",
+  "violation_burden": 0.0,
+  "wall_time_ms": 1.9567999988794327,
+  "weighted_objective": 133.4071065343546
+}

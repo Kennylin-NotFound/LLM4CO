@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:37:58.380819Z",
+  "latency_ms": 1623.4998999862,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2560,
+    "prompt_cache_miss_tokens": 87,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "3ad8ddda-dce5-4a7f-8862-c857e4155630",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "path_score",
+        "feature": "path_latency",
+        "op": "set_weight",
+        "weight": -3.0
+      }
+    ],
+    "rationale": "Increase the penalty on path latency to encourage selection of lower-latency routes, which may reduce end-to-end latency and help satisfy the QoS constraint.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"path_score\",\n      \"feature\": \"path_latency\",\n      \"weight\": -3.0\n    }\n  ],\n  \"rationale\": \"Increase the penalty on path latency to encourage selection of lower-latency routes, which may reduce end-to-end latency and help satisfy the QoS constraint.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "4f6cabd0ae6a7174339e221c8656ff257502eb18fbd7bdd682f13ff59a172857",
+  "request_id": "req_4f6cabd0ae6a7174",
+  "usage": {
+    "input_tokens": 2647,
+    "output_tokens": 93
+  }
+}

@@ -1,0 +1,40 @@
+﻿{
+    "evidence_status":  "interview_demo_control_flow_evidence_not_performance_claim",
+    "contract_validated":  true,
+    "protocol_validated":  true,
+    "baseline":  {
+                     "oracle_optimality_proven":  true,
+                     "solvers":  [
+                                     "exact_enumeration_oracle",
+                                     "latency_greedy",
+                                     "capacity_greedy",
+                                     "random_baseline"
+                                 ]
+                 },
+    "replay_search":  {
+                          "stop_reason":  "first_feasible",
+                          "best_candidate_id":  "candidate_001",
+                          "evaluator_calls":  2,
+                          "accepted_patches":  1,
+                          "counterexamples":  1
+                      },
+    "ablation":  {
+                     "passed":  true,
+                     "passed_variants":  10,
+                     "total_variants":  10
+                 },
+    "method_completion":  {
+                              "passed":  true,
+                              "passed_variants":  6,
+                              "total_variants":  6
+                          },
+    "counterexample_replay_campaign":  {
+                                           "passed":  true,
+                                           "seed_runs":  1,
+                                           "scenario_replays":  1,
+                                           "resolved_counterexamples":  1,
+                                           "total_llm_calls":  2
+                                       },
+    "live_requested":  false,
+    "live_artifact":  null
+}

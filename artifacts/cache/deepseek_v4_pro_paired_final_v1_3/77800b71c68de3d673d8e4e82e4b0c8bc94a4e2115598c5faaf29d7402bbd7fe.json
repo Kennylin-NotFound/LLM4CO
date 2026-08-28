@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:40:45.689318Z",
+  "latency_ms": 3428.0983000062406,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 4096,
+    "prompt_cache_miss_tokens": 99,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "e3805215-c67b-4d95-8901-f3f058a22f3e",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "residual_compute_ratio",
+        "op": "set_weight",
+        "weight": -0.3
+      }
+    ],
+    "rationale": "The current node_score weights dependency_latency at -0.7 and residual_compute_ratio at -0.3. The previous probe setting residual_compute_ratio to -0.3 improved the objective, but the current parent already has that weight. To further reduce the objective, we can adjust the weight of dependency_latency to a less negative value, e.g., -0.5, to reduce the penalty on latency and potentially allow placements with better overall metrics. However, the previous attempt with -0.5 worsened the objective. Alternatively, we can add a new term for migration_penalty with a negative weight to discourage migrations, which might reduce migration cost and improve the objective.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"residual_compute_ratio\",\n      \"weight\": -0.3\n    }\n  ],\n  \"rationale\": \"The current node_score weights dependency_latency at -0.7 and residual_compute_ratio at -0.3. The previous probe setting residual_compute_ratio to -0.3 improved the objective, but the current parent already has that weight. To further reduce the objective, we can adjust the weight of dependency_latency to a less negative value, e.g., -0.5, to reduce the penalty on latency and potentially allow placements with better overall metrics. However, the previous attempt with -0.5 worsened the objective. Alternatively, we can add a new term for migration_penalty with a negative weight to discourage migrations, which might reduce migration cost and improve the objective.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "5f04c0be42a984ca2909b2d6a98cdc95403e116a88cc5a4ad24bc48a49bc2784",
+  "request_id": "req_5f04c0be42a984ca",
+  "usage": {
+    "input_tokens": 4195,
+    "output_tokens": 208
+  }
+}

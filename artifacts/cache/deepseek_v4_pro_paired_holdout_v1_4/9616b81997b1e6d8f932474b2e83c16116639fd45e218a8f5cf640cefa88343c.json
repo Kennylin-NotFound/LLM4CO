@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:13:55.731481Z",
+  "latency_ms": 2024.2842999869026,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2560,
+    "prompt_cache_miss_tokens": 117,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "dd706dbe-1b50-4cf5-a9f6-99b22484be7a",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -1.0
+      }
+    ],
+    "rationale": "Increase the penalty on dependency latency to encourage placement that reduces communication latency, potentially lowering E2E latency below the QoS threshold.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -1.0\n    }\n  ],\n  \"rationale\": \"Increase the penalty on dependency latency to encourage placement that reduces communication latency, potentially lowering E2E latency below the QoS threshold.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "453744070deecd978fd0ab7ba0224c698ffd4e2549ec6c58630322deecda03e7",
+  "request_id": "req_453744070deecd97",
+  "usage": {
+    "input_tokens": 2677,
+    "output_tokens": 88
+  }
+}

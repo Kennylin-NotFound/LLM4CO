@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:50:25.435765Z",
+  "latency_ms": 1477.003300038632,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 384,
+    "prompt_cache_miss_tokens": 3809,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "bd720f7e-5696-4cc2-b96a-78917e61cbad",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "residual_compute_ratio",
+        "op": "set_weight",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "Increase the negative weight on residual_compute_ratio to favor nodes with higher compute capacity, potentially reducing processing latency and improving load balance.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"residual_compute_ratio\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"Increase the negative weight on residual_compute_ratio to favor nodes with higher compute capacity, potentially reducing processing latency and improving load balance.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "dbd30a4e8dfeb34ae97ed51fc0eeb3310f727806415d1e5873abf969f02f600b",
+  "request_id": "req_dbd30a4e8dfeb34a",
+  "usage": {
+    "input_tokens": 4193,
+    "output_tokens": 92
+  }
+}

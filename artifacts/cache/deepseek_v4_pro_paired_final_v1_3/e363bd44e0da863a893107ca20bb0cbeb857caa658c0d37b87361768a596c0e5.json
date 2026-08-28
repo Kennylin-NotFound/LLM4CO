@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:38:09.410254Z",
+  "latency_ms": 2181.7224000114948,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2688,
+    "prompt_cache_miss_tokens": 74,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "ff244c7e-ca9d-4a24-aefa-cc64716779ef",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "path_score",
+        "feature": "path_latency",
+        "op": "set_weight",
+        "weight": -5.0
+      }
+    ],
+    "rationale": "Increase penalty on path latency to encourage selection of lower-latency routes, potentially reducing end-to-end latency below QoS threshold.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"path_score\",\n      \"feature\": \"path_latency\",\n      \"weight\": -5.0\n    }\n  ],\n  \"rationale\": \"Increase penalty on path latency to encourage selection of lower-latency routes, potentially reducing end-to-end latency below QoS threshold.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "fc668c58f6661a239b7bb7275f5b18ca2c0b56ef47b931a0525b2e36556c069c",
+  "request_id": "req_fc668c58f6661a23",
+  "usage": {
+    "input_tokens": 2762,
+    "output_tokens": 88
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:14:03.363601Z",
+  "latency_ms": 3273.276799998712,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1792,
+    "prompt_cache_miss_tokens": 1336,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "48c863fd-8f16-449e-9134-bff58d99d0fe",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "service_order",
+        "direction": "ascending",
+        "op": "set_direction"
+      }
+    ],
+    "rationale": "Changing service order direction to ascending may alter placement order, potentially reducing E2E latency below the QoS threshold.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_direction\",\n      \"component\": \"service_order\",\n      \"direction\": \"ascending\"\n    }\n  ],\n  \"rationale\": \"Changing service order direction to ascending may alter placement order, potentially reducing E2E latency below the QoS threshold.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "43ef60f203f962a48c65f851428234dfc64a9e6777e614c04ec14c02af661022",
+  "request_id": "req_43ef60f203f962a4",
+  "usage": {
+    "input_tokens": 3128,
+    "output_tokens": 75
+  }
+}

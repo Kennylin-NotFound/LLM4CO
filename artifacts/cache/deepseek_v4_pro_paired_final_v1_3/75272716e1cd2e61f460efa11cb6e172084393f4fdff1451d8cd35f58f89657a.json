@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:57:08.297077Z",
+  "latency_ms": 1593.2112999726087,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2048,
+    "prompt_cache_miss_tokens": 91,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "887a0974-cf6c-4307-80a3-f3e491e5c28c",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "path_score",
+        "feature": "path_latency",
+        "op": "set_weight",
+        "weight": -1.0
+      }
+    ],
+    "rationale": "Increase penalty on path latency to reduce E2E latency violation.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"path_score\",\n      \"feature\": \"path_latency\",\n      \"weight\": -1.0\n    }\n  ],\n  \"rationale\": \"Increase penalty on path latency to reduce E2E latency violation.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "1b4a874e5888dd2a699fbad6d7de7de485526775a24dbc4b248b46d25bd23f54",
+  "request_id": "req_1b4a874e5888dd2a",
+  "usage": {
+    "input_tokens": 2139,
+    "output_tokens": 76
+  }
+}

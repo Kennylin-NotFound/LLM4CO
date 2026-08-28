@@ -1,0 +1,25 @@
+{
+  "format_version": "1.0",
+  "entries": [
+    {
+      "purpose": "conflict_patch",
+      "provider": "offline-replay",
+      "model": "fixture-correct-direction",
+      "raw_text": "correct migration direction",
+      "parsed": {
+        "version": "1.0",
+        "operations": [
+          {
+            "op": "add_term",
+            "component": "node_score",
+            "feature": "migration_penalty",
+            "weight": -10.0
+          }
+        ],
+        "rationale": "Discourages migration when the migration budget is zero."
+      },
+      "usage": {"input_tokens": 0, "output_tokens": 0},
+      "latency_ms": 0.0
+    }
+  ]
+}

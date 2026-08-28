@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:40:54.998371Z",
+  "latency_ms": 2555.0874999607913,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 384,
+    "prompt_cache_miss_tokens": 3376,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "4ef28221-0352-44e0-a8ef-446d6a89e107",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "Reduce the penalty on dependency_latency in node_score to allow nodes with higher latency but better residual compute to be selected, potentially lowering overall latency by avoiding overloaded nodes.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"Reduce the penalty on dependency_latency in node_score to allow nodes with higher latency but better residual compute to be selected, potentially lowering overall latency by avoiding overloaded nodes.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "cbfffa529384fef654d9747ecca6f3c20a2665ebd10c3861aa10a93b52844919",
+  "request_id": "req_cbfffa529384fef6",
+  "usage": {
+    "input_tokens": 3760,
+    "output_tokens": 98
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:40:42.249257Z",
+  "latency_ms": 3725.980299990624,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 4096,
+    "prompt_cache_miss_tokens": 99,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "e3265304-4d26-4bc2-b8b9-b5854536c832",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "residual_compute_ratio",
+        "op": "set_weight",
+        "weight": -0.3
+      }
+    ],
+    "rationale": "The current node_score has residual_compute_ratio weight -0.3, which is already negative. However, the previous probe with weight -0.3 improved the objective from 109.095 to 95.128, suggesting that this weight is beneficial. Since the current parent already has this weight, no change is needed. To further improve, we could try adjusting the weight of dependency_latency, but that is blocked. Alternatively, we could add a new term such as residual_memory_ratio with a positive weight to favor nodes with more memory capacity, which might reduce load imbalance and improve objective.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"residual_compute_ratio\",\n      \"weight\": -0.3\n    }\n  ],\n  \"rationale\": \"The current node_score has residual_compute_ratio weight -0.3, which is already negative. However, the previous probe with weight -0.3 improved the objective from 109.095 to 95.128, suggesting that this weight is beneficial. Since the current parent already has this weight, no change is needed. To further improve, we could try adjusting the weight of dependency_latency, but that is blocked. Alternatively, we could add a new term such as residual_memory_ratio with a positive weight to favor nodes with more memory capacity, which might reduce load imbalance and improve objective.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "4a56e7bdeaa932a303ee63e3a0134fa08a872cfe7dedaa0ac00e4cb04d456c51",
+  "request_id": "req_4a56e7bdeaa932a3",
+  "usage": {
+    "input_tokens": 4195,
+    "output_tokens": 189
+  }
+}

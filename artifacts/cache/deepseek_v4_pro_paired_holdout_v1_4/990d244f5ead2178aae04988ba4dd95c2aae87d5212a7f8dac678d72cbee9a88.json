@@ -1,0 +1,37 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:19:53.780392Z",
+  "latency_ms": 1851.282999967225,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1152,
+    "prompt_cache_miss_tokens": 1356,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "04d5be1f-1f81-468a-a6d5-d13e37313fc5",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "service_order",
+        "direction": "ascending",
+        "op": "set_direction"
+      }
+    ],
+    "rationale": "Changing service order direction may alter placement and reduce latency violation.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_direction\",\n      \"component\": \"service_order\",\n      \"direction\": \"ascending\"\n    }\n  ],\n  \"rationale\": \"Changing service order direction may alter placement and reduce latency violation.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "bf274ec861e870649268d5a38a777533626d6d47510d6bf65db91897d4ba97ee",
+  "request_id": "req_bf274ec861e87064",
+  "usage": {
+    "input_tokens": 2508,
+    "output_tokens": 65
+  }
+}

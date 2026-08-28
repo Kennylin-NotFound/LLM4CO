@@ -1,0 +1,41 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:13:28.719073Z",
+  "latency_ms": 2475.4485999583267,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1280,
+    "prompt_cache_miss_tokens": 1344,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "c0500c01-0eee-4f8e-b0c5-ebf9fad0ce7a",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "actions": [
+          "reroute",
+          "swap_services",
+          "bounded_backtrack"
+        ],
+        "component": "repair_policy",
+        "op": "set_repair_policy"
+      }
+    ],
+    "rationale": "Previous repair policy with move_bottleneck_service did not change placement or routes. Swapping services may relocate the bottleneck service differently and reduce E2E latency.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_repair_policy\",\n      \"component\": \"repair_policy\",\n      \"actions\": [\"reroute\", \"swap_services\", \"bounded_backtrack\"]\n    }\n  ],\n  \"rationale\": \"Previous repair policy with move_bottleneck_service did not change placement or routes. Swapping services may relocate the bottleneck service differently and reduce E2E latency.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "63e42cf9dc76d1bca388ab85c2fc53bf7a30a60810939c4d8f0ccef37217894f",
+  "request_id": "req_63e42cf9dc76d1bc",
+  "usage": {
+    "input_tokens": 2624,
+    "output_tokens": 101
+  }
+}

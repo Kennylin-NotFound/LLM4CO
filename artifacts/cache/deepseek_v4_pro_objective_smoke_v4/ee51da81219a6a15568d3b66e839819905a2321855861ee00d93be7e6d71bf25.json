@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T09:46:59.512370Z",
+  "latency_ms": 2457.7819000114687,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 3428,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "c19f1dc9-2471-41f9-b369-a567867d8f00",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.9
+      }
+    ],
+    "rationale": "Increase penalty for dependency latency to avoid placing analyze on sat-a with high dependency latency, potentially reducing e2e latency and improving load balance.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.9\n    }\n  ],\n  \"rationale\": \"Increase penalty for dependency latency to avoid placing analyze on sat-a with high dependency latency, potentially reducing e2e latency and improving load balance.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "7fe82437224894a58b130f400118e568ff629002d7f133dfa32a6a6c936f40b2",
+  "request_id": "req_7fe82437224894a5",
+  "usage": {
+    "input_tokens": 3428,
+    "output_tokens": 91
+  }
+}

@@ -1,0 +1,86 @@
+scenario_id: "small_static_v1"
+seed: 20250825
+time_slot: 0
+generator_version: "fixture-0.1.0"
+slot_duration_seconds: 1.0
+nodes:
+  - node_id: "sat-a"
+    compute_capacity: 12.0
+    memory_capacity: 16.0
+    compute_rate_mips: 1000.0
+  - node_id: "sat-b"
+    compute_capacity: 10.0
+    memory_capacity: 12.0
+    compute_rate_mips: 800.0
+  - node_id: "sat-c"
+    compute_capacity: 8.0
+    memory_capacity: 10.0
+    compute_rate_mips: 700.0
+links:
+  - link_id: "a-b"
+    source: "sat-a"
+    target: "sat-b"
+    distance_km: 1500.0
+    transmission_rate_mbps: 100.0
+    bandwidth_mbps: 80.0
+    available_from: 0
+    available_until: 10
+    bidirectional: true
+  - link_id: "b-c"
+    source: "sat-b"
+    target: "sat-c"
+    distance_km: 2100.0
+    transmission_rate_mbps: 80.0
+    bandwidth_mbps: 60.0
+    available_from: 0
+    available_until: 10
+    bidirectional: true
+  - link_id: "a-c"
+    source: "sat-a"
+    target: "sat-c"
+    distance_km: 4200.0
+    transmission_rate_mbps: 60.0
+    bandwidth_mbps: 50.0
+    available_from: 0
+    available_until: 10
+    bidirectional: true
+services:
+  - service_id: "ingest"
+    compute_demand: 2.0
+    memory_demand: 2.0
+    workload_mi: 20.0
+    eligible_nodes: ["sat-a", "sat-b"]
+  - service_id: "analyze"
+    compute_demand: 4.0
+    memory_demand: 4.0
+    workload_mi: 40.0
+    eligible_nodes: ["sat-a", "sat-b", "sat-c"]
+  - service_id: "respond"
+    compute_demand: 2.0
+    memory_demand: 2.0
+    workload_mi: 15.0
+    eligible_nodes: ["sat-b", "sat-c"]
+service_edges:
+  - edge_id: "ingest-analyze"
+    source: "ingest"
+    target: "analyze"
+    data_volume_mbit: 4.0
+  - edge_id: "analyze-respond"
+    source: "analyze"
+    target: "respond"
+    data_volume_mbit: 2.0
+previous_placement:
+  ingest: "sat-a"
+  analyze: "sat-b"
+  respond: "sat-c"
+qos_latency_ms: 250.0
+migration_budget: 2
+objective:
+  latency: 1.0
+  load_imbalance: 0.1
+  migration_cost: 0.2
+  energy_proxy: 0.0
+provenance:
+  source_class: "synthetic_assumption"
+  source_reference: "docs/parameter_provenance.md#phase-1-fixture"
+  notes: "Phase 1 schema and reproducibility fixture; not a calibrated experiment scenario."

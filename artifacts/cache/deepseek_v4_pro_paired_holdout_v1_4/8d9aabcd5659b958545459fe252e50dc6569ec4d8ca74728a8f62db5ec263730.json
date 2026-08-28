@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:18:18.181103Z",
+  "latency_ms": 2440.2210999978706,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1664,
+    "prompt_cache_miss_tokens": 1333,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "58cde956-3c5f-489c-bed7-6b1042b7ec6a",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -1.0
+      }
+    ],
+    "rationale": "Increase the penalty on dependency latency in node_score to encourage placement that reduces communication latency, potentially lowering end-to-end latency and satisfying the QoS constraint.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -1.0\n    }\n  ],\n  \"rationale\": \"Increase the penalty on dependency latency in node_score to encourage placement that reduces communication latency, potentially lowering end-to-end latency and satisfying the QoS constraint.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "401e405a7d8d2d769a60cdf80a4a3f5ae1cbfeb185a7a1745caa08a8688a2ece",
+  "request_id": "req_401e405a7d8d2d76",
+  "usage": {
+    "input_tokens": 2997,
+    "output_tokens": 92
+  }
+}

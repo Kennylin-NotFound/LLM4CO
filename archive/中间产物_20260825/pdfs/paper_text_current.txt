@@ -1,0 +1,416 @@
+      Large Language Models for Microservice
+  Deployment in Space Computing Power Networks
+       Chen Lin∗ , Zhanpeng Yang† , Ting Wang∗ , Xin Liu† , Yuning Jiang‡ , Yong Zhou† , and Yuanming Shi†
+                     ∗ Software Engineering Institute, East China Normal University, Shanghai 200062, China
+               † School of Information Science and Technology, ShanghaiTech University, Shanghai 201210, China
+                 ‡ Automatic Control Laboratory, École Polytechnique Fédérale de Lausanne (EPFL), Switzerland
+
+                                                  Email: {51275902061}@stu.ecnu.edu.cn
+
+
+   Abstract—Space Computing Power Network (Space-CPN) is                   applications to share common components, which reduces
+a promising solution for deploying remote sensing applications             redundant deployments in Space-CPN [6].
+which require real-time processing of high-resolution data by                 However, a significant challenge arises from the inherent
+providing onboard computing and extensive coverage capabili-
+ties. However, the limited computational resources on satellites,          heterogeneity of satellites, i.e., different satellite possesses
+along with the dynamic and heterogeneous nature of the satellite           diverse computing and communication capabilities. This het-
+networks, present significant challenges for effective deployment          erogeneity necessitates deploying each microservice on the
+of these applications. To solve this problem, we decompose                 most suitable satellite while ensuring efficient resource uti-
+monolithic remote sensing applications into independent mi-                lization. Additionally, the high mobility of LEO satellites
+croservices, enabling flexible allocation of computational tasks
+across heterogeneous satellite resources and improving system              causes frequent changes in the relative positions of satellites,
+scalability. To allocate microservices, this paper proposes a              resulting in time-varying transmission rates in the network.
+framework that leverages Large Language Models (LLMs) to                   The microservice deployment problem is challenging [7], as
+optimize their deployment in Low Earth Orbit (LEO) satellite               it involves optimizing deployment decisions in a dynamic
+networks. The deployment problem is formulated as an NP-                   mesh topology of LEO networks while handling a non-
+hard optimization problem that aims to minimize the overall
+application latency by optimizing the placement of microservices           convex objective function and the combinatorial complexity
+across satellites, while considering computation delay, transmis-          introduced by discrete deployment variables. Despite this,
+sion delay, and the time-varying latencies of inter-satellite links        various heuristic approaches have been proposed. The authors
+(ISLs). Experimental results show that our framework effectively           in [8] propose a greedy-based heuristic algorithm to solve
+automates the modeling and solving of the optimization problem,            the non-convex microservice deployment problem. However,
+surpassing traditional deployment strategies in efficiency and
+achieving results close to the theoretical optimum.                        traditional heuristic methods often assume static or quasistatic
+                                                                           network structures, making them ill-suited to capture the
+                        I. I NTRODUCTION                                   rapid changes in Space-CPN induced by orbital motion. As a
+                                                                           result, these methods are often inadequate for such dynamic
+   In recent years, space computing power networks (Space-
+                                                                           environments, as they require long computational times or
+CPN) have emerged as key providers of network services
+                                                                           yield suboptimal solutions.
+[1]. By enabling real-time, high-resolution image processing,
+                                                                              To address the limitations of traditional heuristic methods,
+Space-CPNs facilitate rapid response and continuous moni-
+                                                                           various machine learning approaches have been proposed as
+toring, making them ideal for remote sensing tasks [2], [3].
+                                                                           alternatives. The authors in [9] employ reinforcement learning
+Notably, computational resources in Space-CPN are signif-
+                                                                           (RL) for deployment decisions. However, RL requires exten-
+icantly more constrained than those in terrestrial networks
+                                                                           sive domain expertise for modeling and algorithm design,
+[4]. Traditional monolithic deployments, which bundle all
+                                                                           demanding substantial expert involvement and high training
+functionalities into a single unit, are not well-suited for such
+                                                                           and validation costs. Moreover, the evolving requirements
+environments due to the high resource demands and lack
+                                                                           of remote sensing tasks lead to varying QoS demands (e.g.,
+of flexibility in dynamic network conditions characteristic of
+                                                                           latency), while the high cost of retraining RL models makes
+these systems. To address these challenges, a microservice
+                                                                           it impractical to adapt to these frequent changes. The short-
+architecture can be adopted, where monolithic remote sens-
+                                                                           comings of traditional heuristic and machine learning-based
+ing applications are decomposed into multiple independent
+                                                                           methods highlight the need for a more flexible and adaptive
+microservices [5]. This approach enhances modularity and
+                                                                           solution.
+enables efficient resource utilization by allowing different
+                                                                              Recent studies on large language models (LLMs) have
+  This work was supported by the Natural Science Foundation of Shanghai    demonstrated significant promise in solving optimization
+(No. 25ZR1401104). The corresponding author is Ting Wang.                  problems, as they possess the ability to understand complex
+  The work of Yuanming Shi was supported in part by the National Natural   challenges and autonomously generate models and solutions.
+Science Foundation of China under Grant 62522117 and Grant 62271318,
+and Yangtze River Delta Science and Technology Innovation Community        Existing research on LLMs for optimization can be broadly
+Joint Research (Basic Research) Project under Grant BK 2024CSJZN00303.     categorized into two approaches. Thehard first is prompt-
+based methods, which utilize LLM services (e.g., ChatGPT)
+through a carefully designed sequence of prompts [10]. The
+second approach involves fine-tuning open-source LLMs to
+better adapt them to optimization-specific tasks [11]. Unlike
+conventional optimization, which depends on domain exper-
+tise for mathematical modeling, algorithm selection, fine-
+tuning, and adaptation, LLMs transform optimization strate-
+gies by generating problem-specific solutions directly from
+natural language descriptions of objectives and constraints
+while dynamically adapting to changing conditions. This shift
+from traditional manual approaches to automated, LLM-driven
+modeling represents a fundamental advancement in the field.
+However, existing research primarily focuses on solving gen-
+eral optimization problems and has not yet explored the ap-
+                                                                    Fig. 1: Supporting remote sensing application with (a) mono-
+plication of LLM-based optimization in specialized domains,
+                                                                    lithic architecture and (b) microservices architecture.
+such as satellite networks. In the context of satellite microser-
+vice deployment, LLM’s capability effectively addresses key
+challenges inherent to Space-CPN environments—particularly          maintainable microservices. To illustrate the distinction be-
+the need for real-time reconfiguration in response to fluctuat-     tween monolithic and microservices architectures, we consider
+ing inter-satellite link (ISL) latencies and heterogeneous on-      a satellite remote sensing scenario depicted in Fig. 1. This
+board resource constraints. By minimizing reliance on manual        scenario involves three common remote sensing tasks—object
+intervention and enabling intelligent adaptation to dynamic         recognition, image segmentation, and change detection [12]
+satellite network conditions, LLMs offer a robust and adaptive      —each consisting of multiple sub-functional modules.
+framework for optimizing microservice deployment strategies            As shown in Fig. 1(a), the monolithic architecture tightly
+in satellite systems.                                               integrates all functional modules of each application, with
+   In this paper, we propose a framework based on LLMs to           certain components, such as image acquisition, preprocessing,
+facilitate efficient microservice deployment for remote sensing     and feature extraction, being redundantly deployed. Further-
+tasks, automate the deployment process, and effectively adapt       more, each application must be deployed in its entirety on a
+to the complex and dynamic Space-CPN environment. We                single satellite, resulting in significant redundancy and exces-
+decompose the optimization problem-solving process into             sive consumption of scarce satellite resources such as memory
+modeling and code generation, with each step automated              and computational capacity. The high degree of coupling
+by LLMs. We improve the modeling process in Space-CPN               among models also complicates application maintenance and
+by leveraging LLMs to transform natural language problem            updates.
+descriptions into structured optimization models, addressing           By contrast, as illustrated in Fig. 1(b), using a microservices
+the limitations of traditional manual modeling in dynamic           architecture decouples these modules into multiple lightweight
+and heterogeneous satellite networks. Furthermore, we en-           models, each can be deployed on different satellites. The
+hance algorithm design by utilizing LLMs to intelligently           functionality of the entire application is then achieved through
+search fo optimization strategies to generate high-performance      the composition of these microservices. Compared to the
+solutions. Additionally, we develop an auto-testing process         monolithic approach, each redundant microservice is deployed
+with a self-correction mechanism, ensuring the accuracy and         only once, minimizing the consumption of computing and
+reliability of the generated models and optimization algo-          memory resources. Moreover, this architecture significantly
+rithms. Finally, we simulate a real-world satellite network         simplifies maintenance and updates, allowing microservices
+environment to evaluate the performance of our LLM-based            to be modified or replaced independently without affecting
+optimization framework.                                             other components of the application.
+                     II. S YSTEM M ODEL                             B. LEO Satellite Networks
+  In this section, we first introduce the microservice deploy-         As illustrated in Fig. 2, multiple microservices are deployed
+ment scenario and the satellite network model in Sections II-       across a set of LEO satellites, each with heterogeneous
+A and II-B, respectively. In addition, Section II-C presents a      resource constraints [13]. A typical LEO constellation is com-
+typical remote sensing microservice deployment optimization         posed of O orbital planes, each containing L satellites [14]. As
+problem for service latency minimization.                           satellites move along their orbits, the topology of the satellite
+                                                                    network continuously evolves [15]. The distances between
+A. Microservice Architecture                                        both adjacent satellites on the same orbit and satellites in
+  We adopt a microservices-based software architecture to           different orbits fluctuate due to orbital motion, leading to time-
+decompose traditionally complex, monolithic remote sens-            varying communication rates between any two satellites [16].
+ing applications into multiple lightweight and independently        The onboard inference pipeline operates as follows: 1) Remote
+                                                                    lated to throughput and memory access—we define the set of
+                                                                    available satellites for each microservice. Here, we denote by
+                                                                    L = {L1 , L2 , . . . , LM } ⊆ D the set of deployable satellites,
+                                                                    where M = |M| represents the number of microservices in
+                                                                    the system.
+                                                                       Due to dependencies between microservices, the total
+                                                                    latency of a microservice m—which includes processing,
+                                                                    propagation, and transmission delays—is affected by the
+                                                                    performance of its predecessor u. Therefore, the latency of
+                                                                    microservice m is given by
+                                                                                             tr       pp       pc
+                                                                                       τm = τu,i,j + τu,i,j + τm,j ,                   (1)
+                                                                    where microservice u is deployed on satellite i and microser-
+         Fig. 2: Remote sensing tasks in Space-CPN                                                      tr
+                                                                    vice m on satellite j. Here, τu,i,j        denotes the transmission
+                                                                                                                                   pp
+                                                                    latency from satellite i to satellite j for microservice u, τu,i,j
+                                                                                                                           pc
+                                                                    represents the propagation latency for u, and τm,j corresponds
+sensing satellites capture high-resolution images for both rou-     to the processing latency of microservice m on satellite j.
+tine tasks (e.g., agriculture, forest monitoring) and emergency        In particular, the transmission latency depends on both the
+scenarios (e.g., detecting wildfires or landslides); 2) These raw   inter-satellite distance and the volume of data B tr to be
+images are first preprocessed into data; 3) The images are then     transmitted. Given the dynamic satellite motion, the instanta-
+transmitted to LEO satellites, where microservices deployed in      neous transmission rate ri,jorbital
+                                                                                                        (t) varies over time. Satellites
+the Space-CPN constellation process them and relay the data         within the same orbital plane generally exhibit higher and
+via satellite links; 4) The processed results are subsequently      more stable rates compared to those in different planes, where
+sent to ground stations. Additionally, Geostationary transfer       larger distance fluctuations lead to lower rates. To quantify the
+orbit (GEO) satellites are introduced to manage the microser-       transmission latency, we define τu,i,jtr
+                                                                                                                as the minimum duration
+vice deployment process. The resource constraints of each                                    tr
+                                                                    required to transfer B under the time-varying rate:
+LEO satellite, along with the profiles of the microservices,                                       st
+                                                                                                                               
+are registered with the management GEO satellite. We assume                                  TX       +τ                      
+                                                                                tr
+that the GEO satellite has full communication and control                     τu,i,j = min τ                 orbital
+                                                                                                           ri,j      (t) ≥ B tr ,    (2)
+                                                                                                       st
+                                                                                                                               
+                                                                                                   t=T
+capabilities over all LEO satellites, with laser communication
+links established between them. This allows the GEO satellites                st
+                                                                    where T is the transmission start time, and ri,j         orbital
+                                                                                                                                     (t) is
+to control the deployment plan, enabling the LEO satellites to      partitioned as:
+focus solely on running the microservices.                                         (
+                                                                                      intra
+                                                                     orbital         ri,j   (t), if satellites i and j are co-orbital,
+C. Microservice Deployment Problem                                  ri,j     (t) =    inter
+                                                                                     ri,j (t), otherwise.
+   The satellite communication network is modeled as a
+                                                                      The propagation latency for communication between mi-
+grid graph G(D, ε), where D represents the set of available
+                                                                    croservice u on satellite i and microservice m on satellite j
+satellites and ε denotes the set of inter-satellite links. Let R
+                                                                    depends on the spatial distance between the satellites and the
+be the set of satellite resources (e.g., CPU cores, memory)
+                                                                    speed of light. It is modeled as
+with cardinality R = |R|. For each satellite d ∈ D, its
+available resources are represented as an R-dimensional vector                                  pp   Di,j
+                                                                                               τu,i,j =   ,                    (3)
+sd = [sd (1), . . . , sd (R)]T , where sd (i) ≥ 0 denotes the                                         C
+capacity of resource i for i = 1, 2, . . . , R.                     where Di,j denotes the distance between satellites i and j at
+   Microservice-based applications can be represented as di-        the time of transmission, and C is the speed of light.
+rected acyclic graphs (DAGs), where nodes correspond to mi-            The processing latency is determined by the computational
+croservices and edges denote the data flows between them. We        workload and the computational capacity of the satellite (e.g.
+assume the existence of N remote sensing applications. Let          CPU frequency). The processing latency is defined as
+G = {G1 , G2 , . . . , GN } denote the set of these applications,                                         B cp
+                                                                                                 pc
+where each Gn = (Mn , εn ) is a DAG associated with the n-                                      τm  =          ,                       (4)
+                                                                                                          fj
+th application. Here, Mn represents the set of microservices
+required by the n-th application, and εn indicates the data         where B cp represents the total computational workload of
+flows between these microservices. The set of allSmicroser-         microservice m and fj denotes the computational capacity
+vices across the N applications is given by M = n=1 Mn .
+                                                        N           of satellite j [17].
+For any microservice m ∈ M, its resource requirements are             Finally, the total latency of the n-th application is given by
+denoted by rm = [rm (1), rm (2), . . . , rm (R)]T . To avoid
+                                                                                                   X
+                                                                                             ln =        τm ,                    (5)
+conflicts between different microservices—such as those re-                                         m∈Mn
+Furthermore, if a microservice m depends on multiple pre-
+decessor microservices, its latency τm is determined by the
+arrival time of the last dependency’s data, with the transmis-
+sion and propagation latencies calculated accordingly.
+   Given the resource constraints of the satellites and the char-
+acteristics of the microservices, our objective is to minimize
+the total latency across all applications. The deployment of mi-
+croservices is represented by a binary matrix X ∈ {0, 1}M ×D ,
+defined as
+           (
+             1, if microservice m is deployed on satellite d,
+ xm,d =
+             0, otherwise,                                          Fig. 3: System structure of LLM-based optimization frame-
+                                                              (6)   work
+where D = |D| denotes the number of deployable satellites,
+and m and d index the microservices and satellites, respec-
+tively. Finally, we define the optimization problem for on-
+board microservice deployment as follows:
+             N
+             X
+minimize           ln                                         (7)
+             n=1
+
+             X
+subject to          rm (j) xm,d ≤ sd (j), ∀ d ∈ D, ∀ j ∈ R
+             m∈M
+                                                             (7a)   Fig. 4: Mathematical modeling and code generation process
+                                                                    of our LLM-based framework
+             X
+                   xm,d = 1, ∀ m ∈ M,                        (7b)
+             d∈D
+                                                                    description. Solver code is then generated from the formula-
+                                                                   tion and tested using a predefined set of test cases. If the code
+             xm,d = 0, ∀ d ∈ D \ Lv , ∀ m ∈ M,               (7c)   fails to compile or does not meet the validation criteria, the
+                                                                    associated error information is fed back to LLMs for iterative
+             xm,d ∈ {0, 1}, ∀ m ∈ M, ∀ d ∈ D.                (7d)   refinement until the issues are resolved. Once the code runs
+                                                                    successfully and passes all tests, the code is executed with the
+   The objective function in (7) seeks to minimize the total
+                                                                    simulation data to produce final deployment decision.
+latency l, which aggregates the latencies of all N applications.
+Constraint (7a) ensures that, for every satellite d and each        A. Formulation
+resource type j, the cumulative resource demand of the                 Our framework systematically maps natural language prob-
+microservices deployed on d does not exceed the available           lem descriptions to mathematical formulations through a
+capacity sd (j). Constraint (7b) guarantees that each microser-     structured pipeline. The first step involves extracting key
+vice is assigned to exactly one satellite, while constraint         semantic elements and formalizing them mathematically.
+(7c) restricts the deployment to only those satellites available    Given an input problem description D, LLM extracts four
+for a given microservice (i.e., satellites within Lm ). Finally,    fundamental modeling components, collectively forming the
+constraint (7d) enforces the binary nature of the decision          mathematical set F, as illustrated in Fig. 4:
+variable xm,d . Due to these integer constraints, the overall
+                                                                                      LLM
+problem is NP-hard. Specifically, the problem involves both                        D −−−→ F,      F = {P, V, C, O}
+assignment and resource allocation decisions, where selecting
+an optimal deployment strategy requires evaluating an expo-            where:
+nential number of feasible configurations. Moreover, the pres-         • P = {pi }: Parameters
+
+ence of dependencies among microservices and the dynamic               • V = {vj }: Variables
+
+nature of inter-satellite link conditions further compound the         • C = {ck }: Constraints
+
+complexity, making the objective function non-convex.                  • O: Objective
+                                                                    Each extracted component is then structured into a formal
+III. M ICROSERVICE D EPLOYMENT S TRATEGY BASED ON                   representation, specifying its symbolic notation, definition,
+                        LLM                                         dimensionality, and corresponding mathematical expression.
+  Fig. 3 illustrates the structure of our proposed LLM-             The next step is model integration, which involves syn-
+based framework. The overall solving process begins with the        thesizing the extracted component set F into a canonical
+construction of a mathematical model based on the problem           optimization model. To enhance the accuracy and robustness
+of this process, we employ retrieval-augmented generation            A. Simulation Settings
+(RAG) [18], which provides domain-specific knowledge as
+                                                                        In our experiments, we simulate a LEO satellite network
+additional context. The formulation process follows:
+                                                                     based on the system model in Section II and adopt a Walker
+           ϕ = LLM (F ⊕ ΘRAG ) ,        ΘRAG = {K}                   Delta constellation model, which is commonly used in satellite
+                                                                     network design. In our baseline configuration, the constella-
+where ΘRAG represents the set of auxiliary knowledge re-             tion comprises M = 6 orbital planes with N = 8 satellites
+trieved from a domain-specific knowledge base K, which               per plane, resulting in a total of 48 satellites. Satellites are
+includes structured optimization templates such as standard          arranged in a mesh topology, and the inter-satellite distances
+MILP formulations. The output ϕ denotes the complete math-           are computed using orbital mechanics with added random per-
+ematical optimization model. Specifically, the LLM maps the          turbations to capture real-world uncertainties. Each satellite is
+extracted constraints C to their mathematical representations.       modeled as an edge computing node with different resources.
+For instance, a set of linear constraints ck is transformed into     For example, a node has 4 CPU cores, 12.0 GB of memory,
+a standard matrix-vector form: C 7→ ϕC : Ax ≤ b. The LLM             and a CPU clock frequency of 1.5 GHz [19]. Microservice-
+selects the most suitable mathematical formulation based on          based applications onboard are modeled as DAGs, as il-
+problem characteristics, ensuring that the resulting model is        lustrated in Section II. The resource requirements for each
+both syntactically correct and semantically meaningful.              microservice—including memory, computational workload (in
+B. Code Generation                                                   terms of CPU cycles), and communication volume—are pre-
+                                                                     defined based on realistic workload patterns.
+  Once the standardized mathematical model is established,
+                                                                        To evaluate the performance of our proposed LLM-based
+our approach automatically translates it into solver-executable
+                                                                     structure, we compare it against three alternative deployment
+code. In our implementation, decision variables, constraints,
+                                                                     strategies, shown as follows:
+and the objective function are encoded using predefined code
+templates to enable integration with state-of-the-art solvers,         • Random Deployment: The deployment strategy is se-
+such as the Gurobi MIP solver. This adaptive methodology                 lected randomly while adhering to the resource con-
+not only ensures syntactic correctness but also significantly            straints.
+enhances efficiency and scalability, representing a substantial        • Heuristic Method: The deployment strategy is deter-
+
+advancement over conventional manual modeling and coding                 mined using a greedy-based heuristic.
+practices.                                                             • Optimal Method: The optimal deployment strategy is
+                                                                         found using the branch-and-bound approach with expo-
+C. Self correction and Validation                                        nential time complexity.
+   After solver code is generated, it is executed locally with          We manually designed these baseline algorithms based on
+a predefined set of unit tests. The system then evaluates            the modeling approach described in Section II. In contrast, our
+whether further refinement is required or if an optimal solution     LLM-based framework automates both modeling and solving
+has been successfully obtained based on the output. Errors           by relying solely on a natural language problem description.
+encountered during execution are systematically classified           We use ChatGPT-4 as our LLM agent.
+into two categories: (1) execution errors, which arise from
+syntactic or runtime issues within the generated code, and (2)       B. Performance of LLM Based Microservice Deployment
+modeling errors, where the solver identifies the formulation         Strategy
+as non-optimal (e.g., unbounded or infeasible), indicating a
+structural issue in the mathematical model. In the case of              In the first experiment, we employ a simple scenario where
+execution errors, the corresponding error message and relevant       five microservices are deployed across a small-scale satellite
+code segment are relayed back to the LLM for automatic revi-         network consisting of five satellites. We evaluate the total
+sion. This iterative correction process continues until the code     latency of three deployment algorithms alongside the algo-
+executes correctly or a predefined iteration limit is reached.       rithm generated by LLMs. The total application latency for
+For modeling errors, the formulation is returned to the LLM,         each strategy is presented in Fig. 5. The results demonstrate
+and guidance is provided to assist it in reformulating the math-     that our LLM-based framework outperforms both random
+ematical model. This automated self-correction mechanism             and heuristic methods, achieving a near-optimal solution with
+enhances both the accuracy of mathematical formulations and          reduced latency.
+the reliability of final solutions. Finally, the thoroughly tested      To further validate the performance of our approach under
+code will be executed on our simulated data, producing the           more realistic conditions, we simulate a LEO satellite network
+final deployment results.                                            based on a structured satellite constellation, consisting of 48,
+                                                                     60, and 72 satellites respectively. The total system latency
+             IV. E XPERIMENTS AND A NALYSIS                          for each deployment method is reported in Fig. 6. The
+   In this section, we evaluate the performance of our proposed      results demonstrate that our proposed method consistently
+LLM-based structure and compare its performance with tra-            outperforms the random and heuristic approaches, achieving
+ditional algorithms such as heuristic methods.                       lower latency across different constellation sizes.
+                                                                                    vol. 9, no. 1, pp. 695–705, 2022.
+                                                                                [2] M. Y. Abdelsadek, A. U. Chaudhry, T. Darwish, E. Erdo-
+                                                                                    gan, G. Karabulut-Kurt, P. G. Madoery, O. Ben Yahia, and
+                                                                                    H. Yanikomeroglu, “Future space networks: Toward the next giant leap
+                                                                                    for humankind,” IEEE Transactions on Communications, vol. 71, no. 2,
+                                                                                    pp. 949–1007, 2023.
+                                                                                [3] I. Leyva-Mayorga, M. Martinez-Gost, M. Moretti, A. Pérez-Neira,
+                                                                                    M. Vázquez, P. Popovski, and B. Soret, “Satellite edge computing
+                                                                                    for real-time and very-high resolution earth observation,” IEEE Trans-
+                                                                                    actions on Communications, vol. 71, no. 10, pp. 6180–6194, 2023.
+                                                                                [4] H. Yuan, T. Wang, M. Fu, and Y. Shi, “Girp: Energy-efficient qos-
+                                                                                    oriented microservice resource provisioning via multi-objective multi-
+                                                                                    task reinforcement learning,” IEEE Transactions on Mobile Computing,
+                                                                                    pp. 1–15, 2025.
+                                                                                [5] Z. Yu, H. V. Cheng, Z. Yang, X. Liu, Y. Jiang, Y. Zhou, and Y. Shi,
+                                                                                    “Microservice deployment for satellite edge ai inference via deep
+                                                                                    reinforcement learning,” in 2024 IEEE 35th International Symposium on
+                                                                                    Personal, Indoor and Mobile Radio Communications (PIMRC), 2024,
+                                                                                    pp. 1–6.
+                                                                                [6] H. Guo, H. Cao, J. He, X. Liu, and Y. Shi, “Pobo: Safe and
+                                                                                    optimal resource management for cloud microservices,” Performance
+                                                                                    Evaluation, vol. 162, p. 102376, 2023. [Online]. Available:
+Fig. 5: Response latency of applications using different mi-                        https://www.sciencedirect.com/science/article/pii/S0166531623000469
+croservice deployment algorithms.                                               [7] J. Cao, S. Zhang, Q. Chen, H. Wang, M. Wang, and N. Liu, “Computing-
+                                                                                    aware routing for leo satellite networks: A transmission and computation
+                                                                                    integration approach,” IEEE Transactions on Vehicular Technology,
+                                                                                    vol. 72, no. 12, pp. 16 607–16 623, 2023.
+                                                                                [8] Z. Yang, Z. Yu, X. Liu, D. Wen, Y. Zhou, and Y. Shi, “Latency-aware
+                                                                                    microservice deployment for edge ai enabled video analytics,” in 2024
+                                                                                    IEEE Wireless Communications and Networking Conference (WCNC),
+                                                                                    2024, pp. 01–06.
+                                                                                [9] Z. Yu, Y. Jiang, X. Liu, Y. Shi, C. Jiang, and L. Kuang,
+                                                                                    “Microservice deployment in space computing power networks
+                                                                                    via robust reinforcement learning,” 2025. [Online]. Available:
+                                                                                    https://arxiv.org/abs/2501.06244
+                                                                               [10] A. AhmadiTeshnizi, W. Gao, and M. Udell, “Optimus: Optimization
+                                                                                    modeling using mip solvers and large language models,” 2023.
+                                                                                    [Online]. Available: https://arxiv.org/abs/2310.06116
+                                                                               [11] C. Jiang, X. Shu, H. Qian, X. Lu, J. Zhou, A. Zhou, and Y. Yu, “Llmopt:
+                                                                                    Learning to define and solve general optimization problems from
+                                                                                    scratch,” 2025. [Online]. Available: https://arxiv.org/abs/2410.13213
+                                                                               [12] J. Sun, X. Chen, C. Jiang, and S. Guo, “Distributionally robust opti-
+                                                                                    mization of on-orbit resource scheduling for remote sensing in space-
+Fig. 6: Total latency of random, heuristic, our LLM-based and                       air-ground integrated 6g networks,” IEEE Journal on Selected Areas in
+optimal methods.                                                                    Communications, vol. 43, no. 1, pp. 382–395, 2025.
+                                                                               [13] K. Ntontin, E. Lagunas, J. Querol, J. u. Rehman, J. Grotz, S. Chatzino-
+                                                                                    tas, and B. Ottersten, “A vision, survey, and roadmap toward space
+                                                                                    communications in the 6g and beyond era,” Proceedings of the IEEE,
+                          V. C ONCLUSION                                            pp. 1–37, 2025.
+                                                                               [14] B. Kempton and A. Riedl, “Network simulator for large low earth orbit
+   This paper presented an LLM-based framework for opti-                            satellite networks,” in ICC 2021 - IEEE International Conference on
+mizing microservice deployment in space computing power                             Communications, 2021, pp. 1–6.
+                                                                               [15] Y. Shi, L. Zeng, J. Zhu, Y. Zhou, C. Jiang, and K. B. Letaief, “Satellite
+networks. The key challenge addressed was dynamic resource                          federated edge learning: Architecture design and convergence analysis,”
+allocation in environments where satellite movement caused                          IEEE Transactions on Wireless Communications, vol. 23, no. 10, pp.
+time-varying ISL latencies and heterogeneous edge node                              15 212–15 229, 2024.
+                                                                               [16] Y. Zhu, P. Yang, J. Zhu, D. Wen, T. Wang, Y. Zhou, Y. Shi, and C. Jiang,
+resources. Our solution specifically targeted interdependent                        “Satellite federated fine-tuning for foundation models: Architecture
+remote sensing microservices with shared components, aiming                         design and system optimization,” in GLOBECOM 2024 - 2024 IEEE
+to minimize end-to-end application latency through intel-                           Global Communications Conference, 2024, pp. 5030–5035.
+                                                                               [17] Q. Tang, Z. Fei, B. Li, and Z. Han, “Computation offloading in leo
+ligent deployment optimization. Compared to conventional                            satellite networks with hybrid cloud and edge computing,” IEEE Internet
+optimization methods, the LLM-driven framework demon-                               of Things Journal, vol. 8, no. 11, pp. 9164–9176, 2021.
+strated enhanced efficiency in automatically formulating and                   [18] P. Lewis, E. Perez, A. Piktus, F. Petroni, V. Karpukhin, N. Goyal,
+                                                                                    H. Küttler, M. Lewis, W. tau Yih, T. Rocktäschel, S. Riedel, and
+solving deployment problems while achieving near-optimal                            D. Kiela, “Retrieval-augmented generation for knowledge-intensive nlp
+results. This approach significantly advanced the automation                        tasks,” 2021. [Online]. Available: https://arxiv.org/abs/2005.11401
+of complex satellite network management in dynamic space                       [19] A. Geist, C. Brewer, M. Davis, N. Franconi, S. Heyward, T. Wise,
+                                                                                    G. Crum, D. Petrick, R. Ripley, and C. W. et al., “Spacecube v3.0: Nasa
+environments.                                                                       next-generation high-performance processor for science applications,”
+                                                                                    in Proceedings of the AIAA/USU Conference on Small Satellites (SSC),
+                            R EFERENCES                                             2019.
+[1] Q. Li, S. Wang, X. Ma, Q. Sun, H. Wang, S. Cao, and F. Yang, “Service
+    coverage for satellite edge computing,” IEEE Internet of Things Journal,
+

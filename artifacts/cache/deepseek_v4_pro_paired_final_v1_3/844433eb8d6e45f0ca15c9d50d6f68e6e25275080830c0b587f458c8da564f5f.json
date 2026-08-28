@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:43:20.415418Z",
+  "latency_ms": 2117.7388999494724,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1280,
+    "prompt_cache_miss_tokens": 1366,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "ff3ae2c5-d951-45a8-8c0d-6507ea1bde38",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -3.0
+      }
+    ],
+    "rationale": "Increase penalty on dependency latency to reduce E2E latency and satisfy QoS constraint.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -3.0\n    }\n  ],\n  \"rationale\": \"Increase penalty on dependency latency to reduce E2E latency and satisfy QoS constraint.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "7f75dd62431696df295c98d42d2197231185665dccea8fec54268ebaabc7a448",
+  "request_id": "req_7f75dd62431696df",
+  "usage": {
+    "input_tokens": 2646,
+    "output_tokens": 79
+  }
+}

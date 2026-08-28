@@ -1,0 +1,375 @@
+{
+  "analysis_version": "1.0.0",
+  "code_tree_hash": "590a1f163866caa221af1f1b05f423912b49b046b9892e9bb934b94c394d1698",
+  "comparisons": [
+    {
+      "claim_id": "C_SCHEMA",
+      "claim_reason": "primary feasible_rate: effect=0.25, Holm p=0.25, n=20",
+      "claim_status": "not_supported",
+      "comparison_id": "structured_vs_direct",
+      "control": "direct_llm_plan",
+      "metrics": [
+        {
+          "confidence_interval_95": [
+            0.1,
+            0.45
+          ],
+          "control_mean": 0.0,
+          "direction": "maximize",
+          "discordant_control_only": 0,
+          "discordant_treatment_only": 5,
+          "favorable_direction": true,
+          "metric_id": "feasible_rate",
+          "p_value_holm": 0.25,
+          "p_value_raw": 0.0625,
+          "scenario_count": 20,
+          "test_name": "exact_mcnemar_majority_feasible",
+          "treatment_mean": 0.25,
+          "treatment_minus_control": 0.25
+        },
+        {
+          "confidence_interval_95": [
+            -1.0,
+            -1.0
+          ],
+          "control_mean": 1.0,
+          "direction": "minimize",
+          "discordant_control_only": null,
+          "discordant_treatment_only": null,
+          "favorable_direction": true,
+          "metric_id": "schema_failure_rate",
+          "p_value_holm": null,
+          "p_value_raw": 7.74421643104407e-06,
+          "scenario_count": 20,
+          "test_name": "paired_wilcoxon_scenario_aggregate",
+          "treatment_mean": 0.0,
+          "treatment_minus_control": -1.0
+        }
+      ],
+      "primary_metric_id": "feasible_rate",
+      "treatment": "structured_llm_plan"
+    },
+    {
+      "claim_id": "C_FEEDBACK",
+      "claim_reason": "primary feasible_rate: effect=-0.19999999999999996, Holm p=0.25, n=20",
+      "claim_status": "not_supported",
+      "comparison_id": "conflict_vs_generic_feedback",
+      "control": "cover_opt_generic_feedback",
+      "metrics": [
+        {
+          "confidence_interval_95": [
+            -0.4,
+            -0.05
+          ],
+          "control_mean": 0.75,
+          "direction": "maximize",
+          "discordant_control_only": 4,
+          "discordant_treatment_only": 0,
+          "favorable_direction": false,
+          "metric_id": "feasible_rate",
+          "p_value_holm": 0.25,
+          "p_value_raw": 0.125,
+          "scenario_count": 20,
+          "test_name": "exact_mcnemar_majority_feasible",
+          "treatment_mean": 0.55,
+          "treatment_minus_control": -0.19999999999999996
+        },
+        {
+          "confidence_interval_95": [
+            0.0,
+            0.5555555555555555
+          ],
+          "control_mean": 0.6944444444444444,
+          "direction": "minimize",
+          "discordant_control_only": null,
+          "discordant_treatment_only": null,
+          "favorable_direction": false,
+          "metric_id": "calls_to_first_feasible",
+          "p_value_holm": null,
+          "p_value_raw": 0.5,
+          "scenario_count": 12,
+          "test_name": "paired_wilcoxon_scenario_aggregate",
+          "treatment_mean": 0.9166666666666666,
+          "treatment_minus_control": 0.2222222222222222
+        }
+      ],
+      "primary_metric_id": "feasible_rate",
+      "treatment": "cover_opt_conflict_feedback"
+    },
+    {
+      "claim_id": "C_VERIFICATION",
+      "claim_reason": "primary violation_burden: effect=-0.25, Holm p=0.25, n=20",
+      "claim_status": "not_supported",
+      "comparison_id": "conflict_vs_no_feedback",
+      "control": "cover_opt_no_feedback",
+      "metrics": [
+        {
+          "confidence_interval_95": [
+            0.0,
+            0.5
+          ],
+          "control_mean": 0.3,
+          "direction": "maximize",
+          "discordant_control_only": 1,
+          "discordant_treatment_only": 6,
+          "favorable_direction": true,
+          "metric_id": "feasible_rate",
+          "p_value_holm": null,
+          "p_value_raw": 0.125,
+          "scenario_count": 20,
+          "test_name": "exact_mcnemar_majority_feasible",
+          "treatment_mean": 0.55,
+          "treatment_minus_control": 0.25000000000000006
+        },
+        {
+          "confidence_interval_95": [
+            -0.5333333333333333,
+            0.08333333333333331
+          ],
+          "control_mean": 0.9,
+          "direction": "minimize",
+          "discordant_control_only": null,
+          "discordant_treatment_only": null,
+          "favorable_direction": true,
+          "metric_id": "violation_burden",
+          "p_value_holm": 0.25,
+          "p_value_raw": 0.15102615479062906,
+          "scenario_count": 20,
+          "test_name": "paired_wilcoxon_scenario_aggregate",
+          "treatment_mean": 0.65,
+          "treatment_minus_control": -0.25
+        }
+      ],
+      "primary_metric_id": "violation_burden",
+      "treatment": "cover_opt_conflict_feedback"
+    },
+    {
+      "claim_id": "C_PIPELINE",
+      "claim_reason": "primary weighted_objective: effect=-4.51782197534034, Holm p=0.25, n=12",
+      "claim_status": "not_supported",
+      "comparison_id": "full_vs_conflict_only",
+      "control": "cover_opt_conflict_feedback",
+      "metrics": [
+        {
+          "confidence_interval_95": [
+            0.05,
+            0.4
+          ],
+          "control_mean": 0.55,
+          "direction": "maximize",
+          "discordant_control_only": 0,
+          "discordant_treatment_only": 4,
+          "favorable_direction": true,
+          "metric_id": "feasible_rate",
+          "p_value_holm": null,
+          "p_value_raw": 0.125,
+          "scenario_count": 20,
+          "test_name": "exact_mcnemar_majority_feasible",
+          "treatment_mean": 0.75,
+          "treatment_minus_control": 0.19999999999999996
+        },
+        {
+          "confidence_interval_95": [
+            -7.831489722948354,
+            -1.4422709431694425
+          ],
+          "control_mean": 96.64178148159372,
+          "direction": "minimize",
+          "discordant_control_only": null,
+          "discordant_treatment_only": null,
+          "favorable_direction": true,
+          "metric_id": "weighted_objective",
+          "p_value_holm": 0.25,
+          "p_value_raw": 0.0625,
+          "scenario_count": 12,
+          "test_name": "paired_wilcoxon_scenario_aggregate",
+          "treatment_mean": 92.12395950625339,
+          "treatment_minus_control": -4.51782197534034
+        }
+      ],
+      "primary_metric_id": "weighted_objective",
+      "treatment": "cover_opt_full"
+    }
+  ],
+  "config_hash": "79cc7c29f9ec495e58b150a25b6e38be6a34cfcd2c9ed66c4bf4467e4d0e73ca",
+  "evidence_status": "claim_eligible_paired_final_evidence",
+  "experiment_id": "deepseek_v4pro_paired_final_v1_3",
+  "method_summaries": [
+    {
+      "majority_feasible_scenario_rate": 0.25,
+      "mean_candidate_set_gap_pct_feasible_runs": 85.27476848241274,
+      "mean_evaluator_calls": 1.0,
+      "mean_llm_calls": 0.0,
+      "mean_violation_burden": 1.0,
+      "mean_weighted_objective_feasible_runs": 178.162896985267,
+      "method_id": "capacity_greedy",
+      "raw_feasible_rate": 0.25,
+      "run_count": 20,
+      "scenario_count": 20,
+      "schema_failure_rate": 0.0,
+      "total_billed_input_tokens": 0,
+      "total_billed_output_tokens": 0,
+      "total_estimated_cost_cny": 0.0
+    },
+    {
+      "majority_feasible_scenario_rate": 0.55,
+      "mean_candidate_set_gap_pct_feasible_runs": 5.176989098937862,
+      "mean_evaluator_calls": 3.066666666666667,
+      "mean_llm_calls": 2.216666666666667,
+      "mean_violation_burden": 0.65,
+      "mean_weighted_objective_feasible_runs": 97.91401377183978,
+      "method_id": "cover_opt_conflict_feedback",
+      "raw_feasible_rate": 0.55,
+      "run_count": 60,
+      "scenario_count": 20,
+      "schema_failure_rate": 0.1,
+      "total_billed_input_tokens": 356594,
+      "total_billed_output_tokens": 12629,
+      "total_estimated_cost_cny": 1.1455559999999998
+    },
+    {
+      "majority_feasible_scenario_rate": 0.75,
+      "mean_candidate_set_gap_pct_feasible_runs": 0.0,
+      "mean_evaluator_calls": 4.983333333333333,
+      "mean_llm_calls": 2.7,
+      "mean_violation_burden": 0.31666666666666665,
+      "mean_weighted_objective_feasible_runs": 94.57501916017348,
+      "method_id": "cover_opt_full",
+      "raw_feasible_rate": 0.7166666666666667,
+      "run_count": 60,
+      "scenario_count": 20,
+      "schema_failure_rate": 0.05,
+      "total_billed_input_tokens": 511797,
+      "total_billed_output_tokens": 15173,
+      "total_estimated_cost_cny": 1.6264290000000001
+    },
+    {
+      "majority_feasible_scenario_rate": 0.75,
+      "mean_candidate_set_gap_pct_feasible_runs": 3.7964586725544325,
+      "mean_evaluator_calls": 2.6333333333333333,
+      "mean_llm_calls": 1.6333333333333333,
+      "mean_violation_burden": 0.25,
+      "mean_weighted_objective_feasible_runs": 98.15077654539165,
+      "method_id": "cover_opt_generic_feedback",
+      "raw_feasible_rate": 0.75,
+      "run_count": 60,
+      "scenario_count": 20,
+      "schema_failure_rate": 0.0,
+      "total_billed_input_tokens": 210424,
+      "total_billed_output_tokens": 7639,
+      "total_estimated_cost_cny": 0.6771060000000001
+    },
+    {
+      "majority_feasible_scenario_rate": 0.3,
+      "mean_candidate_set_gap_pct_feasible_runs": 9.49114668138608,
+      "mean_evaluator_calls": 3.9,
+      "mean_llm_calls": 2.9,
+      "mean_violation_burden": 0.9,
+      "mean_weighted_objective_feasible_runs": 104.99226502964274,
+      "method_id": "cover_opt_no_feedback",
+      "raw_feasible_rate": 0.3,
+      "run_count": 60,
+      "scenario_count": 20,
+      "schema_failure_rate": 0.0,
+      "total_billed_input_tokens": 361380,
+      "total_billed_output_tokens": 13549,
+      "total_estimated_cost_cny": 1.1654340000000003
+    },
+    {
+      "majority_feasible_scenario_rate": 0.0,
+      "mean_candidate_set_gap_pct_feasible_runs": null,
+      "mean_evaluator_calls": 0.0,
+      "mean_llm_calls": 1.0,
+      "mean_violation_burden": 1.0,
+      "mean_weighted_objective_feasible_runs": null,
+      "method_id": "direct_llm_plan",
+      "raw_feasible_rate": 0.0,
+      "run_count": 60,
+      "scenario_count": 20,
+      "schema_failure_rate": 1.0,
+      "total_billed_input_tokens": 46311,
+      "total_billed_output_tokens": 4111,
+      "total_estimated_cost_cny": 0.16359899999999997
+    },
+    {
+      "majority_feasible_scenario_rate": 1.0,
+      "mean_candidate_set_gap_pct_feasible_runs": 0.0,
+      "mean_evaluator_calls": 33.0,
+      "mean_llm_calls": 0.0,
+      "mean_violation_burden": 0.0,
+      "mean_weighted_objective_feasible_runs": 93.71163298881571,
+      "method_id": "exact_enumeration_oracle",
+      "raw_feasible_rate": 1.0,
+      "run_count": 20,
+      "scenario_count": 20,
+      "schema_failure_rate": 0.0,
+      "total_billed_input_tokens": 0,
+      "total_billed_output_tokens": 0,
+      "total_estimated_cost_cny": 0.0
+    },
+    {
+      "majority_feasible_scenario_rate": 0.25,
+      "mean_candidate_set_gap_pct_feasible_runs": 11.389376017663297,
+      "mean_evaluator_calls": 1.0,
+      "mean_llm_calls": 0.0,
+      "mean_violation_burden": 1.0,
+      "mean_weighted_objective_feasible_runs": 107.22198717781099,
+      "method_id": "latency_greedy",
+      "raw_feasible_rate": 0.25,
+      "run_count": 20,
+      "scenario_count": 20,
+      "schema_failure_rate": 0.0,
+      "total_billed_input_tokens": 0,
+      "total_billed_output_tokens": 0,
+      "total_estimated_cost_cny": 0.0
+    },
+    {
+      "majority_feasible_scenario_rate": 1.0,
+      "mean_candidate_set_gap_pct_feasible_runs": 0.0,
+      "mean_evaluator_calls": 12.0,
+      "mean_llm_calls": 0.0,
+      "mean_violation_burden": 0.0,
+      "mean_weighted_objective_feasible_runs": 93.71163298881571,
+      "method_id": "random_baseline",
+      "raw_feasible_rate": 1.0,
+      "run_count": 20,
+      "scenario_count": 20,
+      "schema_failure_rate": 0.0,
+      "total_billed_input_tokens": 0,
+      "total_billed_output_tokens": 0,
+      "total_estimated_cost_cny": 0.0
+    },
+    {
+      "majority_feasible_scenario_rate": 0.25,
+      "mean_candidate_set_gap_pct_feasible_runs": 61.9045828929572,
+      "mean_evaluator_calls": 1.0,
+      "mean_llm_calls": 1.0,
+      "mean_violation_burden": 1.0166666666666666,
+      "mean_weighted_objective_feasible_runs": 156.6364776993936,
+      "method_id": "structured_llm_plan",
+      "raw_feasible_rate": 0.23333333333333334,
+      "run_count": 60,
+      "scenario_count": 20,
+      "schema_failure_rate": 0.0,
+      "total_billed_input_tokens": 62211,
+      "total_billed_output_tokens": 10303,
+      "total_estimated_cost_cny": 0.24845099999999995
+    }
+  ],
+  "protocol_hash": "828b8d7de318983ec9336e7cab7ff4cf70dcb9483c8febb1e3f06243e816912a",
+  "quality_gates": {
+    "manifest_complete": true,
+    "minimum_paired_scenarios": true,
+    "no_infrastructure_failures": true,
+    "run_counts_complete": true,
+    "system_fingerprint_consistent": true
+  },
+  "scenario_set_hash": "2795c392e3ef8badbee18f810127571e809b9a2a0cb07fa5d100b34cb7bff5be",
+  "supported_claims": [],
+  "unsupported_claims": [
+    "C_SCHEMA",
+    "C_FEEDBACK",
+    "C_VERIFICATION",
+    "C_PIPELINE"
+  ]
+}

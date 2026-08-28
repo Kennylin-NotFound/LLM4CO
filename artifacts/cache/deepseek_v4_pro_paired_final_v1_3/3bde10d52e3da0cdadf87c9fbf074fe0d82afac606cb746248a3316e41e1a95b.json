@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:54:03.277498Z",
+  "latency_ms": 2370.6179999862798,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2816,
+    "prompt_cache_miss_tokens": 78,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "6cce932b-e184-4a85-a9c1-2508eb5c3113",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": 0.0
+      }
+    ],
+    "rationale": "The migration budget constraint is violated because services are placed on different nodes than their previous placement, incurring migration penalties. The node_score currently includes dependency_latency with a negative weight, which may favor nodes with lower dependency latency, potentially causing migrations. Setting its weight to 0 removes its influence, allowing other features to determine placement without encouraging migrations.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": 0.0\n    }\n  ],\n  \"rationale\": \"The migration budget constraint is violated because services are placed on different nodes than their previous placement, incurring migration penalties. The node_score currently includes dependency_latency with a negative weight, which may favor nodes with lower dependency latency, potentially causing migrations. Setting its weight to 0 removes its influence, allowing other features to determine placement without encouraging migrations.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "597148fde8874127e9e4d7b8b6fc47264f40b212cb0a7154c72372eb492ec72c",
+  "request_id": "req_597148fde8874127",
+  "usage": {
+    "input_tokens": 2894,
+    "output_tokens": 133
+  }
+}

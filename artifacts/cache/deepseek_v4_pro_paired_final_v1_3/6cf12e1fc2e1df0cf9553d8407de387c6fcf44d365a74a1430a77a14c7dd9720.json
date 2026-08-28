@@ -1,0 +1,37 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:54:51.051109Z",
+  "latency_ms": 1200.1347000477836,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2176,
+    "prompt_cache_miss_tokens": 2,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "c120023b-ded8-4c55-ae0e-b7763e955cff",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -2.0
+      }
+    ],
+    "rationale": "Increase penalty for dependency latency to reduce E2E latency violation."
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -2.0\n    }\n  ],\n  \"rationale\": \"Increase penalty for dependency latency to reduce E2E latency violation.\"\n}",
+  "replayed": false,
+  "request_fingerprint": "b52391a677c2a416ee7c726c668fb04f9910a2013ee1eb229313f69b0c59a3d9",
+  "request_id": "req_b52391a677c2a416",
+  "usage": {
+    "input_tokens": 2178,
+    "output_tokens": 67
+  }
+}

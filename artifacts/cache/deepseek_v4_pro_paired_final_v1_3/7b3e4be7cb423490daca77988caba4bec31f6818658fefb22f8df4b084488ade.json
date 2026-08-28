@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:52:28.401457Z",
+  "latency_ms": 1824.095899995882,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2048,
+    "prompt_cache_miss_tokens": 30,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "3d6ca3b4-96e7-455b-974f-b9de3422d42d",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.7
+      }
+    ],
+    "rationale": "No feedback provided; keeping existing weight unchanged as a feasibility-preserving no-op.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.7\n    }\n  ],\n  \"rationale\": \"No feedback provided; keeping existing weight unchanged as a feasibility-preserving no-op.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "b9c0623abfce506b04f2791d767a9e6c9428cb259d7340500f0a8d2196d95906",
+  "request_id": "req_b9c0623abfce506b",
+  "usage": {
+    "input_tokens": 2078,
+    "output_tokens": 79
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:16:05.461011Z",
+  "latency_ms": 2354.295799974352,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2048,
+    "prompt_cache_miss_tokens": 58,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "b958f393-175d-496e-95cb-cbce5ec8b2e8",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.9
+      }
+    ],
+    "rationale": "Increase penalty on dependency latency to reduce latency objective.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.9\n    }\n  ],\n  \"rationale\": \"Increase penalty on dependency latency to reduce latency objective.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "d079c2eea536e3e35db1f767e469f99358f6f79573f4b0234c036321a5465cad",
+  "request_id": "req_d079c2eea536e3e3",
+  "usage": {
+    "input_tokens": 2106,
+    "output_tokens": 73
+  }
+}

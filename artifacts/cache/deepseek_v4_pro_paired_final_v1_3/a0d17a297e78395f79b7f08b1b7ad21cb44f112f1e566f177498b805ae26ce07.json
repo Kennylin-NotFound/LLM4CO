@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:43:18.287506Z",
+  "latency_ms": 1895.0902000069618,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2560,
+    "prompt_cache_miss_tokens": 86,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "9272cc31-6ec5-4ae1-9bc1-190fcec38f0f",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -2.0
+      }
+    ],
+    "rationale": "Increase penalty on dependency latency to encourage placement that reduces communication latency, addressing the QoS latency violation.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -2.0\n    }\n  ],\n  \"rationale\": \"Increase penalty on dependency latency to encourage placement that reduces communication latency, addressing the QoS latency violation.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "2d28d722ea69777e65d96678e65dfae80b0940809bffd2cd73e73229e4708d8a",
+  "request_id": "req_2d28d722ea69777e",
+  "usage": {
+    "input_tokens": 2646,
+    "output_tokens": 82
+  }
+}

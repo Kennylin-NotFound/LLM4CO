@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:15:46.014666Z",
+  "latency_ms": 1934.1968999942765,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 3328,
+    "prompt_cache_miss_tokens": 20,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "ddcdde67-9f5b-4a6c-ac09-e00707c9941d",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "migration_penalty",
+        "op": "add_term",
+        "weight": -1.0
+      }
+    ],
+    "rationale": "Add migration_penalty with negative weight to node_score to discourage migrations, potentially reducing migration count from 2 to 0 while preserving QoS latency.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"add_term\",\n      \"component\": \"node_score\",\n      \"feature\": \"migration_penalty\",\n      \"weight\": -1.0\n    }\n  ],\n  \"rationale\": \"Add migration_penalty with negative weight to node_score to discourage migrations, potentially reducing migration count from 2 to 0 while preserving QoS latency.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "81a24cc5298ee9237111154242a6064393957701604562256ffe8b6c56fc41cc",
+  "request_id": "req_81a24cc5298ee923",
+  "usage": {
+    "input_tokens": 3348,
+    "output_tokens": 94
+  }
+}

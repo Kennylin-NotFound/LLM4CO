@@ -1,0 +1,39 @@
+experiment_id: "deepseek_v4pro_paired_holdout_v1_4"
+protocol_path: "formal_experiment_protocol_v1_4.yaml"
+stage_id: "paired_final"
+base_scenario_path: "../scenarios/small_static.yaml"
+artifacts_root: "../../artifacts/paired_holdout_v1_4"
+method_ids:
+  - "random_baseline"
+  - "latency_greedy"
+  - "capacity_greedy"
+  - "exact_enumeration_oracle"
+  - "direct_llm_plan"
+  - "structured_llm_plan"
+  - "cover_opt_no_feedback"
+  - "cover_opt_generic_feedback"
+  - "cover_opt_conflict_feedback"
+  - "cover_opt_full"
+k_paths: 3
+exact_max_candidates: 100000
+exact_max_wall_time_seconds: 30.0
+random_samples: 4
+cost_policy:
+  input_cache_miss_cny_per_million: 3.0
+  output_cny_per_million: 6.0
+  assumed_max_input_tokens_per_call: 5000
+  max_total_cost_cny: 35.0
+llm:
+  model: "deepseek-v4-pro"
+  base_url: "https://api.deepseek.com"
+  api_key_env: "DEEPSEEK_API_KEY"
+  thinking: "disabled"
+  reasoning_effort: "high"
+  temperature: 0.0
+  top_p: 1.0
+  max_tokens: 2048
+  timeout_seconds: 120.0
+  max_attempts: 3
+  initial_backoff_seconds: 1.0
+  cache_dir: "../../artifacts/cache/deepseek_v4_pro_paired_holdout_v1_4"
+  expected_system_fingerprint: "a307abda487cd1b463329ccb945ce396"

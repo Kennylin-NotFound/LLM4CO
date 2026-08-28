@@ -1,0 +1,43 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:49:52.344255Z",
+  "latency_ms": 1319.388900010381,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 768,
+    "prompt_cache_miss_tokens": 6,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "d0a2d3ec-b5a1-4a7e-93be-f2a88d167e79",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "placement": {
+      "analyze": "sat-b",
+      "ingest": "sat-a",
+      "respond": "sat-c"
+    },
+    "routes": {
+      "analyze-respond": [
+        "sat-b",
+        "sat-c"
+      ],
+      "ingest-analyze": [
+        "sat-a",
+        "sat-b"
+      ]
+    }
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"placement\": {\n    \"ingest\": \"sat-a\",\n    \"analyze\": \"sat-b\",\n    \"respond\": \"sat-c\"\n  },\n  \"routes\": {\n    \"ingest-analyze\": [\"sat-a\", \"sat-b\"],\n    \"analyze-respond\": [\"sat-b\", \"sat-c\"]\n  }\n}",
+  "replayed": false,
+  "request_fingerprint": "5017d062ba051f84533e7a3faf0b01de89d4ac2562a1ba329faf7d9b72d0d919",
+  "request_id": "req_5017d062ba051f84",
+  "usage": {
+    "input_tokens": 774,
+    "output_tokens": 73
+  }
+}

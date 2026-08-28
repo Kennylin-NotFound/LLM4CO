@@ -1,0 +1,19 @@
+experiment_id: "method_smoke_zero_migration"
+scenario_path: "../scenarios/small_static.yaml"
+scenario_overrides:
+  migration_budget: 0
+initial_heuristic: "latency_first"
+budgets:
+  max_patch_proposals: 1
+  max_evaluator_calls: 2
+  max_wall_time_seconds: 10.0
+  stop_on_first_feasible: true
+patches:
+  - version: "1.0"
+    rationale: "Prefer the previous placement under a zero migration budget."
+    operations:
+      - op: "add_term"
+        component: "node_score"
+        feature: "migration_penalty"
+        weight: -10.0
+

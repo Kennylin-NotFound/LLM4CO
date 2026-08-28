@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:14:18.626715Z",
+  "latency_ms": 2035.2118000155315,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2048,
+    "prompt_cache_miss_tokens": 62,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "024d7abe-3082-46df-880e-c0b6a6878429",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "Reduce the penalty on dependency latency to allow nodes with higher latency but better other characteristics, potentially improving feasibility under tight QoS.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"Reduce the penalty on dependency latency to allow nodes with higher latency but better other characteristics, potentially improving feasibility under tight QoS.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "307d83c7f4186c28742ac3282f5f47e8bb92b3a69cd3def4e51e64ada6b13159",
+  "request_id": "req_307d83c7f4186c28",
+  "usage": {
+    "input_tokens": 2110,
+    "output_tokens": 87
+  }
+}

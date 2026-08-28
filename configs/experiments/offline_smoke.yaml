@@ -1,0 +1,23 @@
+experiment_id: "offline_smoke"
+seed: 20250825
+scenario_path: "../scenarios/small_static.yaml"
+prompt_path: "../prompts/offline_candidate.md"
+budgets:
+  max_llm_calls: 1
+  max_evaluator_calls: 0
+  max_wall_time_seconds: 30.0
+llm:
+  backend: "mock"
+  provider: "offline"
+  model: "mock-cover-opt-v1"
+  version: "phase-1"
+  temperature: 0.0
+mock_candidate:
+  artifact_kind: "heuristic_candidate_stub"
+  validation_status: "unvalidated_phase_1"
+  version: "0.1"
+  service_order: "service_id_ascending"
+  node_score: "residual_compute_ratio"
+  path_score: "path_latency"
+  repair_policy: []
+

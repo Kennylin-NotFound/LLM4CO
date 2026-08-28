@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:54:08.268656Z",
+  "latency_ms": 3083.3751000463963,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2816,
+    "prompt_cache_miss_tokens": 81,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "16008927-06b1-4c1a-94f8-484d5a748a6c",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "The migration budget constraint is violated because services are placed on different nodes than before, incurring migration penalties. The node_score currently ignores migration_penalty and has a positive weight on dependency_latency, which may favor nodes with higher latency. Adding a negative weight to dependency_latency could reduce the likelihood of choosing nodes that cause migrations, but since migration_penalty is absent, we adjust the existing dependency_latency weight to discourage placements that increase latency and potentially migrations.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"The migration budget constraint is violated because services are placed on different nodes than before, incurring migration penalties. The node_score currently ignores migration_penalty and has a positive weight on dependency_latency, which may favor nodes with higher latency. Adding a negative weight to dependency_latency could reduce the likelihood of choosing nodes that cause migrations, but since migration_penalty is absent, we adjust the existing dependency_latency weight to discourage placements that increase latency and potentially migrations.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "9d0809682d4c962fa447f077a1926fe436ef6bef7e92355740aca36c1b1b47d4",
+  "request_id": "req_9d0809682d4c962f",
+  "usage": {
+    "input_tokens": 2897,
+    "output_tokens": 160
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T08:59:50.058753Z",
+  "latency_ms": 2039.1483000130393,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 1663,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "93fe6d5d-ccca-4f97-8714-01382580ce4d",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "actions": [
+          "reroute"
+        ],
+        "component": "repair_policy",
+        "op": "set_repair_policy"
+      }
+    ],
+    "rationale": "Removing bounded_backtrack prevents the heuristic from considering migrations that exceed the budget, directly addressing the migration_budget violation."
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_repair_policy\",\n      \"component\": \"repair_policy\",\n      \"actions\": [\"reroute\"]\n    }\n  ],\n  \"rationale\": \"Removing bounded_backtrack prevents the heuristic from considering migrations that exceed the budget, directly addressing the migration_budget violation.\"\n}",
+  "replayed": false,
+  "request_fingerprint": "ae3d6b1d3639ea311ae25451de1408ae5d76a0d9063d46d67f57360d8521ccc2",
+  "request_id": "req_ae3d6b1d3639ea31",
+  "usage": {
+    "input_tokens": 1663,
+    "output_tokens": 73
+  }
+}

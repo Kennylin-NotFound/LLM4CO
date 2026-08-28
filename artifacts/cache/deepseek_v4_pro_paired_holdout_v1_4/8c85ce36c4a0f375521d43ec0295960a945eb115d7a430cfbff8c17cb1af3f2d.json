@@ -1,0 +1,41 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:14:55.284147Z",
+  "latency_ms": 1798.0230000102893,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2304,
+    "prompt_cache_miss_tokens": 28,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "7703d108-9979-4a58-b353-ebbd8b06112c",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "actions": [
+          "reroute",
+          "move_bottleneck_service",
+          "bounded_backtrack"
+        ],
+        "component": "repair_policy",
+        "op": "set_repair_policy"
+      }
+    ],
+    "rationale": "Add move_bottleneck_service to repair policy to address migration budget violation by relocating bottleneck service without full migration.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_repair_policy\",\n      \"component\": \"repair_policy\",\n      \"actions\": [\"reroute\", \"move_bottleneck_service\", \"bounded_backtrack\"]\n    }\n  ],\n  \"rationale\": \"Add move_bottleneck_service to repair policy to address migration budget violation by relocating bottleneck service without full migration.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "fcedcc2c8ef03e33a6fe973ead26efa7169d5240a506ca42bf57222314a6fce4",
+  "request_id": "req_fcedcc2c8ef03e33",
+  "usage": {
+    "input_tokens": 2332,
+    "output_tokens": 94
+  }
+}

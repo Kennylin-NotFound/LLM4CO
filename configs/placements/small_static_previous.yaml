@@ -1,0 +1,7 @@
+method: "fixed_previous_placement"
+candidate_id: "small_static_handcheck"
+placement:
+  ingest: "sat-a"
+  analyze: "sat-b"
+  respond: "sat-c"
+

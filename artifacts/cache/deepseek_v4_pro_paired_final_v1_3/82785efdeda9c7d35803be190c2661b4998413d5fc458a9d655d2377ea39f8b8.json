@@ -1,0 +1,37 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:46:04.874737Z",
+  "latency_ms": 1873.9801999763586,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1792,
+    "prompt_cache_miss_tokens": 1966,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "9506faeb-150b-497f-8d75-2adfc32523f1",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "Reduce the penalty on dependency_latency in node_score to potentially allow placements with higher latency but better other metrics, which may lower overall weighted objective."
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"Reduce the penalty on dependency_latency in node_score to potentially allow placements with higher latency but better other metrics, which may lower overall weighted objective.\"\n}",
+  "replayed": false,
+  "request_fingerprint": "af15a57dffa58b4be4e98b60a3c04965328c35c30b6a70457126d7706caf2cec",
+  "request_id": "req_af15a57dffa58b4b",
+  "usage": {
+    "input_tokens": 3758,
+    "output_tokens": 84
+  }
+}

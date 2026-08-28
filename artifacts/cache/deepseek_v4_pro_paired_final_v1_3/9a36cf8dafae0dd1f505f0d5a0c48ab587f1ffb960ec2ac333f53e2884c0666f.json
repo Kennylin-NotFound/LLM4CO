@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:46:37.778286Z",
+  "latency_ms": 1832.1967999800108,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 640,
+    "prompt_cache_miss_tokens": 3028,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "deda8db8-0303-4bd8-90ab-bf92d935649d",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "residual_compute_ratio",
+        "op": "set_weight",
+        "weight": 0.5
+      }
+    ],
+    "rationale": "Increase weight on residual_compute_ratio to better balance load across nodes, potentially reducing load imbalance while maintaining latency.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"residual_compute_ratio\",\n      \"weight\": 0.5\n    }\n  ],\n  \"rationale\": \"Increase weight on residual_compute_ratio to better balance load across nodes, potentially reducing load imbalance while maintaining latency.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "9f870354bf7cba8225a7d36db6058e2399f714b46756ebf37e816946eb4cc1f9",
+  "request_id": "req_9f870354bf7cba82",
+  "usage": {
+    "input_tokens": 3668,
+    "output_tokens": 88
+  }
+}

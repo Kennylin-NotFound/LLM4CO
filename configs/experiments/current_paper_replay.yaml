@@ -1,0 +1,11 @@
+experiment_id: "reconstructed_current_paper_solvergen_v1"
+scenario_path: "../scenarios/small_static.yaml"
+generation_prompt_path: "../prompts/current_paper_solver_generation.md"
+correction_prompt_path: "../prompts/current_paper_solver_correction.md"
+llm_replay_file: "../../tests/fixtures/llm/replay_current_paper_solvergen.json"
+runner_replay_file: "../../tests/fixtures/solver_runner/replay_current_paper_execution.json"
+budgets:
+  max_llm_calls: 3
+  max_execution_attempts: 3
+  max_evaluator_calls: 1
+  max_wall_time_seconds: 30.0

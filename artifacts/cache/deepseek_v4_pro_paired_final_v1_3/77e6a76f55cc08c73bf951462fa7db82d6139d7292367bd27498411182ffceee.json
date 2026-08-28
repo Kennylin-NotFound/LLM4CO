@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:55:07.870452Z",
+  "latency_ms": 2079.076400026679,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 384,
+    "prompt_cache_miss_tokens": 3623,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "758699d5-1eb7-4077-b76b-18814e8f4570",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "residual_compute_ratio",
+        "op": "set_weight",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "The previous probe with weight -0.5 on residual_compute_ratio improved the objective from 105.99 to 99.88, so this weight is retained to preserve the improvement.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"residual_compute_ratio\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"The previous probe with weight -0.5 on residual_compute_ratio improved the objective from 105.99 to 99.88, so this weight is retained to preserve the improvement.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "c30cb66d073ed707e2da3b81045f681acbd3bf96635268671a3495d015a91e72",
+  "request_id": "req_c30cb66d073ed707",
+  "usage": {
+    "input_tokens": 4007,
+    "output_tokens": 104
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:19:40.236781Z",
+  "latency_ms": 1816.9386999798007,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1152,
+    "prompt_cache_miss_tokens": 960,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "20909a63-aaaa-4d6e-b6e6-0fb957ec45f1",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "Reduce the penalty on dependency latency to potentially lower overall latency by allowing placements with slightly higher dependency latency but better other characteristics.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"Reduce the penalty on dependency latency to potentially lower overall latency by allowing placements with slightly higher dependency latency but better other characteristics.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "68275d67f2c810b7364d406c5f28c9ffd08f321870f13b6fcb5d1150e9a32f34",
+  "request_id": "req_68275d67f2c810b7",
+  "usage": {
+    "input_tokens": 2112,
+    "output_tokens": 87
+  }
+}

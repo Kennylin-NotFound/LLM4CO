@@ -1,0 +1,71 @@
+scenario_prefix: "walker_dynamic_v1"
+topology:
+  constellation_id: "walker_3x8_f1"
+  seed: 20250825
+  orbital_planes: 3
+  satellites_per_plane: 8
+  phasing: 1
+  altitude_km: 550.0
+  inclination_deg: 53.0
+  slot_duration_seconds: 30.0
+  compute_capacity: 12.0
+  memory_capacity: 16.0
+  compute_rate_mips: 1000.0
+  resource_heterogeneity: 0.15
+  base_rate_mbps: 200.0
+  bandwidth_mbps: 160.0
+  reference_distance_km: 1500.0
+  rate_floor_mbps: 20.0
+  line_of_sight_clearance_km: 20.0
+  inter_plane_links: true
+services:
+  - service_id: "ingest"
+    compute_demand: 2.0
+    memory_demand: 2.0
+    workload_mi: 20.0
+    eligible_nodes: ["p00-s00", "p00-s01", "p01-s00", "p01-s01"]
+  - service_id: "detect"
+    compute_demand: 4.0
+    memory_demand: 4.0
+    workload_mi: 60.0
+    eligible_nodes: ["p00-s01", "p01-s01", "p02-s01", "p02-s02"]
+  - service_id: "compress"
+    compute_demand: 3.0
+    memory_demand: 3.0
+    workload_mi: 35.0
+    eligible_nodes: ["p00-s02", "p01-s02", "p02-s02", "p02-s03"]
+  - service_id: "respond"
+    compute_demand: 2.0
+    memory_demand: 2.0
+    workload_mi: 15.0
+    eligible_nodes: ["p00-s03", "p01-s03", "p02-s03", "p02-s04"]
+service_edges:
+  - edge_id: "ingest-detect"
+    source: "ingest"
+    target: "detect"
+    data_volume_mbit: 8.0
+  - edge_id: "detect-compress"
+    source: "detect"
+    target: "compress"
+    data_volume_mbit: 4.0
+  - edge_id: "compress-respond"
+    source: "compress"
+    target: "respond"
+    data_volume_mbit: 2.0
+previous_placement:
+  ingest: "p00-s00"
+  detect: "p00-s01"
+  compress: "p00-s02"
+  respond: "p00-s03"
+qos_latency_ms: 500.0
+migration_budget: 2
+objective:
+  latency: 1.0
+  load_imbalance: 0.1
+  migration_cost: 0.2
+  energy_proxy: 0.0
+provenance:
+  source_class: "synthetic_assumption"
+  source_reference: "docs/parameter_provenance.md#phase-2-walker-fixture"
+  notes: "Simplified circular-orbit Walker fixture for deterministic kernel tests."
+

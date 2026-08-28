@@ -1,0 +1,18 @@
+experiment_id: "deepseek_v4pro_structured_smoke_v1"
+protocol_path: "formal_experiment_protocol.yaml"
+scenario_path: "../scenarios/small_static.yaml"
+prompt_path: "../prompts/structured_llm_plan.md"
+llm:
+  model: "deepseek-v4-pro"
+  base_url: "https://api.deepseek.com"
+  api_key_env: "DEEPSEEK_API_KEY"
+  thinking: "disabled"
+  reasoning_effort: "high"
+  temperature: 0.0
+  top_p: 1.0
+  max_tokens: 2048
+  timeout_seconds: 120.0
+  max_attempts: 3
+  initial_backoff_seconds: 1.0
+  cache_dir: "../../artifacts/cache/deepseek_v4_pro"
+  expected_system_fingerprint: "a307abda487cd1b463329ccb945ce396"

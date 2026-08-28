@@ -1,0 +1,25 @@
+{
+  "format_version": "1.0",
+  "entries": [
+    {
+      "purpose": "no_feedback_patch",
+      "provider": "offline-replay",
+      "model": "no-feedback-control",
+      "parsed": {
+        "version": "1.0",
+        "operations": [
+          {
+            "op": "add_term",
+            "component": "node_score",
+            "feature": "migration_penalty",
+            "weight": -10.0
+          }
+        ],
+        "rationale": "Fixed replay patch used only to exercise the no-feedback path."
+      },
+      "raw_text": "offline no-feedback patch replay",
+      "usage": {"input_tokens": 0, "output_tokens": 0},
+      "latency_ms": 0.0
+    }
+  ]
+}

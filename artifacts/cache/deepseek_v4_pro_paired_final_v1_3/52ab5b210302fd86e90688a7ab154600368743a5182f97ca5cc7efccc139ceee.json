@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:56:10.963758Z",
+  "latency_ms": 1814.2089999746531,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2048,
+    "prompt_cache_miss_tokens": 29,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "01fd3292-5162-48f7-af69-a15351d0d062",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "No feedback provided; no change is causally justified. Returning a no-op patch that preserves the current heuristic.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"No feedback provided; no change is causally justified. Returning a no-op patch that preserves the current heuristic.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "f061a61aecefb828bde165c23abd7b86eec30e6dda41f9f240dc5cf4dc9f3af1",
+  "request_id": "req_f061a61aecefb828",
+  "usage": {
+    "input_tokens": 2077,
+    "output_tokens": 85
+  }
+}

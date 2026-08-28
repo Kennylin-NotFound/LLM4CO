@@ -1,0 +1,37 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:15:44.068764Z",
+  "latency_ms": 1880.849200009834,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 3200,
+    "prompt_cache_miss_tokens": 18,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "8585c7e5-7a98-474a-b676-b1c49ddbc823",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "service_order",
+        "direction": "ascending",
+        "op": "set_direction"
+      }
+    ],
+    "rationale": "Changing service order direction may alter placement decisions, potentially reducing QoS latency violations without affecting migration count.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_direction\",\n      \"component\": \"service_order\",\n      \"direction\": \"ascending\"\n    }\n  ],\n  \"rationale\": \"Changing service order direction may alter placement decisions, potentially reducing QoS latency violations without affecting migration count.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "43155815cd394698e2a3bdd8ff133fb878a48359a9c342262dae636b7201a802",
+  "request_id": "req_43155815cd394698",
+  "usage": {
+    "input_tokens": 3218,
+    "output_tokens": 72
+  }
+}

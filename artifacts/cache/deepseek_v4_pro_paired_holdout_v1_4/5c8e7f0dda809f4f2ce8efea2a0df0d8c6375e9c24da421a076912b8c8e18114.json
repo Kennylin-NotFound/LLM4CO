@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:17:30.269586Z",
+  "latency_ms": 1736.5499999723397,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2048,
+    "prompt_cache_miss_tokens": 61,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "21a80fa8-af8d-44c7-bcce-2e275e08caff",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.8
+      }
+    ],
+    "rationale": "Increase penalty for dependency latency to reduce latency objective, as latency weight is 1.0 and dependency_latency is the only latency-related feature in node_score.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.8\n    }\n  ],\n  \"rationale\": \"Increase penalty for dependency latency to reduce latency objective, as latency weight is 1.0 and dependency_latency is the only latency-related feature in node_score.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "7d83b220c67d06b5e7d1e513da81d4cfbee5dcc0c4816e68811acf9e78cb3140",
+  "request_id": "req_7d83b220c67d06b5",
+  "usage": {
+    "input_tokens": 2109,
+    "output_tokens": 96
+  }
+}

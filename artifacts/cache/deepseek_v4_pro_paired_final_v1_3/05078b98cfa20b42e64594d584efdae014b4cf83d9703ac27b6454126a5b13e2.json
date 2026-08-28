@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:49:44.774996Z",
+  "latency_ms": 2808.016700029839,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2816,
+    "prompt_cache_miss_tokens": 75,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "aa58e2c6-2672-46eb-ba4d-ad5cc19ecccb",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": 0.0
+      }
+    ],
+    "rationale": "Set dependency_latency weight to 0 to remove its negative influence, potentially allowing placements that reduce migration count while still considering residual compute.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": 0.0\n    }\n  ],\n  \"rationale\": \"Set dependency_latency weight to 0 to remove its negative influence, potentially allowing placements that reduce migration count while still considering residual compute.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "aa0814d810279a0078abab655b2af3577a14181223feb92d7682a9c080ba5499",
+  "request_id": "req_aa0814d810279a00",
+  "usage": {
+    "input_tokens": 2891,
+    "output_tokens": 91
+  }
+}

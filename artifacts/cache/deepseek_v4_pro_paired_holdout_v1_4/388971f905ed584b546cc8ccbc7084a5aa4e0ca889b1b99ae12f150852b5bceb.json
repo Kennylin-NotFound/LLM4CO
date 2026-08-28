@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:14:14.527758Z",
+  "latency_ms": 2089.0107000013813,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2048,
+    "prompt_cache_miss_tokens": 62,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "256faeb0-f9c6-4f60-a2de-9c5b66595df9",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "Reduce the penalty on dependency latency to allow nodes with higher latency but better other characteristics, potentially improving feasibility without violating hard constraints.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"Reduce the penalty on dependency latency to allow nodes with higher latency but better other characteristics, potentially improving feasibility without violating hard constraints.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "20b8b610ae912779e1491722d5bfd578beef2cd1e3cc18a6e1e505360a203533",
+  "request_id": "req_20b8b610ae912779",
+  "usage": {
+    "input_tokens": 2110,
+    "output_tokens": 88
+  }
+}

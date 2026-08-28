@@ -1,0 +1,12 @@
+experiment_id: "method_replay_zero_migration"
+scenario_path: "../scenarios/small_static.yaml"
+scenario_overrides:
+  migration_budget: 0
+initial_heuristic: "latency_first"
+prompt_path: "../prompts/conflict_patch.md"
+replay_file: "../../tests/fixtures/llm/replay_conflict_patch.json"
+budgets:
+  max_patch_proposals: 1
+  max_evaluator_calls: 2
+  max_wall_time_seconds: 10.0
+  stop_on_first_feasible: true

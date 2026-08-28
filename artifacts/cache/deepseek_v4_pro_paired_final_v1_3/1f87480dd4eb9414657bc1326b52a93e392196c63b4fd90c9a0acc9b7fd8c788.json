@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:55:17.099105Z",
+  "latency_ms": 3728.6949999979697,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 640,
+    "prompt_cache_miss_tokens": 3551,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "53836403-956a-4740-be9a-3204448d0a6c",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "residual_compute_ratio",
+        "op": "set_weight",
+        "weight": -0.3
+      }
+    ],
+    "rationale": "The current node_score has residual_compute_ratio weight -0.3, which is already negative. However, the previous probe with weight -0.3 improved the objective from 105.99 to 99.88, suggesting that this weight is beneficial. Since the current parent already has this weight, no change is needed. To further improve, consider adding migration_penalty with a negative weight to discourage migrations, as the current placement has migration_cost 2.0 contributing 0.4 to the weighted objective. Adding migration_penalty with a negative weight may reduce migrations and lower the objective.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"residual_compute_ratio\",\n      \"weight\": -0.3\n    }\n  ],\n  \"rationale\": \"The current node_score has residual_compute_ratio weight -0.3, which is already negative. However, the previous probe with weight -0.3 improved the objective from 105.99 to 99.88, suggesting that this weight is beneficial. Since the current parent already has this weight, no change is needed. To further improve, consider adding migration_penalty with a negative weight to discourage migrations, as the current placement has migration_cost 2.0 contributing 0.4 to the weighted objective. Adding migration_penalty with a negative weight may reduce migrations and lower the objective.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "56196bc46756e61065bd1c996eb589ed80d4efba93211c31e6a5f9ea884bda39",
+  "request_id": "req_56196bc46756e610",
+  "usage": {
+    "input_tokens": 4191,
+    "output_tokens": 188
+  }
+}

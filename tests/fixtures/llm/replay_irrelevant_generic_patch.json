@@ -1,0 +1,25 @@
+{
+  "format_version": "1.0",
+  "entries": [
+    {
+      "purpose": "generic_patch",
+      "provider": "offline-replay",
+      "model": "replay-irrelevant-generic-v1",
+      "parsed": {
+        "version": "1.0",
+        "operations": [
+          {
+            "op": "add_term",
+            "component": "path_score",
+            "feature": "contact_duration",
+            "weight": 0.1
+          }
+        ],
+        "rationale": "Change path preference."
+      },
+      "raw_text": "offline irrelevant generic replay fixture",
+      "usage": {"input_tokens": 0, "output_tokens": 0},
+      "latency_ms": 0.0
+    }
+  ]
+}

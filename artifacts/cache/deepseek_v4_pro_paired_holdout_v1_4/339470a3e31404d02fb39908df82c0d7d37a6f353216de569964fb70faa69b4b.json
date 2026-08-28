@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:15:37.851047Z",
+  "latency_ms": 2386.2756000016816,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2048,
+    "prompt_cache_miss_tokens": 58,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "019703ab-4671-416a-979c-4787e0bffa67",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "Reduce the penalty on dependency latency to allow placement on nodes with higher latency but better other characteristics, potentially improving overall objective while maintaining feasibility.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"Reduce the penalty on dependency latency to allow placement on nodes with higher latency but better other characteristics, potentially improving overall objective while maintaining feasibility.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "ebdabbf0c5059cf0ce525e8ceefb81276ffaee5036fe9b7ec45f081e51f5792c",
+  "request_id": "req_ebdabbf0c5059cf0",
+  "usage": {
+    "input_tokens": 2106,
+    "output_tokens": 90
+  }
+}

@@ -1,0 +1,2303 @@
+{
+  "campaign_id": "counterexample_cross_run_replay_v1",
+  "campaign_result": {
+    "counterexample_store": [
+      {
+        "counterexample": {
+          "archive_version": "1.0.0",
+          "ast_signatures": [
+            "79ea2b13d646ddf352883fae498440397f600e094c3e95778892f09cd4cf4d79"
+          ],
+          "candidate_ids": [
+            "candidate_000"
+          ],
+          "counterexample_id": "cex_b46e645beafa",
+          "entities": [
+            "analyze",
+            "respond"
+          ],
+          "first_iteration": 0,
+          "last_iteration": 0,
+          "last_replayed_iteration": 1,
+          "latest_conflict_graph_signature": "259face67cf87ec1a28aad2b00fc1959ead324924eeae1071a09954c9e115714",
+          "max_violation_burden": 2.0,
+          "observation_count": 2,
+          "repair_failures": 1,
+          "replay_count": 1,
+          "scenario_hash": "df6e9bbe260d298f5e39b406bcfa3e94ee379c8c97e44625926386e324b33717",
+          "scenario_id": "small_static_v1",
+          "signature": "b46e645beafafc0892c01d52b3c24dc4a03dd2e5d8c59e46c6638f75663aa3c1",
+          "violation_types": [
+            "migration_budget"
+          ]
+        },
+        "parent_candidate_id": "candidate_000",
+        "parent_program": {
+          "node_score": {
+            "op": "weighted_sum",
+            "terms": [
+              {
+                "feature": "dependency_latency",
+                "weight": -0.7
+              },
+              {
+                "feature": "residual_compute_ratio",
+                "weight": 0.3
+              }
+            ]
+          },
+          "path_score": {
+            "op": "weighted_sum",
+            "terms": [
+              {
+                "feature": "path_latency",
+                "weight": -0.8
+              },
+              {
+                "feature": "bottleneck_bandwidth",
+                "weight": 0.2
+              }
+            ]
+          },
+          "repair_policy": [
+            "reroute",
+            "bounded_backtrack"
+          ],
+          "service_order": {
+            "direction": "descending",
+            "op": "weighted_sum",
+            "terms": [
+              {
+                "feature": "critical_path_rank",
+                "weight": 0.7
+              },
+              {
+                "feature": "workload_ratio",
+                "weight": 0.3
+              }
+            ]
+          },
+          "version": "1.0"
+        },
+        "parent_violation_burden": 2.0,
+        "resolved": true,
+        "scenario": {
+          "generator_version": "fixture-0.1.0",
+          "links": [
+            {
+              "available_from": 0,
+              "available_until": 10,
+              "bandwidth_mbps": 80.0,
+              "bidirectional": true,
+              "distance_km": 1500.0,
+              "link_class": "fixture",
+              "link_id": "a-b",
+              "source": "sat-a",
+              "target": "sat-b",
+              "transmission_rate_mbps": 100.0
+            },
+            {
+              "available_from": 0,
+              "available_until": 10,
+              "bandwidth_mbps": 60.0,
+              "bidirectional": true,
+              "distance_km": 2100.0,
+              "link_class": "fixture",
+              "link_id": "b-c",
+              "source": "sat-b",
+              "target": "sat-c",
+              "transmission_rate_mbps": 80.0
+            },
+            {
+              "available_from": 0,
+              "available_until": 10,
+              "bandwidth_mbps": 50.0,
+              "bidirectional": true,
+              "distance_km": 4200.0,
+              "link_class": "fixture",
+              "link_id": "a-c",
+              "source": "sat-a",
+              "target": "sat-c",
+              "transmission_rate_mbps": 60.0
+            }
+          ],
+          "migration_budget": 0,
+          "nodes": [
+            {
+              "compute_capacity": 12.0,
+              "compute_rate_mips": 1000.0,
+              "memory_capacity": 16.0,
+              "node_id": "sat-a",
+              "position_km": null
+            },
+            {
+              "compute_capacity": 10.0,
+              "compute_rate_mips": 800.0,
+              "memory_capacity": 12.0,
+              "node_id": "sat-b",
+              "position_km": null
+            },
+            {
+              "compute_capacity": 8.0,
+              "compute_rate_mips": 700.0,
+              "memory_capacity": 10.0,
+              "node_id": "sat-c",
+              "position_km": null
+            }
+          ],
+          "objective": {
+            "energy_proxy": 0.0,
+            "latency": 1.0,
+            "load_imbalance": 0.1,
+            "migration_cost": 0.2
+          },
+          "previous_placement": {
+            "analyze": "sat-b",
+            "ingest": "sat-a",
+            "respond": "sat-c"
+          },
+          "provenance": {
+            "notes": "Phase 1 schema and reproducibility fixture; not a calibrated experiment scenario.",
+            "source_class": "synthetic_assumption",
+            "source_reference": "docs/parameter_provenance.md#phase-1-fixture"
+          },
+          "qos_latency_ms": 250.0,
+          "scenario_id": "small_static_v1",
+          "seed": 20250825,
+          "service_edges": [
+            {
+              "data_volume_mbit": 4.0,
+              "edge_id": "ingest-analyze",
+              "source": "ingest",
+              "target": "analyze"
+            },
+            {
+              "data_volume_mbit": 2.0,
+              "edge_id": "analyze-respond",
+              "source": "analyze",
+              "target": "respond"
+            }
+          ],
+          "services": [
+            {
+              "compute_demand": 2.0,
+              "eligible_nodes": [
+                "sat-a",
+                "sat-b"
+              ],
+              "memory_demand": 2.0,
+              "service_id": "ingest",
+              "workload_mi": 20.0
+            },
+            {
+              "compute_demand": 4.0,
+              "eligible_nodes": [
+                "sat-a",
+                "sat-b",
+                "sat-c"
+              ],
+              "memory_demand": 4.0,
+              "service_id": "analyze",
+              "workload_mi": 40.0
+            },
+            {
+              "compute_demand": 2.0,
+              "eligible_nodes": [
+                "sat-b",
+                "sat-c"
+              ],
+              "memory_demand": 2.0,
+              "service_id": "respond",
+              "workload_mi": 15.0
+            }
+          ],
+          "slot_duration_seconds": 1.0,
+          "time_slot": 0
+        },
+        "source_run_id": "seed_zero_migration",
+        "store_version": "1.0.0"
+      }
+    ],
+    "runner_version": "1.0.0",
+    "runs": [
+      {
+        "phase": "seed",
+        "run_id": "seed_zero_migration",
+        "scenario_hash": "df6e9bbe260d298f5e39b406bcfa3e94ee379c8c97e44625926386e324b33717",
+        "scenario_id": "small_static_v1",
+        "search_result": {
+          "best_candidate_id": null,
+          "controller_version": "0.9.0",
+          "counterexamples": [
+            {
+              "archive_version": "1.0.0",
+              "ast_signatures": [
+                "2f5f456b3a8b2898e64161fe5e6e7fa774300229ddeca5b371527ec9a7f4544d"
+              ],
+              "candidate_ids": [
+                "candidate_001"
+              ],
+              "counterexample_id": "cex_073ac892c986",
+              "entities": [
+                "analyze",
+                "ingest",
+                "respond"
+              ],
+              "first_iteration": 1,
+              "last_iteration": 1,
+              "last_replayed_iteration": null,
+              "latest_conflict_graph_signature": "fad6445e77682231982c51e2401eaf4cc70d5ab8a48097f6fa4a5098d63f5c66",
+              "max_violation_burden": 3.0,
+              "observation_count": 1,
+              "repair_failures": 0,
+              "replay_count": 0,
+              "scenario_hash": "df6e9bbe260d298f5e39b406bcfa3e94ee379c8c97e44625926386e324b33717",
+              "scenario_id": "small_static_v1",
+              "signature": "073ac892c986c5659cc09220edbe03a750176b676cd8658a41bf029744bb6011",
+              "violation_types": [
+                "migration_budget"
+              ]
+            },
+            {
+              "archive_version": "1.0.0",
+              "ast_signatures": [
+                "79ea2b13d646ddf352883fae498440397f600e094c3e95778892f09cd4cf4d79"
+              ],
+              "candidate_ids": [
+                "candidate_000"
+              ],
+              "counterexample_id": "cex_b46e645beafa",
+              "entities": [
+                "analyze",
+                "respond"
+              ],
+              "first_iteration": 0,
+              "last_iteration": 0,
+              "last_replayed_iteration": null,
+              "latest_conflict_graph_signature": "259face67cf87ec1a28aad2b00fc1959ead324924eeae1071a09954c9e115714",
+              "max_violation_burden": 2.0,
+              "observation_count": 1,
+              "repair_failures": 1,
+              "replay_count": 0,
+              "scenario_hash": "df6e9bbe260d298f5e39b406bcfa3e94ee379c8c97e44625926386e324b33717",
+              "scenario_id": "small_static_v1",
+              "signature": "b46e645beafafc0892c01d52b3c24dc4a03dd2e5d8c59e46c6638f75663aa3c1",
+              "violation_types": [
+                "migration_budget"
+              ]
+            }
+          ],
+          "diverse_candidate_ids": [],
+          "features": {
+            "counterexample_memory_enabled": true,
+            "counterexample_replay_enabled": false,
+            "counterfactual_weight_probe_enabled": false,
+            "feasible_masks_enabled": true,
+            "feedback_mode": "conflict_directed",
+            "objective_refinement_enabled": false,
+            "repair_actions_enabled": true,
+            "structural_diversity_enabled": true
+          },
+          "initial_generation_trace": [],
+          "objective_patch_evaluations": [],
+          "records": [
+            {
+              "ast_signature": "79ea2b13d646ddf352883fae498440397f600e094c3e95778892f09cd4cf4d79",
+              "candidate_id": "candidate_000",
+              "category": "repairable",
+              "conflict_graph": {
+                "allowed_components": [
+                  "node_score",
+                  "repair_policy"
+                ],
+                "allowed_features": {
+                  "node_score": [
+                    "migration_penalty"
+                  ]
+                },
+                "allowed_repair_actions": [
+                  "move_bottleneck_service",
+                  "swap_services"
+                ],
+                "edges": [
+                  {
+                    "constraint_id": "constraint:000:migration_budget",
+                    "contribution": 0.5,
+                    "decision_id": "decision:migrate:analyze:sat-b->sat-a"
+                  },
+                  {
+                    "constraint_id": "constraint:000:migration_budget",
+                    "contribution": 0.5,
+                    "decision_id": "decision:migrate:respond:sat-c->sat-b"
+                  }
+                ],
+                "graph_signature": "259face67cf87ec1a28aad2b00fc1959ead324924eeae1071a09954c9e115714",
+                "nodes": [
+                  {
+                    "kind": "constraint",
+                    "label": "migration_budget",
+                    "magnitude": 2.0,
+                    "metadata": {
+                      "attribution_method": "exact_event_share",
+                      "dsl_components": [
+                        "node_score",
+                        "repair_policy"
+                      ],
+                      "entities": [
+                        "analyze",
+                        "respond"
+                      ],
+                      "message": "migration count 2 exceeds budget 0",
+                      "original_index": 0
+                    },
+                    "node_id": "constraint:000:migration_budget"
+                  },
+                  {
+                    "kind": "decision",
+                    "label": "migrate:analyze:sat-b->sat-a",
+                    "magnitude": 0.0,
+                    "metadata": {},
+                    "node_id": "decision:migrate:analyze:sat-b->sat-a"
+                  },
+                  {
+                    "kind": "decision",
+                    "label": "migrate:respond:sat-c->sat-b",
+                    "magnitude": 0.0,
+                    "metadata": {},
+                    "node_id": "decision:migrate:respond:sat-c->sat-b"
+                  }
+                ],
+                "source_verifier_version": "0.1.0"
+              },
+              "execution": {
+                "executor_version": "0.3.0",
+                "failure_reason": null,
+                "plan": {
+                  "candidate_id": "candidate_000",
+                  "method": "typed_dsl",
+                  "migrations": [
+                    {
+                      "cost": 1.0,
+                      "service_id": "analyze",
+                      "source_node": "sat-b",
+                      "target_node": "sat-a"
+                    },
+                    {
+                      "cost": 1.0,
+                      "service_id": "respond",
+                      "source_node": "sat-c",
+                      "target_node": "sat-b"
+                    }
+                  ],
+                  "placement": {
+                    "analyze": "sat-a",
+                    "ingest": "sat-a",
+                    "respond": "sat-b"
+                  },
+                  "resource_snapshot": {},
+                  "routes": [
+                    {
+                      "edge_id": "analyze-respond",
+                      "path": [
+                        "sat-a",
+                        "sat-b"
+                      ]
+                    },
+                    {
+                      "edge_id": "ingest-analyze",
+                      "path": [
+                        "sat-a"
+                      ]
+                    }
+                  ],
+                  "run_id": "search_controller",
+                  "status": "complete"
+                },
+                "planning_time_ms": 1.1460999958217144,
+                "static_verification": {
+                  "ast_signature": "79ea2b13d646ddf352883fae498440397f600e094c3e95778892f09cd4cf4d79",
+                  "errors": [],
+                  "valid": true,
+                  "verifier_version": "0.1.0",
+                  "warnings": []
+                },
+                "trace": [
+                  {
+                    "scores": {
+                      "analyze": 0.7666666666666666,
+                      "ingest": 0.76,
+                      "respond": 0.0
+                    },
+                    "selected_order": [
+                      "ingest",
+                      "analyze",
+                      "respond"
+                    ],
+                    "stage": "service_order"
+                  },
+                  {
+                    "candidate_policy": "eligibility_and_capacity_masked",
+                    "eligible_capacity_candidates": [
+                      "sat-a",
+                      "sat-b"
+                    ],
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-a": {
+                        "dependency_latency": 0.0,
+                        "migration_penalty": 0.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.8333333333333334,
+                        "residual_memory_ratio": 0.875
+                      },
+                      "sat-b": {
+                        "dependency_latency": 0.0,
+                        "migration_penalty": 1.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.8,
+                        "residual_memory_ratio": 0.8333333333333334
+                      }
+                    },
+                    "scores": {
+                      "sat-a": 0.3,
+                      "sat-b": 0.0
+                    },
+                    "selected_node": "sat-a",
+                    "service_id": "ingest",
+                    "stage": "placement"
+                  },
+                  {
+                    "candidate_policy": "eligibility_and_capacity_masked",
+                    "eligible_capacity_candidates": [
+                      "sat-a",
+                      "sat-b",
+                      "sat-c"
+                    ],
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-a": {
+                        "dependency_latency": 0.0,
+                        "migration_penalty": 1.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.5,
+                        "residual_memory_ratio": 0.625
+                      },
+                      "sat-b": {
+                        "dependency_latency": 55.00346142797228,
+                        "migration_penalty": 0.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.6,
+                        "residual_memory_ratio": 0.6666666666666666
+                      },
+                      "sat-c": {
+                        "dependency_latency": 94.00969199832238,
+                        "migration_penalty": 1.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.5,
+                        "residual_memory_ratio": 0.6
+                      }
+                    },
+                    "scores": {
+                      "sat-a": 0.0,
+                      "sat-b": -0.1095580166379832,
+                      "sat-c": -0.7
+                    },
+                    "selected_node": "sat-a",
+                    "service_id": "analyze",
+                    "stage": "placement"
+                  },
+                  {
+                    "candidate_policy": "eligibility_and_capacity_masked",
+                    "eligible_capacity_candidates": [
+                      "sat-b",
+                      "sat-c"
+                    ],
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-b": {
+                        "dependency_latency": 30.00346142797228,
+                        "migration_penalty": 1.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.8,
+                        "residual_memory_ratio": 0.8333333333333334
+                      },
+                      "sat-c": {
+                        "dependency_latency": 54.00969199832239,
+                        "migration_penalty": 0.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.75,
+                        "residual_memory_ratio": 0.8
+                      }
+                    },
+                    "scores": {
+                      "sat-b": 0.3,
+                      "sat-c": -0.7
+                    },
+                    "selected_node": "sat-b",
+                    "service_id": "respond",
+                    "stage": "placement"
+                  },
+                  {
+                    "bandwidth_demand_mbps": 2.0,
+                    "candidate_policy": "contact_window_and_shared_bandwidth_masked",
+                    "candidates": [
+                      [
+                        "sat-a",
+                        "sat-b"
+                      ],
+                      [
+                        "sat-a",
+                        "sat-c",
+                        "sat-b"
+                      ]
+                    ],
+                    "edge_id": "analyze-respond",
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-a->sat-b": {
+                        "bottleneck_bandwidth": 80.0,
+                        "contact_duration": 11.0,
+                        "hop_count": 1.0,
+                        "path_latency": 30.00346142797228
+                      },
+                      "sat-a->sat-c->sat-b": {
+                        "bottleneck_bandwidth": 50.0,
+                        "contact_duration": 11.0,
+                        "hop_count": 2.0,
+                        "path_latency": 94.34787133081693
+                      }
+                    },
+                    "residual_bandwidth_after_mbps": {
+                      "a-b": 78.0,
+                      "a-c": 50.0,
+                      "b-c": 60.0
+                    },
+                    "residual_bandwidth_before_mbps": {
+                      "a-b": 80.0,
+                      "a-c": 50.0,
+                      "b-c": 60.0
+                    },
+                    "scores": {
+                      "sat-a->sat-b": 0.2,
+                      "sat-a->sat-c->sat-b": -0.8
+                    },
+                    "selected_path": [
+                      "sat-a",
+                      "sat-b"
+                    ],
+                    "stage": "routing"
+                  },
+                  {
+                    "bandwidth_demand_mbps": 4.0,
+                    "candidate_policy": "contact_window_and_shared_bandwidth_masked",
+                    "candidates": [
+                      [
+                        "sat-a"
+                      ]
+                    ],
+                    "edge_id": "ingest-analyze",
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-a": {
+                        "bottleneck_bandwidth": 80.0,
+                        "contact_duration": 11.0,
+                        "hop_count": 0.0,
+                        "path_latency": 0.0
+                      }
+                    },
+                    "residual_bandwidth_after_mbps": {
+                      "a-b": 78.0,
+                      "a-c": 50.0,
+                      "b-c": 60.0
+                    },
+                    "residual_bandwidth_before_mbps": {
+                      "a-b": 78.0,
+                      "a-c": 50.0,
+                      "b-c": 60.0
+                    },
+                    "scores": {
+                      "sat-a": 0.0
+                    },
+                    "selected_path": [
+                      "sat-a"
+                    ],
+                    "stage": "routing"
+                  },
+                  {
+                    "accepted_actions": 0,
+                    "action_trace": [
+                      {
+                        "action": "reroute",
+                        "attempts": [],
+                        "before_profile": [
+                          1,
+                          1,
+                          2.0,
+                          [
+                            "migration_budget"
+                          ]
+                        ],
+                        "status": "not_applicable"
+                      },
+                      {
+                        "action": "bounded_backtrack",
+                        "attempts": [],
+                        "before_profile": [
+                          1,
+                          1,
+                          2.0,
+                          [
+                            "migration_budget"
+                          ]
+                        ],
+                        "status": "not_applicable"
+                      }
+                    ],
+                    "actions": [
+                      "reroute",
+                      "bounded_backtrack"
+                    ],
+                    "attempt_count": 0,
+                    "budget_exhausted": false,
+                    "final_feasible": false,
+                    "stage": "repair_policy"
+                  }
+                ]
+              },
+              "expansion_block_reason": null,
+              "expansion_eligible": true,
+              "iteration": 0,
+              "objective": null,
+              "parent_id": null,
+              "program": {
+                "node_score": {
+                  "op": "weighted_sum",
+                  "terms": [
+                    {
+                      "feature": "dependency_latency",
+                      "weight": -0.7
+                    },
+                    {
+                      "feature": "residual_compute_ratio",
+                      "weight": 0.3
+                    }
+                  ]
+                },
+                "path_score": {
+                  "op": "weighted_sum",
+                  "terms": [
+                    {
+                      "feature": "path_latency",
+                      "weight": -0.8
+                    },
+                    {
+                      "feature": "bottleneck_bandwidth",
+                      "weight": 0.2
+                    }
+                  ]
+                },
+                "repair_policy": [
+                  "reroute",
+                  "bounded_backtrack"
+                ],
+                "service_order": {
+                  "direction": "descending",
+                  "op": "weighted_sum",
+                  "terms": [
+                    {
+                      "feature": "critical_path_rank",
+                      "weight": 0.7
+                    },
+                    {
+                      "feature": "workload_ratio",
+                      "weight": 0.3
+                    }
+                  ]
+                },
+                "version": "1.0"
+              },
+              "verification": {
+                "feasible": false,
+                "verifier_version": "0.1.0",
+                "violations": [
+                  {
+                    "attribution_method": "exact_event_share",
+                    "contributing_decisions": [
+                      "migrate:analyze:sat-b->sat-a",
+                      "migrate:respond:sat-c->sat-b"
+                    ],
+                    "decision_contributions": {
+                      "migrate:analyze:sat-b->sat-a": 0.5,
+                      "migrate:respond:sat-c->sat-b": 0.5
+                    },
+                    "dsl_components": [
+                      "node_score",
+                      "repair_policy"
+                    ],
+                    "entities": [
+                      "analyze",
+                      "respond"
+                    ],
+                    "magnitude": 2.0,
+                    "message": "migration count 2 exceeds budget 0",
+                    "violation_type": "migration_budget"
+                  }
+                ]
+              }
+            },
+            {
+              "ast_signature": "2f5f456b3a8b2898e64161fe5e6e7fa774300229ddeca5b371527ec9a7f4544d",
+              "candidate_id": "candidate_001",
+              "category": "repairable",
+              "conflict_graph": {
+                "allowed_components": [
+                  "node_score",
+                  "repair_policy"
+                ],
+                "allowed_features": {
+                  "node_score": [
+                    "migration_penalty"
+                  ]
+                },
+                "allowed_repair_actions": [
+                  "move_bottleneck_service",
+                  "swap_services"
+                ],
+                "edges": [
+                  {
+                    "constraint_id": "constraint:000:migration_budget",
+                    "contribution": 0.3333333333333333,
+                    "decision_id": "decision:migrate:analyze:sat-b->sat-a"
+                  },
+                  {
+                    "constraint_id": "constraint:000:migration_budget",
+                    "contribution": 0.3333333333333333,
+                    "decision_id": "decision:migrate:ingest:sat-a->sat-b"
+                  },
+                  {
+                    "constraint_id": "constraint:000:migration_budget",
+                    "contribution": 0.3333333333333333,
+                    "decision_id": "decision:migrate:respond:sat-c->sat-b"
+                  }
+                ],
+                "graph_signature": "fad6445e77682231982c51e2401eaf4cc70d5ab8a48097f6fa4a5098d63f5c66",
+                "nodes": [
+                  {
+                    "kind": "constraint",
+                    "label": "migration_budget",
+                    "magnitude": 3.0,
+                    "metadata": {
+                      "attribution_method": "exact_event_share",
+                      "dsl_components": [
+                        "node_score",
+                        "repair_policy"
+                      ],
+                      "entities": [
+                        "analyze",
+                        "ingest",
+                        "respond"
+                      ],
+                      "message": "migration count 3 exceeds budget 0",
+                      "original_index": 0
+                    },
+                    "node_id": "constraint:000:migration_budget"
+                  },
+                  {
+                    "kind": "decision",
+                    "label": "migrate:analyze:sat-b->sat-a",
+                    "magnitude": 0.0,
+                    "metadata": {},
+                    "node_id": "decision:migrate:analyze:sat-b->sat-a"
+                  },
+                  {
+                    "kind": "decision",
+                    "label": "migrate:ingest:sat-a->sat-b",
+                    "magnitude": 0.0,
+                    "metadata": {},
+                    "node_id": "decision:migrate:ingest:sat-a->sat-b"
+                  },
+                  {
+                    "kind": "decision",
+                    "label": "migrate:respond:sat-c->sat-b",
+                    "magnitude": 0.0,
+                    "metadata": {},
+                    "node_id": "decision:migrate:respond:sat-c->sat-b"
+                  }
+                ],
+                "source_verifier_version": "0.1.0"
+              },
+              "execution": {
+                "executor_version": "0.3.0",
+                "failure_reason": null,
+                "plan": {
+                  "candidate_id": "candidate_001",
+                  "method": "typed_dsl",
+                  "migrations": [
+                    {
+                      "cost": 1.0,
+                      "service_id": "analyze",
+                      "source_node": "sat-b",
+                      "target_node": "sat-a"
+                    },
+                    {
+                      "cost": 1.0,
+                      "service_id": "ingest",
+                      "source_node": "sat-a",
+                      "target_node": "sat-b"
+                    },
+                    {
+                      "cost": 1.0,
+                      "service_id": "respond",
+                      "source_node": "sat-c",
+                      "target_node": "sat-b"
+                    }
+                  ],
+                  "placement": {
+                    "analyze": "sat-a",
+                    "ingest": "sat-b",
+                    "respond": "sat-b"
+                  },
+                  "resource_snapshot": {},
+                  "routes": [
+                    {
+                      "edge_id": "analyze-respond",
+                      "path": [
+                        "sat-a",
+                        "sat-b"
+                      ]
+                    },
+                    {
+                      "edge_id": "ingest-analyze",
+                      "path": [
+                        "sat-b",
+                        "sat-a"
+                      ]
+                    }
+                  ],
+                  "run_id": "search_controller",
+                  "status": "complete"
+                },
+                "planning_time_ms": 24.927099992055446,
+                "static_verification": {
+                  "ast_signature": "2f5f456b3a8b2898e64161fe5e6e7fa774300229ddeca5b371527ec9a7f4544d",
+                  "errors": [],
+                  "valid": true,
+                  "verifier_version": "0.1.0",
+                  "warnings": []
+                },
+                "trace": [
+                  {
+                    "scores": {
+                      "analyze": 0.7666666666666666,
+                      "ingest": 0.76,
+                      "respond": 0.0
+                    },
+                    "selected_order": [
+                      "ingest",
+                      "analyze",
+                      "respond"
+                    ],
+                    "stage": "service_order"
+                  },
+                  {
+                    "candidate_policy": "eligibility_and_capacity_masked",
+                    "eligible_capacity_candidates": [
+                      "sat-a",
+                      "sat-b"
+                    ],
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-a": {
+                        "dependency_latency": 0.0,
+                        "migration_penalty": 0.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.8333333333333334,
+                        "residual_memory_ratio": 0.875
+                      },
+                      "sat-b": {
+                        "dependency_latency": 0.0,
+                        "migration_penalty": 1.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.8,
+                        "residual_memory_ratio": 0.8333333333333334
+                      }
+                    },
+                    "scores": {
+                      "sat-a": 0.3,
+                      "sat-b": 10.0
+                    },
+                    "selected_node": "sat-b",
+                    "service_id": "ingest",
+                    "stage": "placement"
+                  },
+                  {
+                    "candidate_policy": "eligibility_and_capacity_masked",
+                    "eligible_capacity_candidates": [
+                      "sat-a",
+                      "sat-b",
+                      "sat-c"
+                    ],
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-a": {
+                        "dependency_latency": 55.00346142797228,
+                        "migration_penalty": 1.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.6666666666666666,
+                        "residual_memory_ratio": 0.75
+                      },
+                      "sat-b": {
+                        "dependency_latency": 0.0,
+                        "migration_penalty": 0.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.4,
+                        "residual_memory_ratio": 0.5
+                      },
+                      "sat-c": {
+                        "dependency_latency": 73.67151266582786,
+                        "migration_penalty": 1.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.5,
+                        "residual_memory_ratio": 0.6
+                      }
+                    },
+                    "scores": {
+                      "sat-a": 9.77737705381147,
+                      "sat-b": 0.0,
+                      "sat-c": 9.4125
+                    },
+                    "selected_node": "sat-a",
+                    "service_id": "analyze",
+                    "stage": "placement"
+                  },
+                  {
+                    "candidate_policy": "eligibility_and_capacity_masked",
+                    "eligible_capacity_candidates": [
+                      "sat-b",
+                      "sat-c"
+                    ],
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-b": {
+                        "dependency_latency": 30.00346142797228,
+                        "migration_penalty": 1.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.6,
+                        "residual_memory_ratio": 0.6666666666666666
+                      },
+                      "sat-c": {
+                        "dependency_latency": 54.00969199832239,
+                        "migration_penalty": 0.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.75,
+                        "residual_memory_ratio": 0.8
+                      }
+                    },
+                    "scores": {
+                      "sat-b": 10.0,
+                      "sat-c": -0.39999999999999997
+                    },
+                    "selected_node": "sat-b",
+                    "service_id": "respond",
+                    "stage": "placement"
+                  },
+                  {
+                    "bandwidth_demand_mbps": 2.0,
+                    "candidate_policy": "contact_window_and_shared_bandwidth_masked",
+                    "candidates": [
+                      [
+                        "sat-a",
+                        "sat-b"
+                      ],
+                      [
+                        "sat-a",
+                        "sat-c",
+                        "sat-b"
+                      ]
+                    ],
+                    "edge_id": "analyze-respond",
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-a->sat-b": {
+                        "bottleneck_bandwidth": 80.0,
+                        "contact_duration": 11.0,
+                        "hop_count": 1.0,
+                        "path_latency": 30.00346142797228
+                      },
+                      "sat-a->sat-c->sat-b": {
+                        "bottleneck_bandwidth": 50.0,
+                        "contact_duration": 11.0,
+                        "hop_count": 2.0,
+                        "path_latency": 94.34787133081693
+                      }
+                    },
+                    "residual_bandwidth_after_mbps": {
+                      "a-b": 78.0,
+                      "a-c": 50.0,
+                      "b-c": 60.0
+                    },
+                    "residual_bandwidth_before_mbps": {
+                      "a-b": 80.0,
+                      "a-c": 50.0,
+                      "b-c": 60.0
+                    },
+                    "scores": {
+                      "sat-a->sat-b": 0.2,
+                      "sat-a->sat-c->sat-b": -0.8
+                    },
+                    "selected_path": [
+                      "sat-a",
+                      "sat-b"
+                    ],
+                    "stage": "routing"
+                  },
+                  {
+                    "bandwidth_demand_mbps": 4.0,
+                    "candidate_policy": "contact_window_and_shared_bandwidth_masked",
+                    "candidates": [
+                      [
+                        "sat-b",
+                        "sat-a"
+                      ],
+                      [
+                        "sat-b",
+                        "sat-c",
+                        "sat-a"
+                      ]
+                    ],
+                    "edge_id": "ingest-analyze",
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-b->sat-a": {
+                        "bottleneck_bandwidth": 80.0,
+                        "contact_duration": 11.0,
+                        "hop_count": 1.0,
+                        "path_latency": 55.00346142797228
+                      },
+                      "sat-b->sat-c->sat-a": {
+                        "bottleneck_bandwidth": 50.0,
+                        "contact_duration": 11.0,
+                        "hop_count": 2.0,
+                        "path_latency": 167.68120466415027
+                      }
+                    },
+                    "residual_bandwidth_after_mbps": {
+                      "a-b": 74.0,
+                      "a-c": 50.0,
+                      "b-c": 60.0
+                    },
+                    "residual_bandwidth_before_mbps": {
+                      "a-b": 78.0,
+                      "a-c": 50.0,
+                      "b-c": 60.0
+                    },
+                    "scores": {
+                      "sat-b->sat-a": 0.2,
+                      "sat-b->sat-c->sat-a": -0.8
+                    },
+                    "selected_path": [
+                      "sat-b",
+                      "sat-a"
+                    ],
+                    "stage": "routing"
+                  },
+                  {
+                    "accepted_actions": 0,
+                    "action_trace": [
+                      {
+                        "action": "reroute",
+                        "attempts": [],
+                        "before_profile": [
+                          1,
+                          1,
+                          3.0,
+                          [
+                            "migration_budget"
+                          ]
+                        ],
+                        "status": "not_applicable"
+                      },
+                      {
+                        "action": "bounded_backtrack",
+                        "attempts": [],
+                        "before_profile": [
+                          1,
+                          1,
+                          3.0,
+                          [
+                            "migration_budget"
+                          ]
+                        ],
+                        "status": "not_applicable"
+                      }
+                    ],
+                    "actions": [
+                      "reroute",
+                      "bounded_backtrack"
+                    ],
+                    "attempt_count": 0,
+                    "budget_exhausted": false,
+                    "final_feasible": false,
+                    "stage": "repair_policy"
+                  }
+                ]
+              },
+              "expansion_block_reason": "outcome_rejected",
+              "expansion_eligible": false,
+              "iteration": 1,
+              "objective": null,
+              "parent_id": "candidate_000",
+              "program": {
+                "node_score": {
+                  "op": "weighted_sum",
+                  "terms": [
+                    {
+                      "feature": "dependency_latency",
+                      "weight": -0.7
+                    },
+                    {
+                      "feature": "residual_compute_ratio",
+                      "weight": 0.3
+                    },
+                    {
+                      "feature": "migration_penalty",
+                      "weight": 10.0
+                    }
+                  ]
+                },
+                "path_score": {
+                  "op": "weighted_sum",
+                  "terms": [
+                    {
+                      "feature": "path_latency",
+                      "weight": -0.8
+                    },
+                    {
+                      "feature": "bottleneck_bandwidth",
+                      "weight": 0.2
+                    }
+                  ]
+                },
+                "repair_policy": [
+                  "reroute",
+                  "bounded_backtrack"
+                ],
+                "service_order": {
+                  "direction": "descending",
+                  "op": "weighted_sum",
+                  "terms": [
+                    {
+                      "feature": "critical_path_rank",
+                      "weight": 0.7
+                    },
+                    {
+                      "feature": "workload_ratio",
+                      "weight": 0.3
+                    }
+                  ]
+                },
+                "version": "1.0"
+              },
+              "verification": {
+                "feasible": false,
+                "verifier_version": "0.1.0",
+                "violations": [
+                  {
+                    "attribution_method": "exact_event_share",
+                    "contributing_decisions": [
+                      "migrate:analyze:sat-b->sat-a",
+                      "migrate:ingest:sat-a->sat-b",
+                      "migrate:respond:sat-c->sat-b"
+                    ],
+                    "decision_contributions": {
+                      "migrate:analyze:sat-b->sat-a": 0.3333333333333333,
+                      "migrate:ingest:sat-a->sat-b": 0.3333333333333333,
+                      "migrate:respond:sat-c->sat-b": 0.3333333333333333
+                    },
+                    "dsl_components": [
+                      "node_score",
+                      "repair_policy"
+                    ],
+                    "entities": [
+                      "analyze",
+                      "ingest",
+                      "respond"
+                    ],
+                    "magnitude": 3.0,
+                    "message": "migration count 3 exceeds budget 0",
+                    "violation_type": "migration_budget"
+                  }
+                ]
+              }
+            }
+          ],
+          "replay_queue": [
+            "cex_b46e645beafa",
+            "cex_073ac892c986"
+          ],
+          "semantic_patch_rejections": [
+            {
+              "errors": [
+                "deterministic verification did not improve any violation without worsening another; revise the causal direction or component"
+              ],
+              "occurrence_count": 1,
+              "patch": {
+                "operations": [
+                  {
+                    "component": "node_score",
+                    "feature": "migration_penalty",
+                    "op": "add_term",
+                    "weight": 10.0
+                  }
+                ],
+                "rationale": "Deliberately favors migration to preserve a failed scenario.",
+                "version": "1.0"
+              },
+              "patch_signature": "8a58f3009d22f3bf84f2b2745ba86995269d0d6bedda2546c4e64e17c05fca0b"
+            }
+          ],
+          "statistics": {
+            "accepted_patches": 1,
+            "counterexample_replays": 0,
+            "evaluator_calls": 2,
+            "first_feasible_patch_proposal": null,
+            "initial_generation_calls": 0,
+            "numeric_probes": 0,
+            "outcome_rejections": 1,
+            "patch_generation_calls": 1,
+            "patch_proposals": 1,
+            "rejected_patches": 1,
+            "total_llm_calls": 1,
+            "wall_time_ms": 32.502499991096556
+          },
+          "stop_reason": "evaluator_budget",
+          "trajectory": [
+            {
+              "ast_signature": "79ea2b13d646ddf352883fae498440397f600e094c3e95778892f09cd4cf4d79",
+              "candidate_id": "candidate_000",
+              "category": "repairable",
+              "counterexample_id": "cex_b46e645beafa",
+              "event": "candidate_evaluated",
+              "feasible": false
+            },
+            {
+              "accepted": true,
+              "allowed_components": [
+                "node_score",
+                "repair_policy"
+              ],
+              "changed_components": [
+                "node_score"
+              ],
+              "child_signature": "2f5f456b3a8b2898e64161fe5e6e7fa774300229ddeca5b371527ec9a7f4544d",
+              "conflict_graph_signature": "259face67cf87ec1a28aad2b00fc1959ead324924eeae1071a09954c9e115714",
+              "errors": [],
+              "event": "patch_evaluated",
+              "feedback_mode": "conflict_directed",
+              "parent_id": "candidate_000",
+              "parent_signature": "79ea2b13d646ddf352883fae498440397f600e094c3e95778892f09cd4cf4d79",
+              "patch": {
+                "operations": [
+                  {
+                    "component": "node_score",
+                    "feature": "migration_penalty",
+                    "op": "add_term",
+                    "weight": 10.0
+                  }
+                ],
+                "rationale": "Deliberately favors migration to preserve a failed scenario.",
+                "version": "1.0"
+              },
+              "patch_signature": "8a58f3009d22f3bf84f2b2745ba86995269d0d6bedda2546c4e64e17c05fca0b",
+              "refinement_phase": "feasibility"
+            },
+            {
+              "ast_signature": "2f5f456b3a8b2898e64161fe5e6e7fa774300229ddeca5b371527ec9a7f4544d",
+              "behaviorally_unchanged": false,
+              "candidate_id": "candidate_001",
+              "category": "repairable",
+              "counterexample_id": "cex_073ac892c986",
+              "event": "candidate_evaluated",
+              "feasibility_improved": false,
+              "feasible": false,
+              "outcome_rejected": true,
+              "parent_id": "candidate_000"
+            }
+          ]
+        },
+        "source_candidate_id": null,
+        "source_counterexample_id": null,
+        "source_run_id": null
+      },
+      {
+        "phase": "scenario_replay",
+        "run_id": "scenario_replay_001",
+        "scenario_hash": "df6e9bbe260d298f5e39b406bcfa3e94ee379c8c97e44625926386e324b33717",
+        "scenario_id": "small_static_v1",
+        "search_result": {
+          "best_candidate_id": "candidate_001",
+          "controller_version": "0.9.0",
+          "counterexamples": [
+            {
+              "archive_version": "1.0.0",
+              "ast_signatures": [
+                "79ea2b13d646ddf352883fae498440397f600e094c3e95778892f09cd4cf4d79"
+              ],
+              "candidate_ids": [
+                "candidate_000"
+              ],
+              "counterexample_id": "cex_b46e645beafa",
+              "entities": [
+                "analyze",
+                "respond"
+              ],
+              "first_iteration": 0,
+              "last_iteration": 0,
+              "last_replayed_iteration": null,
+              "latest_conflict_graph_signature": "259face67cf87ec1a28aad2b00fc1959ead324924eeae1071a09954c9e115714",
+              "max_violation_burden": 2.0,
+              "observation_count": 1,
+              "repair_failures": 0,
+              "replay_count": 0,
+              "scenario_hash": "df6e9bbe260d298f5e39b406bcfa3e94ee379c8c97e44625926386e324b33717",
+              "scenario_id": "small_static_v1",
+              "signature": "b46e645beafafc0892c01d52b3c24dc4a03dd2e5d8c59e46c6638f75663aa3c1",
+              "violation_types": [
+                "migration_budget"
+              ]
+            }
+          ],
+          "diverse_candidate_ids": [
+            "candidate_001"
+          ],
+          "features": {
+            "counterexample_memory_enabled": true,
+            "counterexample_replay_enabled": false,
+            "counterfactual_weight_probe_enabled": false,
+            "feasible_masks_enabled": true,
+            "feedback_mode": "conflict_directed",
+            "objective_refinement_enabled": false,
+            "repair_actions_enabled": true,
+            "structural_diversity_enabled": true
+          },
+          "initial_generation_trace": [],
+          "objective_patch_evaluations": [],
+          "records": [
+            {
+              "ast_signature": "79ea2b13d646ddf352883fae498440397f600e094c3e95778892f09cd4cf4d79",
+              "candidate_id": "candidate_000",
+              "category": "repairable",
+              "conflict_graph": {
+                "allowed_components": [
+                  "node_score",
+                  "repair_policy"
+                ],
+                "allowed_features": {
+                  "node_score": [
+                    "migration_penalty"
+                  ]
+                },
+                "allowed_repair_actions": [
+                  "move_bottleneck_service",
+                  "swap_services"
+                ],
+                "edges": [
+                  {
+                    "constraint_id": "constraint:000:migration_budget",
+                    "contribution": 0.5,
+                    "decision_id": "decision:migrate:analyze:sat-b->sat-a"
+                  },
+                  {
+                    "constraint_id": "constraint:000:migration_budget",
+                    "contribution": 0.5,
+                    "decision_id": "decision:migrate:respond:sat-c->sat-b"
+                  }
+                ],
+                "graph_signature": "259face67cf87ec1a28aad2b00fc1959ead324924eeae1071a09954c9e115714",
+                "nodes": [
+                  {
+                    "kind": "constraint",
+                    "label": "migration_budget",
+                    "magnitude": 2.0,
+                    "metadata": {
+                      "attribution_method": "exact_event_share",
+                      "dsl_components": [
+                        "node_score",
+                        "repair_policy"
+                      ],
+                      "entities": [
+                        "analyze",
+                        "respond"
+                      ],
+                      "message": "migration count 2 exceeds budget 0",
+                      "original_index": 0
+                    },
+                    "node_id": "constraint:000:migration_budget"
+                  },
+                  {
+                    "kind": "decision",
+                    "label": "migrate:analyze:sat-b->sat-a",
+                    "magnitude": 0.0,
+                    "metadata": {},
+                    "node_id": "decision:migrate:analyze:sat-b->sat-a"
+                  },
+                  {
+                    "kind": "decision",
+                    "label": "migrate:respond:sat-c->sat-b",
+                    "magnitude": 0.0,
+                    "metadata": {},
+                    "node_id": "decision:migrate:respond:sat-c->sat-b"
+                  }
+                ],
+                "source_verifier_version": "0.1.0"
+              },
+              "execution": {
+                "executor_version": "0.3.0",
+                "failure_reason": null,
+                "plan": {
+                  "candidate_id": "candidate_000",
+                  "method": "typed_dsl",
+                  "migrations": [
+                    {
+                      "cost": 1.0,
+                      "service_id": "analyze",
+                      "source_node": "sat-b",
+                      "target_node": "sat-a"
+                    },
+                    {
+                      "cost": 1.0,
+                      "service_id": "respond",
+                      "source_node": "sat-c",
+                      "target_node": "sat-b"
+                    }
+                  ],
+                  "placement": {
+                    "analyze": "sat-a",
+                    "ingest": "sat-a",
+                    "respond": "sat-b"
+                  },
+                  "resource_snapshot": {},
+                  "routes": [
+                    {
+                      "edge_id": "analyze-respond",
+                      "path": [
+                        "sat-a",
+                        "sat-b"
+                      ]
+                    },
+                    {
+                      "edge_id": "ingest-analyze",
+                      "path": [
+                        "sat-a"
+                      ]
+                    }
+                  ],
+                  "run_id": "search_controller",
+                  "status": "complete"
+                },
+                "planning_time_ms": 0.9045999613590539,
+                "static_verification": {
+                  "ast_signature": "79ea2b13d646ddf352883fae498440397f600e094c3e95778892f09cd4cf4d79",
+                  "errors": [],
+                  "valid": true,
+                  "verifier_version": "0.1.0",
+                  "warnings": []
+                },
+                "trace": [
+                  {
+                    "scores": {
+                      "analyze": 0.7666666666666666,
+                      "ingest": 0.76,
+                      "respond": 0.0
+                    },
+                    "selected_order": [
+                      "ingest",
+                      "analyze",
+                      "respond"
+                    ],
+                    "stage": "service_order"
+                  },
+                  {
+                    "candidate_policy": "eligibility_and_capacity_masked",
+                    "eligible_capacity_candidates": [
+                      "sat-a",
+                      "sat-b"
+                    ],
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-a": {
+                        "dependency_latency": 0.0,
+                        "migration_penalty": 0.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.8333333333333334,
+                        "residual_memory_ratio": 0.875
+                      },
+                      "sat-b": {
+                        "dependency_latency": 0.0,
+                        "migration_penalty": 1.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.8,
+                        "residual_memory_ratio": 0.8333333333333334
+                      }
+                    },
+                    "scores": {
+                      "sat-a": 0.3,
+                      "sat-b": 0.0
+                    },
+                    "selected_node": "sat-a",
+                    "service_id": "ingest",
+                    "stage": "placement"
+                  },
+                  {
+                    "candidate_policy": "eligibility_and_capacity_masked",
+                    "eligible_capacity_candidates": [
+                      "sat-a",
+                      "sat-b",
+                      "sat-c"
+                    ],
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-a": {
+                        "dependency_latency": 0.0,
+                        "migration_penalty": 1.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.5,
+                        "residual_memory_ratio": 0.625
+                      },
+                      "sat-b": {
+                        "dependency_latency": 55.00346142797228,
+                        "migration_penalty": 0.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.6,
+                        "residual_memory_ratio": 0.6666666666666666
+                      },
+                      "sat-c": {
+                        "dependency_latency": 94.00969199832238,
+                        "migration_penalty": 1.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.5,
+                        "residual_memory_ratio": 0.6
+                      }
+                    },
+                    "scores": {
+                      "sat-a": 0.0,
+                      "sat-b": -0.1095580166379832,
+                      "sat-c": -0.7
+                    },
+                    "selected_node": "sat-a",
+                    "service_id": "analyze",
+                    "stage": "placement"
+                  },
+                  {
+                    "candidate_policy": "eligibility_and_capacity_masked",
+                    "eligible_capacity_candidates": [
+                      "sat-b",
+                      "sat-c"
+                    ],
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-b": {
+                        "dependency_latency": 30.00346142797228,
+                        "migration_penalty": 1.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.8,
+                        "residual_memory_ratio": 0.8333333333333334
+                      },
+                      "sat-c": {
+                        "dependency_latency": 54.00969199832239,
+                        "migration_penalty": 0.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.75,
+                        "residual_memory_ratio": 0.8
+                      }
+                    },
+                    "scores": {
+                      "sat-b": 0.3,
+                      "sat-c": -0.7
+                    },
+                    "selected_node": "sat-b",
+                    "service_id": "respond",
+                    "stage": "placement"
+                  },
+                  {
+                    "bandwidth_demand_mbps": 2.0,
+                    "candidate_policy": "contact_window_and_shared_bandwidth_masked",
+                    "candidates": [
+                      [
+                        "sat-a",
+                        "sat-b"
+                      ],
+                      [
+                        "sat-a",
+                        "sat-c",
+                        "sat-b"
+                      ]
+                    ],
+                    "edge_id": "analyze-respond",
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-a->sat-b": {
+                        "bottleneck_bandwidth": 80.0,
+                        "contact_duration": 11.0,
+                        "hop_count": 1.0,
+                        "path_latency": 30.00346142797228
+                      },
+                      "sat-a->sat-c->sat-b": {
+                        "bottleneck_bandwidth": 50.0,
+                        "contact_duration": 11.0,
+                        "hop_count": 2.0,
+                        "path_latency": 94.34787133081693
+                      }
+                    },
+                    "residual_bandwidth_after_mbps": {
+                      "a-b": 78.0,
+                      "a-c": 50.0,
+                      "b-c": 60.0
+                    },
+                    "residual_bandwidth_before_mbps": {
+                      "a-b": 80.0,
+                      "a-c": 50.0,
+                      "b-c": 60.0
+                    },
+                    "scores": {
+                      "sat-a->sat-b": 0.2,
+                      "sat-a->sat-c->sat-b": -0.8
+                    },
+                    "selected_path": [
+                      "sat-a",
+                      "sat-b"
+                    ],
+                    "stage": "routing"
+                  },
+                  {
+                    "bandwidth_demand_mbps": 4.0,
+                    "candidate_policy": "contact_window_and_shared_bandwidth_masked",
+                    "candidates": [
+                      [
+                        "sat-a"
+                      ]
+                    ],
+                    "edge_id": "ingest-analyze",
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-a": {
+                        "bottleneck_bandwidth": 80.0,
+                        "contact_duration": 11.0,
+                        "hop_count": 0.0,
+                        "path_latency": 0.0
+                      }
+                    },
+                    "residual_bandwidth_after_mbps": {
+                      "a-b": 78.0,
+                      "a-c": 50.0,
+                      "b-c": 60.0
+                    },
+                    "residual_bandwidth_before_mbps": {
+                      "a-b": 78.0,
+                      "a-c": 50.0,
+                      "b-c": 60.0
+                    },
+                    "scores": {
+                      "sat-a": 0.0
+                    },
+                    "selected_path": [
+                      "sat-a"
+                    ],
+                    "stage": "routing"
+                  },
+                  {
+                    "accepted_actions": 0,
+                    "action_trace": [
+                      {
+                        "action": "reroute",
+                        "attempts": [],
+                        "before_profile": [
+                          1,
+                          1,
+                          2.0,
+                          [
+                            "migration_budget"
+                          ]
+                        ],
+                        "status": "not_applicable"
+                      },
+                      {
+                        "action": "bounded_backtrack",
+                        "attempts": [],
+                        "before_profile": [
+                          1,
+                          1,
+                          2.0,
+                          [
+                            "migration_budget"
+                          ]
+                        ],
+                        "status": "not_applicable"
+                      }
+                    ],
+                    "actions": [
+                      "reroute",
+                      "bounded_backtrack"
+                    ],
+                    "attempt_count": 0,
+                    "budget_exhausted": false,
+                    "final_feasible": false,
+                    "stage": "repair_policy"
+                  }
+                ]
+              },
+              "expansion_block_reason": null,
+              "expansion_eligible": true,
+              "iteration": 0,
+              "objective": null,
+              "parent_id": null,
+              "program": {
+                "node_score": {
+                  "op": "weighted_sum",
+                  "terms": [
+                    {
+                      "feature": "dependency_latency",
+                      "weight": -0.7
+                    },
+                    {
+                      "feature": "residual_compute_ratio",
+                      "weight": 0.3
+                    }
+                  ]
+                },
+                "path_score": {
+                  "op": "weighted_sum",
+                  "terms": [
+                    {
+                      "feature": "path_latency",
+                      "weight": -0.8
+                    },
+                    {
+                      "feature": "bottleneck_bandwidth",
+                      "weight": 0.2
+                    }
+                  ]
+                },
+                "repair_policy": [
+                  "reroute",
+                  "bounded_backtrack"
+                ],
+                "service_order": {
+                  "direction": "descending",
+                  "op": "weighted_sum",
+                  "terms": [
+                    {
+                      "feature": "critical_path_rank",
+                      "weight": 0.7
+                    },
+                    {
+                      "feature": "workload_ratio",
+                      "weight": 0.3
+                    }
+                  ]
+                },
+                "version": "1.0"
+              },
+              "verification": {
+                "feasible": false,
+                "verifier_version": "0.1.0",
+                "violations": [
+                  {
+                    "attribution_method": "exact_event_share",
+                    "contributing_decisions": [
+                      "migrate:analyze:sat-b->sat-a",
+                      "migrate:respond:sat-c->sat-b"
+                    ],
+                    "decision_contributions": {
+                      "migrate:analyze:sat-b->sat-a": 0.5,
+                      "migrate:respond:sat-c->sat-b": 0.5
+                    },
+                    "dsl_components": [
+                      "node_score",
+                      "repair_policy"
+                    ],
+                    "entities": [
+                      "analyze",
+                      "respond"
+                    ],
+                    "magnitude": 2.0,
+                    "message": "migration count 2 exceeds budget 0",
+                    "violation_type": "migration_budget"
+                  }
+                ]
+              }
+            },
+            {
+              "ast_signature": "da5fc7fb71d3c54281a07bef16ad45b6e0c7bd8554402ffe8f679cba83027a21",
+              "candidate_id": "candidate_001",
+              "category": "feasible_elite",
+              "conflict_graph": null,
+              "execution": {
+                "executor_version": "0.3.0",
+                "failure_reason": null,
+                "plan": {
+                  "candidate_id": "candidate_001",
+                  "method": "typed_dsl",
+                  "migrations": [],
+                  "placement": {
+                    "analyze": "sat-b",
+                    "ingest": "sat-a",
+                    "respond": "sat-c"
+                  },
+                  "resource_snapshot": {},
+                  "routes": [
+                    {
+                      "edge_id": "analyze-respond",
+                      "path": [
+                        "sat-b",
+                        "sat-c"
+                      ]
+                    },
+                    {
+                      "edge_id": "ingest-analyze",
+                      "path": [
+                        "sat-a",
+                        "sat-b"
+                      ]
+                    }
+                  ],
+                  "run_id": "search_controller",
+                  "status": "complete"
+                },
+                "planning_time_ms": 0.7645000005140901,
+                "static_verification": {
+                  "ast_signature": "da5fc7fb71d3c54281a07bef16ad45b6e0c7bd8554402ffe8f679cba83027a21",
+                  "errors": [],
+                  "valid": true,
+                  "verifier_version": "0.1.0",
+                  "warnings": []
+                },
+                "trace": [
+                  {
+                    "scores": {
+                      "analyze": 0.7666666666666666,
+                      "ingest": 0.76,
+                      "respond": 0.0
+                    },
+                    "selected_order": [
+                      "ingest",
+                      "analyze",
+                      "respond"
+                    ],
+                    "stage": "service_order"
+                  },
+                  {
+                    "candidate_policy": "eligibility_and_capacity_masked",
+                    "eligible_capacity_candidates": [
+                      "sat-a",
+                      "sat-b"
+                    ],
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-a": {
+                        "dependency_latency": 0.0,
+                        "migration_penalty": 0.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.8333333333333334,
+                        "residual_memory_ratio": 0.875
+                      },
+                      "sat-b": {
+                        "dependency_latency": 0.0,
+                        "migration_penalty": 1.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.8,
+                        "residual_memory_ratio": 0.8333333333333334
+                      }
+                    },
+                    "scores": {
+                      "sat-a": 0.3,
+                      "sat-b": -10.0
+                    },
+                    "selected_node": "sat-a",
+                    "service_id": "ingest",
+                    "stage": "placement"
+                  },
+                  {
+                    "candidate_policy": "eligibility_and_capacity_masked",
+                    "eligible_capacity_candidates": [
+                      "sat-a",
+                      "sat-b",
+                      "sat-c"
+                    ],
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-a": {
+                        "dependency_latency": 0.0,
+                        "migration_penalty": 1.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.5,
+                        "residual_memory_ratio": 0.625
+                      },
+                      "sat-b": {
+                        "dependency_latency": 55.00346142797228,
+                        "migration_penalty": 0.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.6,
+                        "residual_memory_ratio": 0.6666666666666666
+                      },
+                      "sat-c": {
+                        "dependency_latency": 94.00969199832238,
+                        "migration_penalty": 1.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.5,
+                        "residual_memory_ratio": 0.6
+                      }
+                    },
+                    "scores": {
+                      "sat-a": -10.0,
+                      "sat-b": -0.1095580166379832,
+                      "sat-c": -10.7
+                    },
+                    "selected_node": "sat-b",
+                    "service_id": "analyze",
+                    "stage": "placement"
+                  },
+                  {
+                    "candidate_policy": "eligibility_and_capacity_masked",
+                    "eligible_capacity_candidates": [
+                      "sat-b",
+                      "sat-c"
+                    ],
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-b": {
+                        "dependency_latency": 0.0,
+                        "migration_penalty": 1.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.4,
+                        "residual_memory_ratio": 0.5
+                      },
+                      "sat-c": {
+                        "dependency_latency": 40.338179332494526,
+                        "migration_penalty": 0.0,
+                        "predicted_contact_duration": 11.0,
+                        "residual_compute_ratio": 0.75,
+                        "residual_memory_ratio": 0.8
+                      }
+                    },
+                    "scores": {
+                      "sat-b": -10.0,
+                      "sat-c": -0.39999999999999997
+                    },
+                    "selected_node": "sat-c",
+                    "service_id": "respond",
+                    "stage": "placement"
+                  },
+                  {
+                    "bandwidth_demand_mbps": 2.0,
+                    "candidate_policy": "contact_window_and_shared_bandwidth_masked",
+                    "candidates": [
+                      [
+                        "sat-b",
+                        "sat-c"
+                      ],
+                      [
+                        "sat-b",
+                        "sat-a",
+                        "sat-c"
+                      ]
+                    ],
+                    "edge_id": "analyze-respond",
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-b->sat-a->sat-c": {
+                        "bottleneck_bandwidth": 50.0,
+                        "contact_duration": 11.0,
+                        "hop_count": 2.0,
+                        "path_latency": 84.01315342629466
+                      },
+                      "sat-b->sat-c": {
+                        "bottleneck_bandwidth": 60.0,
+                        "contact_duration": 11.0,
+                        "hop_count": 1.0,
+                        "path_latency": 40.338179332494526
+                      }
+                    },
+                    "residual_bandwidth_after_mbps": {
+                      "a-b": 80.0,
+                      "a-c": 50.0,
+                      "b-c": 58.0
+                    },
+                    "residual_bandwidth_before_mbps": {
+                      "a-b": 80.0,
+                      "a-c": 50.0,
+                      "b-c": 60.0
+                    },
+                    "scores": {
+                      "sat-b->sat-a->sat-c": -0.8,
+                      "sat-b->sat-c": 0.2
+                    },
+                    "selected_path": [
+                      "sat-b",
+                      "sat-c"
+                    ],
+                    "stage": "routing"
+                  },
+                  {
+                    "bandwidth_demand_mbps": 4.0,
+                    "candidate_policy": "contact_window_and_shared_bandwidth_masked",
+                    "candidates": [
+                      [
+                        "sat-a",
+                        "sat-b"
+                      ],
+                      [
+                        "sat-a",
+                        "sat-c",
+                        "sat-b"
+                      ]
+                    ],
+                    "edge_id": "ingest-analyze",
+                    "feasible_masks_enabled": true,
+                    "raw_features": {
+                      "sat-a->sat-b": {
+                        "bottleneck_bandwidth": 80.0,
+                        "contact_duration": 11.0,
+                        "hop_count": 1.0,
+                        "path_latency": 55.00346142797228
+                      },
+                      "sat-a->sat-c->sat-b": {
+                        "bottleneck_bandwidth": 50.0,
+                        "contact_duration": 11.0,
+                        "hop_count": 2.0,
+                        "path_latency": 167.68120466415027
+                      }
+                    },
+                    "residual_bandwidth_after_mbps": {
+                      "a-b": 76.0,
+                      "a-c": 50.0,
+                      "b-c": 58.0
+                    },
+                    "residual_bandwidth_before_mbps": {
+                      "a-b": 80.0,
+                      "a-c": 50.0,
+                      "b-c": 58.0
+                    },
+                    "scores": {
+                      "sat-a->sat-b": 0.2,
+                      "sat-a->sat-c->sat-b": -0.8
+                    },
+                    "selected_path": [
+                      "sat-a",
+                      "sat-b"
+                    ],
+                    "stage": "routing"
+                  },
+                  {
+                    "accepted_actions": 0,
+                    "action_trace": [],
+                    "actions": [
+                      "reroute",
+                      "bounded_backtrack"
+                    ],
+                    "attempt_count": 0,
+                    "budget_exhausted": false,
+                    "final_feasible": true,
+                    "stage": "repair_policy"
+                  }
+                ]
+              },
+              "expansion_block_reason": null,
+              "expansion_eligible": true,
+              "iteration": 1,
+              "objective": {
+                "e2e_latency_ms": 186.77021218903823,
+                "energy_proxy": 0.0,
+                "load_imbalance": 0.35465606524454635,
+                "metric_version": "0.1.0",
+                "migration_cost": 0.0,
+                "planning_time_ms": 0.7645000005140901,
+                "weighted_objective": 186.8056777955627
+              },
+              "parent_id": "candidate_000",
+              "program": {
+                "node_score": {
+                  "op": "weighted_sum",
+                  "terms": [
+                    {
+                      "feature": "dependency_latency",
+                      "weight": -0.7
+                    },
+                    {
+                      "feature": "residual_compute_ratio",
+                      "weight": 0.3
+                    },
+                    {
+                      "feature": "migration_penalty",
+                      "weight": -10.0
+                    }
+                  ]
+                },
+                "path_score": {
+                  "op": "weighted_sum",
+                  "terms": [
+                    {
+                      "feature": "path_latency",
+                      "weight": -0.8
+                    },
+                    {
+                      "feature": "bottleneck_bandwidth",
+                      "weight": 0.2
+                    }
+                  ]
+                },
+                "repair_policy": [
+                  "reroute",
+                  "bounded_backtrack"
+                ],
+                "service_order": {
+                  "direction": "descending",
+                  "op": "weighted_sum",
+                  "terms": [
+                    {
+                      "feature": "critical_path_rank",
+                      "weight": 0.7
+                    },
+                    {
+                      "feature": "workload_ratio",
+                      "weight": 0.3
+                    }
+                  ]
+                },
+                "version": "1.0"
+              },
+              "verification": {
+                "feasible": true,
+                "verifier_version": "0.1.0",
+                "violations": []
+              }
+            }
+          ],
+          "replay_queue": [
+            "cex_b46e645beafa"
+          ],
+          "semantic_patch_rejections": [],
+          "statistics": {
+            "accepted_patches": 1,
+            "counterexample_replays": 0,
+            "evaluator_calls": 2,
+            "first_feasible_patch_proposal": 1,
+            "initial_generation_calls": 0,
+            "numeric_probes": 0,
+            "outcome_rejections": 0,
+            "patch_generation_calls": 1,
+            "patch_proposals": 1,
+            "rejected_patches": 0,
+            "total_llm_calls": 1,
+            "wall_time_ms": 4.749499959871173
+          },
+          "stop_reason": "first_feasible",
+          "trajectory": [
+            {
+              "ast_signature": "79ea2b13d646ddf352883fae498440397f600e094c3e95778892f09cd4cf4d79",
+              "candidate_id": "candidate_000",
+              "category": "repairable",
+              "counterexample_id": "cex_b46e645beafa",
+              "event": "candidate_evaluated",
+              "feasible": false
+            },
+            {
+              "accepted": true,
+              "allowed_components": [
+                "node_score",
+                "repair_policy"
+              ],
+              "changed_components": [
+                "node_score"
+              ],
+              "child_signature": "da5fc7fb71d3c54281a07bef16ad45b6e0c7bd8554402ffe8f679cba83027a21",
+              "conflict_graph_signature": "259face67cf87ec1a28aad2b00fc1959ead324924eeae1071a09954c9e115714",
+              "errors": [],
+              "event": "patch_evaluated",
+              "feedback_mode": "conflict_directed",
+              "parent_id": "candidate_000",
+              "parent_signature": "79ea2b13d646ddf352883fae498440397f600e094c3e95778892f09cd4cf4d79",
+              "patch": {
+                "operations": [
+                  {
+                    "component": "node_score",
+                    "feature": "migration_penalty",
+                    "op": "add_term",
+                    "weight": -10.0
+                  }
+                ],
+                "rationale": "Discourages migration when the migration budget is zero.",
+                "version": "1.0"
+              },
+              "patch_signature": "64ed8b47890210d09f5ae7e7adba51994121ffb804a8811c5ca4e92baa3b419b",
+              "refinement_phase": "feasibility"
+            },
+            {
+              "ast_signature": "da5fc7fb71d3c54281a07bef16ad45b6e0c7bd8554402ffe8f679cba83027a21",
+              "behaviorally_unchanged": false,
+              "candidate_id": "candidate_001",
+              "category": "feasible_elite",
+              "counterexample_id": null,
+              "event": "candidate_evaluated",
+              "feasibility_improved": true,
+              "feasible": true,
+              "outcome_rejected": false,
+              "parent_id": "candidate_000"
+            }
+          ]
+        },
+        "source_candidate_id": "candidate_000",
+        "source_counterexample_id": "cex_b46e645beafa",
+        "source_run_id": "seed_zero_migration"
+      }
+    ],
+    "statistics": {
+      "resolved_counterexamples": 1,
+      "scenario_replays": 1,
+      "seed_runs": 1,
+      "total_evaluator_calls": 4,
+      "total_initial_generation_calls": 0,
+      "total_llm_calls": 2,
+      "total_patch_generation_calls": 2,
+      "total_patch_proposals": 2
+    },
+    "stop_reason": "replay_budget",
+    "trajectory": [
+      {
+        "best_candidate_id": null,
+        "event": "campaign_seed_completed",
+        "run_id": "seed_zero_migration",
+        "scenario_hash": "df6e9bbe260d298f5e39b406bcfa3e94ee379c8c97e44625926386e324b33717",
+        "scenario_id": "small_static_v1"
+      },
+      {
+        "counterexample_id": "cex_b46e645beafa",
+        "counterexample_signature": "b46e645beafafc0892c01d52b3c24dc4a03dd2e5d8c59e46c6638f75663aa3c1",
+        "event": "campaign_scenario_replayed",
+        "priority": [
+          1.0,
+          1.0,
+          1.0,
+          2.0,
+          -1.0
+        ],
+        "replay_count": 1,
+        "run_id": "scenario_replay_001",
+        "scenario_hash": "df6e9bbe260d298f5e39b406bcfa3e94ee379c8c97e44625926386e324b33717",
+        "scenario_id": "small_static_v1",
+        "source_candidate_id": "candidate_000",
+        "source_run_id": "seed_zero_migration"
+      }
+    ]
+  },
+  "checks": {
+    "persisted_counterexamples": true,
+    "resolved_counterexamples": true,
+    "scenario_replays": true,
+    "seed_runs": true,
+    "stop_reason": true
+  },
+  "config_hash": "e2b56bac47b352a66fbbab415771e2c378573a62120f68ffac9b2d3c32b5dd0d",
+  "evidence_status": "offline_cross_run_replay_control_evidence_not_llm_performance",
+  "passed": true
+}

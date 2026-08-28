@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:58:53.363377Z",
+  "latency_ms": 3240.1902999845333,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 640,
+    "prompt_cache_miss_tokens": 3020,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "782356c9-8f45-476d-ad0b-099b35a21f38",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "migration_penalty",
+        "op": "set_weight",
+        "weight": 0.0
+      }
+    ],
+    "rationale": "Migration penalty is currently -1.0, which strongly discourages placing services on nodes other than the previous placement. Since migration_budget is 0, migration_cost is already 0, so this penalty may be unnecessary and could be causing suboptimal placements that increase latency. Setting it to 0 may allow better node choices without violating hard constraints.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"migration_penalty\",\n      \"weight\": 0.0\n    }\n  ],\n  \"rationale\": \"Migration penalty is currently -1.0, which strongly discourages placing services on nodes other than the previous placement. Since migration_budget is 0, migration_cost is already 0, so this penalty may be unnecessary and could be causing suboptimal placements that increase latency. Setting it to 0 may allow better node choices without violating hard constraints.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "124f90867f17108b60d518b61a314366b3016fed4fd7247386b35d148d46f779",
+  "request_id": "req_124f90867f17108b",
+  "usage": {
+    "input_tokens": 3660,
+    "output_tokens": 134
+  }
+}

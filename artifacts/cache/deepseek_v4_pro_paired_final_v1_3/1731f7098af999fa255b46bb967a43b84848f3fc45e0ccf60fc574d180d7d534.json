@@ -1,0 +1,41 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:45:21.919715Z",
+  "latency_ms": 2221.365799952764,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2816,
+    "prompt_cache_miss_tokens": 78,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "0f802f89-8581-4a35-b067-23169744953b",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "actions": [
+          "reroute",
+          "move_bottleneck_service",
+          "bounded_backtrack"
+        ],
+        "component": "repair_policy",
+        "op": "set_repair_policy"
+      }
+    ],
+    "rationale": "Add move_bottleneck_service to repair policy to potentially reduce latency by relocating bottleneck services, addressing QoS violation.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_repair_policy\",\n      \"component\": \"repair_policy\",\n      \"actions\": [\"reroute\", \"move_bottleneck_service\", \"bounded_backtrack\"]\n    }\n  ],\n  \"rationale\": \"Add move_bottleneck_service to repair policy to potentially reduce latency by relocating bottleneck services, addressing QoS violation.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "80fbabbb9862e5084db3e85d3187fe50f4b06bb9144b384426e5da314e9b106b",
+  "request_id": "req_80fbabbb9862e508",
+  "usage": {
+    "input_tokens": 2894,
+    "output_tokens": 94
+  }
+}

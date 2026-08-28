@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:18:49.761205Z",
+  "latency_ms": 2641.3333999807946,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1792,
+    "prompt_cache_miss_tokens": 1345,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "4f62e575-e3d7-47a0-b1aa-3006271052a3",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "migration_penalty",
+        "op": "add_term",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "Adding migration_penalty to node_score with a negative weight discourages migrations, potentially reducing migration cost and indirectly affecting placement to satisfy QoS latency.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"add_term\",\n      \"component\": \"node_score\",\n      \"feature\": \"migration_penalty\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"Adding migration_penalty to node_score with a negative weight discourages migrations, potentially reducing migration cost and indirectly affecting placement to satisfy QoS latency.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "3a4a6f52f31dc7a9e62ff9a20fb323b4ca3abf4f4993ebb034312314de1e0c5d",
+  "request_id": "req_3a4a6f52f31dc7a9",
+  "usage": {
+    "input_tokens": 3137,
+    "output_tokens": 93
+  }
+}

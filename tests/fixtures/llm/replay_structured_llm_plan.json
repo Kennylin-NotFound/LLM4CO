@@ -1,0 +1,27 @@
+{
+  "format_version": "1.0",
+  "entries": [
+    {
+      "purpose": "structured_llm_plan",
+      "provider": "offline-replay",
+      "model": "one-shot-structured-control",
+      "parsed": {
+        "schema_version": "1.0.0",
+        "scenario_id": "small_static_v1",
+        "scenario_hash": "b15687e73cd817cb9bc6c0aa5cf55848bfd24b3b8f08342121aad14813d9e23e",
+        "placement": {
+          "analyze": "sat-b",
+          "ingest": "sat-b",
+          "respond": "sat-b"
+        },
+        "routes": [
+          {"edge_id": "analyze-respond", "path": ["sat-b"]},
+          {"edge_id": "ingest-analyze", "path": ["sat-b"]}
+        ]
+      },
+      "raw_text": "offline structured plan replay",
+      "usage": {"input_tokens": 0, "output_tokens": 0},
+      "latency_ms": 0.0
+    }
+  ]
+}

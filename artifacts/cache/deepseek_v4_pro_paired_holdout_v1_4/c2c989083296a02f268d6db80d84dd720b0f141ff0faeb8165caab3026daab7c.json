@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:11:46.316067Z",
+  "latency_ms": 2111.339199997019,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 2152,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "960ed9ff-bb14-4003-a14b-a6dc755ed62a",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "migration_penalty",
+        "op": "add_term",
+        "weight": -1.0
+      }
+    ],
+    "rationale": "Add a negative migration penalty to node_score to discourage migrations and reduce migration count, addressing the migration budget violation.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"add_term\",\n      \"component\": \"node_score\",\n      \"feature\": \"migration_penalty\",\n      \"weight\": -1.0\n    }\n  ],\n  \"rationale\": \"Add a negative migration penalty to node_score to discourage migrations and reduce migration count, addressing the migration budget violation.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "42286c15ffe756663b68b926878e620f9722dd761afb31a014e5fbbbb56313f8",
+  "request_id": "req_42286c15ffe75666",
+  "usage": {
+    "input_tokens": 2152,
+    "output_tokens": 86
+  }
+}

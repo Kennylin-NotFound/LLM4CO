@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:48:53.647596Z",
+  "latency_ms": 1986.0802000039257,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 384,
+    "prompt_cache_miss_tokens": 2501,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "514708cf-c600-4395-a68d-f9ea8736684f",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "The migration budget constraint is violated because two services were migrated. The node_score currently ignores dependency_latency (weight 0.0). Giving it a negative weight will penalize placements that increase dependency latency, potentially reducing the need for migrations and thus the migration count.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"The migration budget constraint is violated because two services were migrated. The node_score currently ignores dependency_latency (weight 0.0). Giving it a negative weight will penalize placements that increase dependency latency, potentially reducing the need for migrations and thus the migration count.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "5b1b0c1468008e318b008f3ca33de9fc85b81bb0e7a90c360e1cb6d020f7fea6",
+  "request_id": "req_5b1b0c1468008e31",
+  "usage": {
+    "input_tokens": 2885,
+    "output_tokens": 117
+  }
+}

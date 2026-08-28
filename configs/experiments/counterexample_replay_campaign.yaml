@@ -1,0 +1,36 @@
+campaign_id: "counterexample_cross_run_replay_v1"
+prompt_path: "../prompts/conflict_patch.md"
+features:
+  feedback_mode: "conflict_directed"
+  counterexample_memory_enabled: true
+  counterexample_replay_enabled: false
+seeds:
+  - run_id: "seed_zero_migration"
+    scenario_path: "../scenarios/small_static.yaml"
+    scenario_overrides:
+      migration_budget: 0
+    initial_heuristic: "latency_first"
+    replay_file: "../../tests/fixtures/llm/replay_conflict_wrong_direction.json"
+    budgets:
+      max_patch_proposals: 1
+      max_total_llm_calls: 1
+      max_evaluator_calls: 2
+      max_wall_time_seconds: 10.0
+      stop_on_first_feasible: true
+replay:
+  replay_files:
+    - "../../tests/fixtures/llm/replay_conflict_correct_direction.json"
+  budgets:
+    max_patch_proposals: 1
+    max_total_llm_calls: 1
+    max_evaluator_calls: 2
+    max_wall_time_seconds: 10.0
+    stop_on_first_feasible: true
+  max_scenario_replays: 1
+  max_replays_per_counterexample: 1
+expectation:
+  stop_reason: "replay_budget"
+  seed_runs: 1
+  scenario_replays: 1
+  resolved_counterexamples: 1
+  persisted_counterexamples: 1

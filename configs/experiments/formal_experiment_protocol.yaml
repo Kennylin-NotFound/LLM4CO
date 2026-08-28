@@ -1,0 +1,320 @@
+protocol_id: "cover_opt_formal_protocol"
+version: "1.3.0"
+status: "frozen_before_live_call"
+frozen_on: "2026-08-25"
+evidence_boundaries:
+  - "Control and replay fixtures validate mechanisms, not live-model quality."
+  - "Exact optimality is only claimed inside the enumerated small-instance candidate set."
+  - "CurrentPaper-SolverGen is a flow reconstruction, not a numeric reproduction."
+  - "No paper-performance claim may use pilot or failed-quality-control runs."
+  - "Protocol v1.3 results are not pooled with v1.2 pilot or diagnostic runs."
+  - "CurrentPaper-SolverGen remains a replay-only flow reconstruction and is excluded from live paired claims."
+final_scenario_contract:
+  factory_version: "paired-static-1.0.0"
+  base_scenario_path: "../scenarios/small_static.yaml"
+  seed_range: [200, 219]
+  profile_cycle:
+    - "migration_lock"
+    - "qos_tight"
+    - "joint_constraint"
+    - "objective_control"
+  perturbation_ranges:
+    compute_rate_factor: [0.85, 1.15]
+    link_rate_factor: [0.80, 1.20]
+    distance_factor: [0.90, 1.10]
+    workload_factor: [0.80, 1.20]
+    data_factor: [0.80, 1.20]
+  qos_calibration: "co_located_sat_b_latency_times_1.05"
+  profile_assignment: "profile_cycle[(seed - 200) mod 4]"
+  llm_execution_order: "deterministic cyclic rotation by scenario seed and repetition"
+stages:
+  - stage_id: "offline_control"
+    purpose: "control"
+    scenario_seeds: [0, 1, 2]
+    llm_repetitions: 1
+    claim_eligible: false
+  - stage_id: "live_pilot"
+    purpose: "pilot"
+    scenario_seeds: [100, 101, 102, 103, 104]
+    llm_repetitions: 1
+    claim_eligible: false
+  - stage_id: "paired_final"
+    purpose: "final"
+    scenario_seeds: [200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219]
+    llm_repetitions: 3
+    claim_eligible: true
+live_model_lock:
+  live_calls_allowed: true
+  provider: "deepseek"
+  model_snapshot: "deepseek-v4-pro"
+  system_fingerprint: "a307abda487cd1b463329ccb945ce396"
+  temperature: 0.0
+  top_p: 1.0
+  max_output_tokens: 2048
+  seed_control: "unavailable"
+  locked_request_fields:
+    - "provider"
+    - "model_snapshot"
+    - "temperature"
+    - "top_p"
+    - "max_output_tokens"
+    - "prompt_hash"
+    - "scenario_hash"
+    - "system_fingerprint"
+methods:
+  - method_id: "random_baseline"
+    family: "non_llm"
+    implementation_status: "implemented"
+    max_llm_calls: 0
+    max_evaluator_calls: 32
+    max_wall_time_seconds: 30.0
+    claim_eligible: false
+  - method_id: "latency_greedy"
+    family: "non_llm"
+    implementation_status: "implemented"
+    max_llm_calls: 0
+    max_evaluator_calls: 1
+    max_wall_time_seconds: 30.0
+    claim_eligible: false
+  - method_id: "capacity_greedy"
+    family: "non_llm"
+    implementation_status: "implemented"
+    max_llm_calls: 0
+    max_evaluator_calls: 1
+    max_wall_time_seconds: 30.0
+    claim_eligible: false
+  - method_id: "exact_enumeration_oracle"
+    family: "oracle"
+    implementation_status: "implemented"
+    max_llm_calls: 0
+    max_evaluator_calls: 100000
+    max_wall_time_seconds: 30.0
+    claim_eligible: false
+  - method_id: "current_paper_solvergen"
+    family: "iterative_llm"
+    implementation_status: "gated"
+    max_llm_calls: 4
+    max_evaluator_calls: 5
+    max_wall_time_seconds: 60.0
+    live_comparable: false
+    claim_eligible: false
+  - method_id: "direct_llm_plan"
+    family: "one_shot_llm"
+    implementation_status: "implemented"
+    max_llm_calls: 1
+    max_evaluator_calls: 1
+    max_wall_time_seconds: 120.0
+    prompt_path: "../prompts/direct_llm_plan.md"
+    prompt_hash: "c8fefef5c9ac12e13c2566d90b94d91f7aedf48a93de0adb47709a89b15cb6ce"
+  - method_id: "structured_llm_plan"
+    family: "one_shot_llm"
+    implementation_status: "implemented"
+    max_llm_calls: 1
+    max_evaluator_calls: 1
+    max_wall_time_seconds: 120.0
+    prompt_path: "../prompts/structured_llm_plan.md"
+    prompt_hash: "35bf439a1320b2cc32442babeef6c90c7f1cb26d7219422e4b0b3d9e9e3b0d7e"
+  - method_id: "cover_opt_no_feedback"
+    family: "iterative_llm"
+    implementation_status: "implemented"
+    max_llm_calls: 4
+    max_evaluator_calls: 5
+    max_wall_time_seconds: 120.0
+    prompt_path: "../prompts/paired_patch_v1.md"
+    prompt_hash: "4293e7e10e5b2a1930bc778a71bda89273719387845b63e7e144354453ca6bbe"
+    initial_heuristic: "latency_first"
+    features:
+      feedback_mode: "none"
+      feasible_masks_enabled: true
+      repair_actions_enabled: false
+      counterexample_memory_enabled: false
+      structural_diversity_enabled: false
+      objective_refinement_enabled: false
+      counterfactual_weight_probe_enabled: false
+    stop_on_first_feasible: true
+  - method_id: "cover_opt_generic_feedback"
+    family: "iterative_llm"
+    implementation_status: "implemented"
+    max_llm_calls: 4
+    max_evaluator_calls: 5
+    max_wall_time_seconds: 120.0
+    prompt_path: "../prompts/paired_patch_v1.md"
+    prompt_hash: "4293e7e10e5b2a1930bc778a71bda89273719387845b63e7e144354453ca6bbe"
+    initial_heuristic: "latency_first"
+    features:
+      feedback_mode: "generic"
+      feasible_masks_enabled: true
+      repair_actions_enabled: false
+      counterexample_memory_enabled: false
+      structural_diversity_enabled: false
+      objective_refinement_enabled: false
+      counterfactual_weight_probe_enabled: false
+    stop_on_first_feasible: true
+  - method_id: "cover_opt_conflict_feedback"
+    family: "iterative_llm"
+    implementation_status: "implemented"
+    max_llm_calls: 4
+    max_evaluator_calls: 5
+    max_wall_time_seconds: 120.0
+    prompt_path: "../prompts/paired_patch_v1.md"
+    prompt_hash: "4293e7e10e5b2a1930bc778a71bda89273719387845b63e7e144354453ca6bbe"
+    initial_heuristic: "latency_first"
+    features:
+      feedback_mode: "conflict_directed"
+      feasible_masks_enabled: true
+      repair_actions_enabled: false
+      counterexample_memory_enabled: false
+      structural_diversity_enabled: false
+      objective_refinement_enabled: false
+      counterfactual_weight_probe_enabled: false
+    stop_on_first_feasible: true
+  - method_id: "cover_opt_full"
+    family: "iterative_llm"
+    implementation_status: "implemented"
+    max_llm_calls: 4
+    max_evaluator_calls: 5
+    max_wall_time_seconds: 120.0
+    prompt_path: "../prompts/paired_patch_v1.md"
+    prompt_hash: "4293e7e10e5b2a1930bc778a71bda89273719387845b63e7e144354453ca6bbe"
+    initial_heuristic: "latency_first"
+    features:
+      feedback_mode: "conflict_directed"
+      feasible_masks_enabled: true
+      repair_actions_enabled: true
+      counterexample_memory_enabled: true
+      structural_diversity_enabled: true
+      objective_refinement_enabled: true
+      counterfactual_weight_probe_enabled: true
+    stop_on_first_feasible: false
+metrics:
+  - metric_id: "feasible_rate"
+    direction: "maximize"
+    population: "all_cases"
+    primary: true
+  - metric_id: "weighted_objective"
+    direction: "minimize"
+    population: "jointly_feasible"
+    primary: true
+  - metric_id: "candidate_set_gap_pct"
+    direction: "minimize"
+    population: "jointly_feasible"
+    primary: false
+  - metric_id: "calls_to_first_feasible"
+    direction: "minimize"
+    population: "successful_runs"
+    primary: false
+  - metric_id: "violation_burden"
+    direction: "minimize"
+    population: "all_cases"
+    primary: false
+  - metric_id: "schema_failure_rate"
+    direction: "minimize"
+    population: "all_cases"
+    primary: false
+  - metric_id: "input_output_tokens"
+    direction: "report_only"
+    population: "all_cases"
+    primary: false
+  - metric_id: "wall_time_ms"
+    direction: "report_only"
+    population: "all_cases"
+    primary: false
+comparisons:
+  - comparison_id: "structured_vs_direct"
+    treatment: "structured_llm_plan"
+    control: "direct_llm_plan"
+    claim_id: "C_SCHEMA"
+    required_stage: "paired_final"
+    primary_metrics: ["feasible_rate", "schema_failure_rate"]
+  - comparison_id: "conflict_vs_generic_feedback"
+    treatment: "cover_opt_conflict_feedback"
+    control: "cover_opt_generic_feedback"
+    claim_id: "C_FEEDBACK"
+    required_stage: "paired_final"
+    primary_metrics: ["feasible_rate", "calls_to_first_feasible"]
+  - comparison_id: "conflict_vs_no_feedback"
+    treatment: "cover_opt_conflict_feedback"
+    control: "cover_opt_no_feedback"
+    claim_id: "C_VERIFICATION"
+    required_stage: "paired_final"
+    primary_metrics: ["feasible_rate", "violation_burden"]
+  - comparison_id: "full_vs_conflict_only"
+    treatment: "cover_opt_full"
+    control: "cover_opt_conflict_feedback"
+    claim_id: "C_PIPELINE"
+    required_stage: "paired_final"
+    primary_metrics: ["feasible_rate", "weighted_objective"]
+statistics:
+  paired_by: ["scenario_seed", "model_snapshot"]
+  confidence_level: 0.95
+  binary_test: "exact McNemar test on paired majority-feasible scenario outcomes"
+  continuous_test: "paired Wilcoxon signed-rank test on per-scenario repetition aggregates when sample count permits"
+  interval_method: "scenario-cluster paired bootstrap confidence interval with 10000 resamples"
+  multiple_comparison_correction: "Holm correction over the four preregistered primary comparisons"
+  minimum_paired_scenarios: 20
+  report_effect_sizes: true
+  inferential_unit: "scenario_seed"
+  repetition_aggregation: "mean for continuous metrics; majority across three repetitions for binary feasibility"
+  bootstrap_unit: "scenario_seed"
+  primary_metric_by_comparison:
+    structured_vs_direct: "feasible_rate"
+    conflict_vs_generic_feedback: "feasible_rate"
+    conflict_vs_no_feedback: "violation_burden"
+    full_vs_conflict_only: "weighted_objective"
+claim_gates:
+  - claim_id: "C_SCHEMA"
+    comparison_id: "structured_vs_direct"
+    required_stage: "paired_final"
+    conditions:
+      - "Structured output has a lower schema-failure rate or higher feasible rate under the same one-call budget."
+      - "The paired effect and 95% confidence interval are reported, including negative results."
+    current_status: "planned"
+  - claim_id: "C_FEEDBACK"
+    comparison_id: "conflict_vs_generic_feedback"
+    required_stage: "paired_final"
+    conditions:
+      - "Conflict-directed feedback improves feasible rate or calls-to-first-feasible under identical iterative budgets."
+      - "Jointly feasible objective quality is not hidden when feasibility improves."
+    current_status: "planned"
+  - claim_id: "C_VERIFICATION"
+    comparison_id: "conflict_vs_no_feedback"
+    required_stage: "paired_final"
+    conditions:
+      - "Verifier feedback improves feasibility or reduces residual violation burden under paired runs."
+      - "No-feedback prompts are audited to exclude violations, graph details, and counterexample summaries."
+    current_status: "planned"
+  - claim_id: "C_PIPELINE"
+    comparison_id: "full_vs_conflict_only"
+    required_stage: "paired_final"
+    conditions:
+      - "Repair, memory, and diversity switches show an attributable gain beyond conflict feedback alone."
+      - "Module-specific ablations and interactions are reported rather than only the full-system score."
+    current_status: "planned"
+artifacts:
+  required_run_fields:
+    - "protocol_hash"
+    - "code_hash"
+    - "config_hash"
+    - "prompt_hash"
+    - "scenario_hash"
+    - "scenario_seed"
+    - "llm_repetition"
+    - "provider"
+    - "model_snapshot"
+    - "request_parameters"
+    - "budget"
+  required_result_fields:
+    - "status"
+    - "verification"
+    - "objective"
+    - "llm_calls"
+    - "evaluator_calls"
+    - "usage"
+    - "wall_time_ms"
+    - "stop_reason"
+  retain_full_trajectory: true
+  exclusion_rules:
+    - "Exclude only runs with infrastructure failure before a model response; retain them in a separate failure ledger."
+    - "Schema, verifier, timeout, and budget failures are method outcomes and cannot be discarded."
+    - "Any post-freeze protocol change creates a new version and invalidates pooling with the old version unless reported separately."
+  failed_runs_remain_in_feasibility_denominator: true

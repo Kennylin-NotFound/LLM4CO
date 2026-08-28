@@ -1,0 +1,33 @@
+suite_id: "cover_opt_method_regression_v1"
+prompt_path: "../prompts/conflict_patch.md"
+cases:
+  - case_id: "migration_weight_patch"
+    scenario_path: "../scenarios/small_static.yaml"
+    scenario_overrides:
+      migration_budget: 0
+    initial_heuristic: "latency_first"
+    replay_file: "../../tests/fixtures/llm/replay_conflict_patch.json"
+    budgets:
+      max_patch_proposals: 1
+      max_evaluator_calls: 2
+      max_wall_time_seconds: 10.0
+      stop_on_first_feasible: true
+    expectation:
+      stop_reason: "first_feasible"
+      final_feasible: true
+      initial_violation_types: ["migration_budget"]
+      generation_status: "schema_valid"
+  - case_id: "backtrack_policy_patch"
+    scenario_path: "../scenarios/capacity_dead_end.yaml"
+    initial_heuristic: "latency_no_repair"
+    replay_file: "../../tests/fixtures/llm/replay_backtrack_patch.json"
+    budgets:
+      max_patch_proposals: 1
+      max_evaluator_calls: 2
+      max_wall_time_seconds: 10.0
+      stop_on_first_feasible: true
+    expectation:
+      stop_reason: "first_feasible"
+      final_feasible: true
+      initial_violation_types: ["unique_placement", "route_connectivity"]
+      generation_status: "schema_valid"

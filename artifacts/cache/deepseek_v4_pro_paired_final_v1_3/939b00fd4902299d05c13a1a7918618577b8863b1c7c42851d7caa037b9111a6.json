@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:49:50.998784Z",
+  "latency_ms": 2146.465400001034,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 640,
+    "prompt_cache_miss_tokens": 2251,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "d8e45499-b3ca-4959-ab2f-53ba689c2b15",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": 0.0
+      }
+    ],
+    "rationale": "Set dependency_latency weight to 0 to remove its negative influence on node selection, potentially reducing migrations and helping meet the migration budget constraint.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": 0.0\n    }\n  ],\n  \"rationale\": \"Set dependency_latency weight to 0 to remove its negative influence on node selection, potentially reducing migrations and helping meet the migration budget constraint.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "1f993f675caed79a30ef01aaa16f947703b6b8965feed89f4f0308f41afe4240",
+  "request_id": "req_1f993f675caed79a",
+  "usage": {
+    "input_tokens": 2891,
+    "output_tokens": 92
+  }
+}

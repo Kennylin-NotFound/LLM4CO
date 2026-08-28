@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:16:24.318918Z",
+  "latency_ms": 2515.4512000153773,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 384,
+    "prompt_cache_miss_tokens": 3843,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "00268bcf-2f73-4737-b1e0-e1002245cb65",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "residual_compute_ratio",
+        "op": "set_weight",
+        "weight": -0.3
+      }
+    ],
+    "rationale": "The current node_score weights dependency_latency (-0.7) and residual_compute_ratio (-0.3). The previous probe set residual_compute_ratio to -0.3 and improved the objective, so this patch applies that change.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"residual_compute_ratio\",\n      \"weight\": -0.3\n    }\n  ],\n  \"rationale\": \"The current node_score weights dependency_latency (-0.7) and residual_compute_ratio (-0.3). The previous probe set residual_compute_ratio to -0.3 and improved the objective, so this patch applies that change.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "2da529095e0035b0c3fb1015548fb655703674728fba493d37d03b30e5c3a183",
+  "request_id": "req_2da529095e0035b0",
+  "usage": {
+    "input_tokens": 4227,
+    "output_tokens": 116
+  }
+}

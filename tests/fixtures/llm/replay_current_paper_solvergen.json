@@ -1,0 +1,68 @@
+{
+  "format_version": "1.0",
+  "entries": [
+    {
+      "purpose": "current_paper_solver_generate",
+      "provider": "offline-replay",
+      "model": "reconstructed-chatgpt-4-control-flow",
+      "parsed": {
+        "iteration": 0,
+        "language": "python",
+        "solver_backend": "gurobi_mip",
+        "formulation": {
+          "parameters": ["nodes", "services", "resource capacities", "latency matrix"],
+          "variables": ["binary placement x[m,d]"],
+          "constraints": ["unique placement", "eligibility", "node capacity"],
+          "objective": "minimize total application latency"
+        },
+        "code": "def solve(:\n    pass",
+        "notes": "Initial reconstructed solver code with a syntax error."
+      },
+      "raw_text": "offline current-paper generation replay",
+      "usage": {"input_tokens": 0, "output_tokens": 0},
+      "latency_ms": 0.0
+    },
+    {
+      "purpose": "current_paper_solver_correct_execution_error",
+      "provider": "offline-replay",
+      "model": "reconstructed-chatgpt-4-control-flow",
+      "parsed": {
+        "iteration": 1,
+        "language": "python",
+        "solver_backend": "gurobi_mip",
+        "formulation": {
+          "parameters": ["nodes", "services", "resource capacities", "latency matrix"],
+          "variables": ["binary placement x[m,d]"],
+          "constraints": ["unique placement", "eligibility"],
+          "objective": "minimize total application latency"
+        },
+        "code": "def solve(data):\n    return build_model(data, enforce_capacity=False)",
+        "notes": "Syntax repaired, but capacity modeling is incomplete."
+      },
+      "raw_text": "offline execution-correction replay",
+      "usage": {"input_tokens": 0, "output_tokens": 0},
+      "latency_ms": 0.0
+    },
+    {
+      "purpose": "current_paper_solver_correct_modeling_error",
+      "provider": "offline-replay",
+      "model": "reconstructed-chatgpt-4-control-flow",
+      "parsed": {
+        "iteration": 2,
+        "language": "python",
+        "solver_backend": "gurobi_mip",
+        "formulation": {
+          "parameters": ["nodes", "services", "resource capacities", "latency matrix"],
+          "variables": ["binary placement x[m,d]"],
+          "constraints": ["unique placement", "eligibility", "node capacity"],
+          "objective": "minimize total application latency"
+        },
+        "code": "def solve(data):\n    return build_model(data, enforce_capacity=True)",
+        "notes": "Capacity formulation restored after modeling feedback."
+      },
+      "raw_text": "offline modeling-correction replay",
+      "usage": {"input_tokens": 0, "output_tokens": 0},
+      "latency_ms": 0.0
+    }
+  ]
+}

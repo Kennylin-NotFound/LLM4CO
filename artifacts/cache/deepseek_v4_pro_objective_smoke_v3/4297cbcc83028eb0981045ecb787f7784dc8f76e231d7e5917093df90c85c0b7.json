@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T09:44:37.637635Z",
+  "latency_ms": 2399.7907000011764,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1024,
+    "prompt_cache_miss_tokens": 1253,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "2769a377-efe7-4e88-be88-06d13f4fe35f",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "residual_memory_ratio",
+        "op": "set_weight",
+        "weight": 0.3
+      }
+    ],
+    "rationale": "Add residual_memory_ratio to node_score to balance memory usage, potentially reducing load_imbalance without affecting hard constraints.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"residual_memory_ratio\",\n      \"weight\": 0.3\n    }\n  ],\n  \"rationale\": \"Add residual_memory_ratio to node_score to balance memory usage, potentially reducing load_imbalance without affecting hard constraints.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "819a8953c0894603da9fdffbc50345661b87df4d34c314e6b8f265634aa7e0e7",
+  "request_id": "req_819a8953c0894603",
+  "usage": {
+    "input_tokens": 2277,
+    "output_tokens": 90
+  }
+}

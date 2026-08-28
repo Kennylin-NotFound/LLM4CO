@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T09:46:57.045863Z",
+  "latency_ms": 2267.355099960696,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 3263,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "1a858056-1683-4138-80c0-57f216e0242c",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "Reduce penalty for dependency latency to allow more flexible placement, potentially lowering migration cost and improving load balance without violating constraints.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"Reduce penalty for dependency latency to allow more flexible placement, potentially lowering migration cost and improving load balance without violating constraints.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "464b10a9667f826899ebcd730ab941f6ae12fc2492a74128f6250ede42ca5253",
+  "request_id": "req_464b10a9667f8268",
+  "usage": {
+    "input_tokens": 3263,
+    "output_tokens": 86
+  }
+}

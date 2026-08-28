@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:45:08.277588Z",
+  "latency_ms": 2260.8481000061147,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 640,
+    "prompt_cache_miss_tokens": 3024,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "0cc1b04c-6228-48a0-a40d-a576f54bae38",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "Reduce the penalty on dependency_latency to allow placement on nodes with higher latency but better residual capacity, potentially lowering load imbalance and overall objective.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"Reduce the penalty on dependency_latency to allow placement on nodes with higher latency but better residual capacity, potentially lowering load imbalance and overall objective.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "d7a3fc9e0e7b2053228cab089e1e845fecdb676ceca71410fe2e05f1b2ff7a30",
+  "request_id": "req_d7a3fc9e0e7b2053",
+  "usage": {
+    "input_tokens": 3664,
+    "output_tokens": 92
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:59:49.749920Z",
+  "latency_ms": 2054.3268999899738,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1664,
+    "prompt_cache_miss_tokens": 2530,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "236ab9cc-c3bf-447a-9978-7f513ff7ef27",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "residual_compute_ratio",
+        "op": "set_weight",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "Increase the penalty on residual_compute_ratio to encourage placement on nodes with higher remaining compute, potentially reducing processing times and overall latency.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"residual_compute_ratio\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"Increase the penalty on residual_compute_ratio to encourage placement on nodes with higher remaining compute, potentially reducing processing times and overall latency.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "223c9a69c3f4de7415b58face1fba8d54ffc69a78ffbf365734afb23bcd066c7",
+  "request_id": "req_223c9a69c3f4de74",
+  "usage": {
+    "input_tokens": 4194,
+    "output_tokens": 92
+  }
+}

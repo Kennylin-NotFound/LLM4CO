@@ -1,0 +1,236 @@
+suite_id: "cover_opt_control_ablation_v1"
+variants:
+  - variant_id: "targeted_valid_patch"
+    scenario_path: "../scenarios/small_static.yaml"
+    scenario_overrides:
+      migration_budget: 0
+    initial_heuristic: "latency_first"
+    generator: "replay"
+    prompt_path: "../prompts/conflict_patch.md"
+    replay_file: "../../tests/fixtures/llm/replay_conflict_patch.json"
+    features:
+      feedback_mode: "conflict_directed"
+      repair_actions_enabled: true
+      counterexample_memory_enabled: true
+      structural_diversity_enabled: true
+    budgets: &patch_budget
+      max_patch_proposals: 1
+      max_evaluator_calls: 2
+      max_wall_time_seconds: 10.0
+      stop_on_first_feasible: true
+    expectation:
+      stop_reason: "first_feasible"
+      final_feasible: true
+      initial_category: "repairable"
+      accepted_patches: 1
+      rejected_patches: 0
+      evaluator_calls: 2
+      counterexample_count: 1
+      changed_components: ["node_score"]
+
+  - variant_id: "generic_valid_patch"
+    scenario_path: "../scenarios/small_static.yaml"
+    scenario_overrides:
+      migration_budget: 0
+    initial_heuristic: "latency_first"
+    generator: "replay"
+    prompt_path: "../prompts/generic_patch.md"
+    replay_file: "../../tests/fixtures/llm/replay_generic_conflict_patch.json"
+    features:
+      feedback_mode: "generic"
+      repair_actions_enabled: true
+      counterexample_memory_enabled: true
+      structural_diversity_enabled: true
+    budgets: *patch_budget
+    expectation:
+      stop_reason: "first_feasible"
+      final_feasible: true
+      initial_category: "repairable"
+      accepted_patches: 1
+      rejected_patches: 0
+      evaluator_calls: 2
+      counterexample_count: 1
+      changed_components: ["node_score"]
+
+  - variant_id: "targeted_irrelevant_patch"
+    scenario_path: "../scenarios/small_static.yaml"
+    scenario_overrides:
+      migration_budget: 0
+    initial_heuristic: "latency_first"
+    generator: "replay"
+    prompt_path: "../prompts/conflict_patch.md"
+    replay_file: "../../tests/fixtures/llm/replay_irrelevant_conflict_patch.json"
+    features:
+      feedback_mode: "conflict_directed"
+      repair_actions_enabled: true
+      counterexample_memory_enabled: true
+      structural_diversity_enabled: true
+    budgets: *patch_budget
+    expectation:
+      stop_reason: "patch_budget"
+      final_feasible: false
+      initial_category: "repairable"
+      accepted_patches: 0
+      rejected_patches: 1
+      evaluator_calls: 1
+      counterexample_count: 1
+      changed_components: []
+
+  - variant_id: "generic_irrelevant_patch"
+    scenario_path: "../scenarios/small_static.yaml"
+    scenario_overrides:
+      migration_budget: 0
+    initial_heuristic: "latency_first"
+    generator: "replay"
+    prompt_path: "../prompts/generic_patch.md"
+    replay_file: "../../tests/fixtures/llm/replay_irrelevant_generic_patch.json"
+    features:
+      feedback_mode: "generic"
+      repair_actions_enabled: true
+      counterexample_memory_enabled: true
+      structural_diversity_enabled: true
+    budgets: *patch_budget
+    expectation:
+      stop_reason: "evaluator_budget"
+      final_feasible: false
+      initial_category: "repairable"
+      accepted_patches: 1
+      rejected_patches: 1
+      evaluator_calls: 2
+      counterexample_count: 1
+      changed_components: ["path_score"]
+
+  - variant_id: "repair_enabled"
+    scenario_path: "../scenarios/capacity_dead_end.yaml"
+    initial_heuristic: "latency_first"
+    generator: "none"
+    features:
+      feedback_mode: "conflict_directed"
+      repair_actions_enabled: true
+      counterexample_memory_enabled: true
+      structural_diversity_enabled: true
+    budgets: &no_generator_budget
+      max_patch_proposals: 1
+      max_evaluator_calls: 2
+      max_wall_time_seconds: 10.0
+      stop_on_first_feasible: true
+    expectation:
+      stop_reason: "initial_candidate_feasible"
+      final_feasible: true
+      initial_category: "feasible_elite"
+      accepted_patches: 0
+      rejected_patches: 0
+      evaluator_calls: 1
+      counterexample_count: 0
+      changed_components: []
+
+  - variant_id: "repair_disabled"
+    scenario_path: "../scenarios/capacity_dead_end.yaml"
+    initial_heuristic: "latency_first"
+    generator: "none"
+    features:
+      feedback_mode: "conflict_directed"
+      repair_actions_enabled: false
+      counterexample_memory_enabled: true
+      structural_diversity_enabled: true
+    budgets: *no_generator_budget
+    expectation:
+      stop_reason: "generator_exhausted"
+      final_feasible: false
+      initial_category: "rejected"
+      accepted_patches: 0
+      rejected_patches: 0
+      evaluator_calls: 1
+      counterexample_count: 1
+      changed_components: []
+
+  - variant_id: "counterexample_memory_disabled"
+    scenario_path: "../scenarios/small_static.yaml"
+    scenario_overrides:
+      migration_budget: 0
+    initial_heuristic: "latency_first"
+    generator: "replay"
+    prompt_path: "../prompts/conflict_patch.md"
+    replay_file: "../../tests/fixtures/llm/replay_conflict_patch.json"
+    features:
+      feedback_mode: "conflict_directed"
+      repair_actions_enabled: true
+      counterexample_memory_enabled: false
+      structural_diversity_enabled: true
+    budgets: *patch_budget
+    expectation:
+      stop_reason: "first_feasible"
+      final_feasible: true
+      initial_category: "repairable"
+      accepted_patches: 1
+      rejected_patches: 0
+      evaluator_calls: 2
+      counterexample_count: 0
+      changed_components: ["node_score"]
+
+  - variant_id: "no_feedback_fixed_patch"
+    scenario_path: "../scenarios/small_static.yaml"
+    scenario_overrides:
+      migration_budget: 0
+    initial_heuristic: "latency_first"
+    generator: "replay"
+    prompt_path: "../prompts/no_feedback_patch.md"
+    replay_file: "../../tests/fixtures/llm/replay_no_feedback_patch.json"
+    features:
+      feedback_mode: "none"
+      feasible_masks_enabled: true
+      repair_actions_enabled: true
+      counterexample_memory_enabled: true
+      structural_diversity_enabled: true
+    budgets: *patch_budget
+    expectation:
+      stop_reason: "first_feasible"
+      final_feasible: true
+      initial_category: "repairable"
+      accepted_patches: 1
+      rejected_patches: 0
+      evaluator_calls: 2
+      counterexample_count: 1
+      changed_components: ["node_score"]
+
+  - variant_id: "feasible_masks_enabled"
+    scenario_path: "../scenarios/small_static.yaml"
+    initial_heuristic: "latency_no_repair"
+    generator: "none"
+    features:
+      feedback_mode: "conflict_directed"
+      feasible_masks_enabled: true
+      repair_actions_enabled: false
+      counterexample_memory_enabled: true
+      structural_diversity_enabled: true
+    budgets: *no_generator_budget
+    expectation:
+      stop_reason: "initial_candidate_feasible"
+      final_feasible: true
+      initial_category: "feasible_elite"
+      accepted_patches: 0
+      rejected_patches: 0
+      evaluator_calls: 1
+      counterexample_count: 0
+      changed_components: []
+
+  - variant_id: "feasible_masks_disabled"
+    scenario_path: "../scenarios/small_static.yaml"
+    initial_heuristic: "latency_no_repair"
+    generator: "none"
+    features:
+      feedback_mode: "conflict_directed"
+      feasible_masks_enabled: false
+      repair_actions_enabled: false
+      counterexample_memory_enabled: true
+      structural_diversity_enabled: true
+    budgets: *no_generator_budget
+    expectation:
+      stop_reason: "generator_exhausted"
+      final_feasible: false
+      initial_category: "repairable"
+      accepted_patches: 0
+      rejected_patches: 0
+      evaluator_calls: 1
+      counterexample_count: 1
+      changed_components: []

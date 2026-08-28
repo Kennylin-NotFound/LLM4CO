@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:48:59.784707Z",
+  "latency_ms": 1910.2805000147782,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2688,
+    "prompt_cache_miss_tokens": 120,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "9a5934c1-1a5a-4655-b5cb-5fa7e862f6aa",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -1.0
+      }
+    ],
+    "rationale": "Increase penalty on dependency latency to discourage placing ingest on sat-a, which has high latency to analyze on sat-b, thereby reducing E2E latency and satisfying QoS constraint.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -1.0\n    }\n  ],\n  \"rationale\": \"Increase penalty on dependency latency to discourage placing ingest on sat-a, which has high latency to analyze on sat-b, thereby reducing E2E latency and satisfying QoS constraint.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "c013dc4e9ff6a8bf84d76745408dde34f2f1aa1e336993a948216a0df0764444",
+  "request_id": "req_c013dc4e9ff6a8bf",
+  "usage": {
+    "input_tokens": 2808,
+    "output_tokens": 97
+  }
+}

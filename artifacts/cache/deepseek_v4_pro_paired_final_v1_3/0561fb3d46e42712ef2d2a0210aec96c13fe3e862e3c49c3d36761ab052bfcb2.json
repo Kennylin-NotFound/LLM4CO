@@ -1,0 +1,37 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:59:38.860338Z",
+  "latency_ms": 3133.971199975349,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 640,
+    "prompt_cache_miss_tokens": 3122,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "84c0d8c1-e2a0-44f2-b3da-b5b21939ecc2",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "Reduce the penalty on dependency_latency in node_score to potentially allow placements with higher latency but better other characteristics, which may lower overall weighted objective."
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"Reduce the penalty on dependency_latency in node_score to potentially allow placements with higher latency but better other characteristics, which may lower overall weighted objective.\"\n}",
+  "replayed": false,
+  "request_fingerprint": "e42a18ed2b70be3ddb51af2f928049a70aa5a0d165bd80fc17aaf107f0673f70",
+  "request_id": "req_e42a18ed2b70be3d",
+  "usage": {
+    "input_tokens": 3762,
+    "output_tokens": 84
+  }
+}

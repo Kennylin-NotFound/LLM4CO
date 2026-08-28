@@ -1,0 +1,38 @@
+{
+  "format_version": "1.0",
+  "entries": [
+    {
+      "expected_iteration": 0,
+      "attempt": 0,
+      "status": "execution_error",
+      "error_type": "syntax",
+      "message": "SyntaxError: invalid syntax at generated solver definition",
+      "solver_status": "compile_failed"
+    },
+    {
+      "expected_iteration": 1,
+      "attempt": 1,
+      "status": "modeling_error",
+      "error_type": "infeasible",
+      "message": "MIP model reported infeasible under the generated constraints",
+      "solver_status": "infeasible"
+    },
+    {
+      "expected_iteration": 2,
+      "attempt": 2,
+      "status": "success",
+      "error_type": "none",
+      "message": "Solver completed and emitted a deployment plan",
+      "solver_status": "optimal",
+      "placement": {
+        "analyze": "sat-b",
+        "ingest": "sat-b",
+        "respond": "sat-b"
+      },
+      "routes": [
+        {"edge_id": "analyze-respond", "path": ["sat-b"]},
+        {"edge_id": "ingest-analyze", "path": ["sat-b"]}
+      ]
+    }
+  ]
+}

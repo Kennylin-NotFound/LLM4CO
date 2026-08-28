@@ -1,0 +1,34 @@
+experiment_id: "deepseek_v4pro_objective_refinement_smoke_v8_hybrid"
+protocol_path: "formal_experiment_protocol.yaml"
+scenario_path: "../scenarios/small_static.yaml"
+scenario_overrides: {}
+initial_heuristic: "latency_first"
+prompt_path: "../prompts/objective_patch_v5.md"
+prompt_version: "objective_patch_v5_stagnation_policy"
+features:
+  feedback_mode: "conflict_directed"
+  feasible_masks_enabled: true
+  repair_actions_enabled: true
+  counterexample_memory_enabled: true
+  structural_diversity_enabled: true
+  objective_refinement_enabled: true
+  counterfactual_weight_probe_enabled: true
+budgets:
+  max_patch_proposals: 4
+  max_evaluator_calls: 5
+  max_wall_time_seconds: 120.0
+  stop_on_first_feasible: false
+llm:
+  model: "deepseek-v4-pro"
+  base_url: "https://api.deepseek.com"
+  api_key_env: "DEEPSEEK_API_KEY"
+  thinking: "disabled"
+  reasoning_effort: "high"
+  temperature: 0.0
+  top_p: 1.0
+  max_tokens: 2048
+  timeout_seconds: 120.0
+  max_attempts: 3
+  initial_backoff_seconds: 1.0
+  cache_dir: "../../artifacts/cache/deepseek_v4_pro_objective_smoke_v8_hybrid"
+  expected_system_fingerprint: "a307abda487cd1b463329ccb945ce396"

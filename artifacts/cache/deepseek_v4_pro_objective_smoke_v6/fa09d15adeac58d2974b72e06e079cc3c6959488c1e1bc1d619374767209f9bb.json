@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T09:54:06.909975Z",
+  "latency_ms": 2367.295500007458,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2944,
+    "prompt_cache_miss_tokens": 1347,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "818c85f4-421b-48ba-92cb-d9ba48c46566",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.1
+      }
+    ],
+    "rationale": "Reduce dependency_latency penalty in node_score to allow analyze to be placed on sat-b, which has lower residual compute but avoids the high-latency analyze-respond edge, potentially reducing e2e latency.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.1\n    }\n  ],\n  \"rationale\": \"Reduce dependency_latency penalty in node_score to allow analyze to be placed on sat-b, which has lower residual compute but avoids the high-latency analyze-respond edge, potentially reducing e2e latency.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "fa0e33b8451630c4e011d3afaf3a1b1776ddd8088b9003636bef0fe706adaa32",
+  "request_id": "req_fa0e33b8451630c4",
+  "usage": {
+    "input_tokens": 4291,
+    "output_tokens": 106
+  }
+}

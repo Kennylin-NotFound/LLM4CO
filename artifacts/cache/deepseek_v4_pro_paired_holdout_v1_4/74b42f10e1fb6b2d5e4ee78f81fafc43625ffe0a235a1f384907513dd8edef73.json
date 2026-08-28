@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:13:24.223908Z",
+  "latency_ms": 2096.9324000179768,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1280,
+    "prompt_cache_miss_tokens": 1038,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "566e6cf5-e4f3-4492-9ee4-1623174351c7",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -1.0
+      }
+    ],
+    "rationale": "Increase the penalty on dependency latency in node_score to encourage placement on nodes with lower predecessor communication latency, potentially reducing E2E latency.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -1.0\n    }\n  ],\n  \"rationale\": \"Increase the penalty on dependency latency in node_score to encourage placement on nodes with lower predecessor communication latency, potentially reducing E2E latency.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "663a1c316450ec80bc2f06ca9330cba06740d870eca63dbeec7bb8171e9832c6",
+  "request_id": "req_663a1c316450ec80",
+  "usage": {
+    "input_tokens": 2318,
+    "output_tokens": 90
+  }
+}

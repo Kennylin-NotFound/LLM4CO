@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:18:11.030755Z",
+  "latency_ms": 1666.787900030613,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1280,
+    "prompt_cache_miss_tokens": 1316,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "0357f7aa-6082-423a-90e8-42ba1f1b4513",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "migration_penalty",
+        "op": "add_term",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "Adding migration_penalty with negative weight discourages migrations, potentially reducing migration cost while preserving feasibility.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"add_term\",\n      \"component\": \"node_score\",\n      \"feature\": \"migration_penalty\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"Adding migration_penalty with negative weight discourages migrations, potentially reducing migration cost while preserving feasibility.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "1e977e539698baaf623ca0e4d00a683cccbad49ab6eb84bfaa4fe939923c0bb2",
+  "request_id": "req_1e977e539698baaf",
+  "usage": {
+    "input_tokens": 2596,
+    "output_tokens": 84
+  }
+}

@@ -1,0 +1,20 @@
+suite_id: "one_shot_llm_plan_replay_v1"
+cases:
+  - case_id: "direct_semantic_failure"
+    baseline: "direct_llm_plan"
+    scenario_path: "../scenarios/small_static.yaml"
+    prompt_path: "../prompts/direct_llm_plan.md"
+    replay_file: "../../tests/fixtures/llm/replay_direct_llm_plan.json"
+    expectation:
+      status: "infeasible"
+      stop_reason: "infeasible_plan"
+      final_feasible: false
+  - case_id: "structured_verified_plan"
+    baseline: "structured_llm_plan"
+    scenario_path: "../scenarios/small_static.yaml"
+    prompt_path: "../prompts/structured_llm_plan.md"
+    replay_file: "../../tests/fixtures/llm/replay_structured_llm_plan.json"
+    expectation:
+      status: "feasible"
+      stop_reason: "verified_plan"
+      final_feasible: true

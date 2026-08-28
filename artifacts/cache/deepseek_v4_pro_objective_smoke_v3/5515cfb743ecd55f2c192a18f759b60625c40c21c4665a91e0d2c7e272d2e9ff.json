@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T09:44:35.220695Z",
+  "latency_ms": 1969.1293999785557,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 2096,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "3817dbb5-abcb-450f-bd20-00a169973d4f",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "residual_compute_ratio",
+        "op": "set_weight",
+        "weight": 0.5
+      }
+    ],
+    "rationale": "Increase weight on residual_compute_ratio to improve load balance by favoring nodes with more compute capacity, potentially reducing load_imbalance without violating hard constraints.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"residual_compute_ratio\",\n      \"weight\": 0.5\n    }\n  ],\n  \"rationale\": \"Increase weight on residual_compute_ratio to improve load balance by favoring nodes with more compute capacity, potentially reducing load_imbalance without violating hard constraints.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "6bc398af0112d6c61392daf3f2035b441bcbe47b80267509829b51f357df0909",
+  "request_id": "req_6bc398af0112d6c6",
+  "usage": {
+    "input_tokens": 2096,
+    "output_tokens": 96
+  }
+}

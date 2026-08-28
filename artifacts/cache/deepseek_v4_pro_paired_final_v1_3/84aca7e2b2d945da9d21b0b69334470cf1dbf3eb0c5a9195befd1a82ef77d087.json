@@ -1,0 +1,39 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:52:55.061187Z",
+  "latency_ms": 1355.831999971997,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 768,
+    "prompt_cache_miss_tokens": 4,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "cff3fc1a-83af-4d4c-81a8-c5705540809e",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "placement": {
+      "analyze": "sat-a",
+      "ingest": "sat-a",
+      "respond": "sat-b"
+    },
+    "routes": {
+      "analyze-respond": [
+        "a-b"
+      ],
+      "ingest-analyze": []
+    }
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"placement\": {\n    \"ingest\": \"sat-a\",\n    \"analyze\": \"sat-a\",\n    \"respond\": \"sat-b\"\n  },\n  \"routes\": {\n    \"ingest-analyze\": [],\n    \"analyze-respond\": [\"a-b\"]\n  }\n}",
+  "replayed": false,
+  "request_fingerprint": "852a6939e14e9e8484431adac95d625c2c2f1693ddecadd5d3cff7cdb974f07d",
+  "request_id": "req_852a6939e14e9e84",
+  "usage": {
+    "input_tokens": 772,
+    "output_tokens": 62
+  }
+}

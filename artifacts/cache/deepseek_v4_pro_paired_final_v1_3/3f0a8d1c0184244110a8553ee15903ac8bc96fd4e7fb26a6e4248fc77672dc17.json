@@ -1,0 +1,42 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:45:23.870220Z",
+  "latency_ms": 1927.913899999112,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2816,
+    "prompt_cache_miss_tokens": 90,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "e07b66ec-b3bf-4db0-ae22-46c408ee591b",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "actions": [
+          "reroute",
+          "move_bottleneck_service",
+          "swap_services",
+          "bounded_backtrack"
+        ],
+        "component": "repair_policy",
+        "op": "set_repair_policy"
+      }
+    ],
+    "rationale": "Add swap_services to repair policy to enable more flexible local repair that may reduce latency while respecting migration budget.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_repair_policy\",\n      \"component\": \"repair_policy\",\n      \"actions\": [\"reroute\", \"move_bottleneck_service\", \"swap_services\", \"bounded_backtrack\"]\n    }\n  ],\n  \"rationale\": \"Add swap_services to repair policy to enable more flexible local repair that may reduce latency while respecting migration budget.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "d8f295f959aa58383e8100361a94cf1d6d56964db65460f811aec7cbbf409699",
+  "request_id": "req_d8f295f959aa5838",
+  "usage": {
+    "input_tokens": 2906,
+    "output_tokens": 98
+  }
+}

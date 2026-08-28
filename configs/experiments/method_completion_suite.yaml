@@ -1,0 +1,154 @@
+suite_id: "cover_opt_method_completion_v1"
+variants:
+  - variant_id: "memory_without_replay"
+    scenario_path: "../scenarios/small_static.yaml"
+    scenario_overrides:
+      migration_budget: 0
+    initial_heuristic: "latency_first"
+    generator: "replay"
+    prompt_path: "../prompts/conflict_patch.md"
+    replay_file: "../../tests/fixtures/llm/replay_conflict_fail_then_repair.json"
+    features:
+      feedback_mode: "conflict_directed"
+      counterexample_memory_enabled: true
+      counterexample_replay_enabled: false
+    budgets: &repair_budget
+      max_patch_proposals: 2
+      max_evaluator_calls: 3
+      max_wall_time_seconds: 10.0
+      max_counterexample_replays: 1
+      max_replays_per_counterexample: 1
+      stop_on_first_feasible: true
+    expectation:
+      stop_reason: "first_feasible"
+      final_feasible: true
+      initial_category: "repairable"
+      accepted_patches: 2
+      rejected_patches: 1
+      evaluator_calls: 3
+      counterexample_count: 2
+      counterexample_replays: 0
+      changed_components: ["node_score"]
+
+  - variant_id: "memory_with_bounded_replay"
+    scenario_path: "../scenarios/small_static.yaml"
+    scenario_overrides:
+      migration_budget: 0
+    initial_heuristic: "latency_first"
+    generator: "replay"
+    prompt_path: "../prompts/conflict_patch.md"
+    replay_file: "../../tests/fixtures/llm/replay_conflict_fail_then_repair.json"
+    features:
+      feedback_mode: "conflict_directed"
+      counterexample_memory_enabled: true
+      counterexample_replay_enabled: true
+    budgets: *repair_budget
+    expectation:
+      stop_reason: "first_feasible"
+      final_feasible: true
+      initial_category: "repairable"
+      accepted_patches: 2
+      rejected_patches: 1
+      evaluator_calls: 3
+      counterexample_count: 2
+      counterexample_replays: 1
+      changed_components: ["node_score"]
+
+  - variant_id: "fixed_single_start"
+    scenario_path: "../scenarios/small_static.yaml"
+    scenario_overrides:
+      migration_budget: 0
+    initial_heuristic: "latency_first"
+    generator: "none"
+    features:
+      counterexample_memory_enabled: false
+    budgets:
+      max_patch_proposals: 0
+      max_evaluator_calls: 1
+      max_wall_time_seconds: 10.0
+      stop_on_first_feasible: true
+    expectation:
+      stop_reason: "evaluator_budget"
+      final_feasible: false
+      initial_category: "repairable"
+      accepted_patches: 0
+      rejected_patches: 0
+      evaluator_calls: 1
+      counterexample_count: 0
+      initial_candidate_count: 1
+      changed_components: []
+
+  - variant_id: "llm_typed_multi_start"
+    scenario_path: "../scenarios/small_static.yaml"
+    scenario_overrides:
+      migration_budget: 0
+    initial_heuristic: "latency_first"
+    initial_generator: "replay"
+    initial_prompt_path: "../prompts/initial_heuristic_v1.md"
+    initial_replay_file: "../../tests/fixtures/llm/replay_initial_migration_aware.json"
+    initial_candidate_count: 1
+    generator: "none"
+    features:
+      counterexample_memory_enabled: false
+    budgets:
+      max_patch_proposals: 0
+      max_total_llm_calls: 1
+      max_evaluator_calls: 2
+      max_wall_time_seconds: 10.0
+      stop_on_first_feasible: true
+    expectation:
+      stop_reason: "initial_candidate_feasible"
+      final_feasible: true
+      initial_category: "repairable"
+      accepted_patches: 0
+      rejected_patches: 0
+      evaluator_calls: 2
+      counterexample_count: 0
+      initial_candidate_count: 2
+      selected_initial_source: "generated_initial"
+      initial_generation_calls: 1
+      patch_generation_calls: 0
+      total_llm_calls: 1
+      changed_components: []
+
+  - variant_id: "constructive_masks_enabled"
+    scenario_path: "../scenarios/small_static.yaml"
+    initial_heuristic: "latency_no_repair"
+    generator: "none"
+    features:
+      feasible_masks_enabled: true
+      repair_actions_enabled: false
+      counterexample_memory_enabled: false
+    budgets: &mask_budget
+      max_patch_proposals: 1
+      max_evaluator_calls: 2
+      max_wall_time_seconds: 10.0
+      stop_on_first_feasible: true
+    expectation:
+      stop_reason: "initial_candidate_feasible"
+      final_feasible: true
+      initial_category: "feasible_elite"
+      accepted_patches: 0
+      rejected_patches: 0
+      evaluator_calls: 1
+      counterexample_count: 0
+      changed_components: []
+
+  - variant_id: "constructive_masks_disabled"
+    scenario_path: "../scenarios/small_static.yaml"
+    initial_heuristic: "latency_no_repair"
+    generator: "none"
+    features:
+      feasible_masks_enabled: false
+      repair_actions_enabled: false
+      counterexample_memory_enabled: false
+    budgets: *mask_budget
+    expectation:
+      stop_reason: "generator_exhausted"
+      final_feasible: false
+      initial_category: "repairable"
+      accepted_patches: 0
+      rejected_patches: 0
+      evaluator_calls: 1
+      counterexample_count: 0
+      changed_components: []

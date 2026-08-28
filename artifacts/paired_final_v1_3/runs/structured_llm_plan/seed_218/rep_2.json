@@ -1,0 +1,264 @@
+{
+  "backend_failures": 0,
+  "billed_input_tokens": 1035,
+  "billed_output_tokens": 170,
+  "budget": {
+    "max_evaluator_calls": 1,
+    "max_llm_calls": 1,
+    "max_wall_time_seconds": 120.0,
+    "stop_on_first_feasible": true
+  },
+  "cached_responses": 0,
+  "calls_to_first_feasible": null,
+  "candidate_set_gap_pct": null,
+  "code_tree_hash": "590a1f163866caa221af1f1b05f423912b49b046b9892e9bb934b94c394d1698",
+  "config_hash": "79cc7c29f9ec495e58b150a25b6e38be6a34cfcd2c9ed66c4bf4467e4d0e73ca",
+  "estimated_cost_cny": 0.004125,
+  "evaluator_calls": 1,
+  "experiment_id": "deepseek_v4pro_paired_final_v1_3",
+  "final_feasible": false,
+  "infrastructure_failure": false,
+  "llm_calls": 1,
+  "llm_repetition": 2,
+  "method_family": "one_shot_llm",
+  "method_id": "structured_llm_plan",
+  "model_snapshot": "deepseek-v4-pro",
+  "observed_system_fingerprints": [
+    "a307abda487cd1b463329ccb945ce396"
+  ],
+  "prompt_hash": "35bf439a1320b2cc32442babeef6c90c7f1cb26d7219422e4b0b3d9e9e3b0d7e",
+  "protocol_hash": "828b8d7de318983ec9336e7cab7ff4cf70dcb9483c8febb1e3f06243e816912a",
+  "provider": "deepseek",
+  "request_parameters": {
+    "expected_system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "max_tokens": 2048,
+    "temperature": 0.0,
+    "thinking": "disabled",
+    "top_p": 1.0
+  },
+  "result_payload": {
+    "baseline_name": "structured_llm_plan",
+    "baseline_version": "1.0.0",
+    "evidence_boundary": "one_shot_replay_control_evidence_not_live_llm_performance",
+    "llm_calls": 1,
+    "solver_result": {
+      "best_signature": null,
+      "candidates_evaluated": 1,
+      "interface_version": "1.0.0",
+      "objective": null,
+      "optimality_proven": false,
+      "placement_assignments_considered": 1,
+      "plan": {
+        "candidate_id": "structured_llm_plan_candidate_000",
+        "method": "structured_llm_plan",
+        "migrations": [
+          {
+            "cost": 1.0,
+            "service_id": "ingest",
+            "source_node": "sat-b",
+            "target_node": "sat-a"
+          },
+          {
+            "cost": 1.0,
+            "service_id": "respond",
+            "source_node": "sat-b",
+            "target_node": "sat-c"
+          }
+        ],
+        "placement": {
+          "analyze": "sat-b",
+          "ingest": "sat-a",
+          "respond": "sat-c"
+        },
+        "resource_snapshot": {},
+        "routes": [
+          {
+            "edge_id": "analyze-respond",
+            "path": [
+              "sat-b",
+              "sat-c"
+            ]
+          },
+          {
+            "edge_id": "ingest-analyze",
+            "path": [
+              "sat-a",
+              "sat-b"
+            ]
+          }
+        ],
+        "run_id": "structured_llm_plan_one_shot",
+        "status": "complete"
+      },
+      "planning_time_ms": 2347.2315999679267,
+      "scope": "one LLM plan generation followed by shared verification; no feedback, search, or repair",
+      "solver_name": "structured_llm_plan",
+      "status": "infeasible",
+      "trace": [],
+      "verification": {
+        "feasible": false,
+        "verifier_version": "0.1.0",
+        "violations": [
+          {
+            "contributing_decisions": [
+              "place:analyze@sat-b",
+              "place:ingest@sat-a",
+              "place:respond@sat-c",
+              "route:analyze-respond",
+              "route:ingest-analyze"
+            ],
+            "decision_contributions": {
+              "place:analyze@sat-b": 0.2,
+              "place:ingest@sat-a": 0.2,
+              "place:respond@sat-c": 0.2,
+              "route:analyze-respond": 0.2,
+              "route:ingest-analyze": 0.2
+            },
+            "dsl_components": [
+              "service_order",
+              "node_score",
+              "path_score",
+              "repair_policy"
+            ],
+            "entities": [
+              "paired_final_joint_constraint_seed_218"
+            ],
+            "magnitude": 0.9477885232391594,
+            "message": "E2E latency 191.638ms exceeds QoS 98.3873ms",
+            "violation_type": "qos_latency"
+          },
+          {
+            "contributing_decisions": [
+              "migrate:ingest:sat-b->sat-a",
+              "migrate:respond:sat-b->sat-c"
+            ],
+            "decision_contributions": {
+              "migrate:ingest:sat-b->sat-a": 0.5,
+              "migrate:respond:sat-b->sat-c": 0.5
+            },
+            "dsl_components": [
+              "node_score",
+              "repair_policy"
+            ],
+            "entities": [
+              "ingest",
+              "respond"
+            ],
+            "magnitude": 2.0,
+            "message": "migration count 2 exceeds budget 0",
+            "violation_type": "migration_budget"
+          }
+        ]
+      }
+    },
+    "status": "infeasible",
+    "stop_reason": "infeasible_plan",
+    "trajectory": [
+      {
+        "artifact": {
+          "placement": {
+            "analyze": "sat-b",
+            "ingest": "sat-a",
+            "respond": "sat-c"
+          },
+          "routes": [
+            {
+              "edge_id": "ingest-analyze",
+              "path": [
+                "sat-a",
+                "sat-b"
+              ]
+            },
+            {
+              "edge_id": "analyze-respond",
+              "path": [
+                "sat-b",
+                "sat-c"
+              ]
+            }
+          ],
+          "scenario_hash": "bd14bece8ddca3ee02b3885c8cdbbfbdcacac938021a2b001eb51687d708beec",
+          "scenario_id": "paired_final_joint_constraint_seed_218",
+          "schema_version": "1.0.0"
+        },
+        "error": null,
+        "generation_status": "schema_valid",
+        "request": {
+          "expected_output": "StructuredPlanArtifact JSON object",
+          "metadata": {
+            "baseline": "structured_llm_plan",
+            "one_shot": true,
+            "scenario_hash": "bd14bece8ddca3ee02b3885c8cdbbfbdcacac938021a2b001eb51687d708beec",
+            "scenario_id": "paired_final_joint_constraint_seed_218"
+          },
+          "prompt": "Generate one deployment plan for the supplied scenario. Return exactly one JSON\nobject matching StructuredPlanArtifact. Bind the output to the supplied\n`scenario_id` and `scenario_hash`. Do not include markdown or prose outside the\nJSON object. This is a one-shot baseline: there is no feedback, search, repair,\nor second attempt.\n\nSCENARIO_JSON:\n{\"links\":[{\"available_from\":0,\"available_until\":10,\"bandwidth_mbps\":67.48152,\"bidirectional\":true,\"distance_km\":1634.4225,\"link_class\":\"fixture\",\"link_id\":\"a-b\",\"source\":\"sat-a\",\"target\":\"sat-b\",\"transmission_rate_mbps\":84.3519},{\"available_from\":0,\"available_until\":10,\"bandwidth_mbps\":50.61114,\"bidirectional\":true,\"distance_km\":2288.1915,\"link_class\":\"fixture\",\"link_id\":\"b-c\",\"source\":\"sat-b\",\"target\":\"sat-c\",\"transmission_rate_mbps\":67.48152},{\"available_from\":0,\"available_until\":10,\"bandwidth_mbps\":42.17595,\"bidirectional\":true,\"distance_km\":4576.383,\"link_class\":\"fixture\",\"link_id\":\"a-c\",\"source\":\"sat-a\",\"target\":\"sat-c\",\"transmission_rate_mbps\":50.61114}],\"migration_budget\":0,\"nodes\":[{\"compute_capacity\":12.0,\"compute_rate_mips\":940.109,\"memory_capacity\":16.0,\"node_id\":\"sat-a\",\"position_km\":null},{\"compute_capacity\":10.0,\"compute_rate_mips\":752.0872,\"memory_capacity\":12.0,\"node_id\":\"sat-b\",\"position_km\":null},{\"compute_capacity\":8.0,\"compute_rate_mips\":658.0763,\"memory_capacity\":10.0,\"node_id\":\"sat-c\",\"position_km\":null}],\"objective\":{\"energy_proxy\":0.0,\"latency\":1.0,\"load_imbalance\":0.1,\"migration_cost\":0.2},\"previous_placement\":{\"analyze\":\"sat-b\",\"ingest\":\"sat-b\",\"respond\":\"sat-b\"},\"qos_latency_ms\":98.387345,\"scenario_hash\":\"bd14bece8ddca3ee02b3885c8cdbbfbdcacac938021a2b001eb51687d708beec\",\"scenario_id\":\"paired_final_joint_constraint_seed_218\",\"service_edges\":[{\"data_volume_mbit\":3.529472,\"edge_id\":\"ingest-analyze\",\"source\":\"ingest\",\"target\":\"analyze\"},{\"data_volume_mbit\":1.764736,\"edge_id\":\"analyze-respond\",\"source\":\"analyze\",\"target\":\"respond\"}],\"services\":[{\"compute_demand\":2.0,\"eligible_nodes\":[\"sat-a\",\"sat-b\"],\"memory_demand\":2.0,\"service_id\":\"ingest\",\"workload_mi\":18.7926},{\"compute_demand\":4.0,\"eligible_nodes\":[\"sat-a\",\"sat-b\",\"sat-c\"],\"memory_demand\":4.0,\"service_id\":\"analyze\",\"workload_mi\":37.5852},{\"compute_demand\":2.0,\"eligible_nodes\":[\"sat-b\",\"sat-c\"],\"memory_demand\":2.0,\"service_id\":\"respond\",\"workload_mi\":14.09445}]}\n\nSTRUCTURED_PLAN_ARTIFACT_SCHEMA:\n{\"$defs\":{\"RouteAssignment\":{\"additionalProperties\":false,\"properties\":{\"edge_id\":{\"minLength\":1,\"title\":\"Edge Id\",\"type\":\"string\"},\"path\":{\"items\":{\"type\":\"string\"},\"minItems\":1,\"title\":\"Path\",\"type\":\"array\"}},\"required\":[\"edge_id\",\"path\"],\"title\":\"RouteAssignment\",\"type\":\"object\"}},\"additionalProperties\":false,\"description\":\"Versioned one-shot plan contract bound to one scenario snapshot.\",\"properties\":{\"placement\":{\"additionalProperties\":{\"type\":\"string\"},\"minProperties\":1,\"title\":\"Placement\",\"type\":\"object\"},\"routes\":{\"items\":{\"$ref\":\"#/$defs/RouteAssignment\"},\"title\":\"Routes\",\"type\":\"array\"},\"scenario_hash\":{\"minLength\":1,\"title\":\"Scenario Hash\",\"type\":\"string\"},\"scenario_id\":{\"minLength\":1,\"title\":\"Scenario Id\",\"type\":\"string\"},\"schema_version\":{\"const\":\"1.0.0\",\"title\":\"Schema Version\",\"type\":\"string\"}},\"required\":[\"schema_version\",\"scenario_id\",\"scenario_hash\",\"placement\",\"routes\"],\"title\":\"StructuredPlanArtifact\",\"type\":\"object\"}\n",
+          "purpose": "structured_llm_plan",
+          "request_id": "req_1b5510162c781f3c"
+        },
+        "response": {
+          "cached": false,
+          "created_at": "2026-08-25T10:59:26.546131Z",
+          "latency_ms": 2340.725800022483,
+          "metadata": {
+            "api": "chat_completions",
+            "finish_reason": "stop",
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 11,
+            "reasoning_effort": null,
+            "requested_model": "deepseek-v4-pro",
+            "response_id": "67c7ca77-4bd8-44f8-a227-64a8a301412d",
+            "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+            "thinking": "disabled"
+          },
+          "model": "deepseek-v4-pro",
+          "parsed": {
+            "placement": {
+              "analyze": "sat-b",
+              "ingest": "sat-a",
+              "respond": "sat-c"
+            },
+            "routes": [
+              {
+                "edge_id": "ingest-analyze",
+                "path": [
+                  "sat-a",
+                  "sat-b"
+                ]
+              },
+              {
+                "edge_id": "analyze-respond",
+                "path": [
+                  "sat-b",
+                  "sat-c"
+                ]
+              }
+            ],
+            "scenario_hash": "bd14bece8ddca3ee02b3885c8cdbbfbdcacac938021a2b001eb51687d708beec",
+            "scenario_id": "paired_final_joint_constraint_seed_218",
+            "schema_version": "1.0.0"
+          },
+          "provider": "deepseek",
+          "raw_text": "{\n  \"schema_version\": \"1.0.0\",\n  \"scenario_id\": \"paired_final_joint_constraint_seed_218\",\n  \"scenario_hash\": \"bd14bece8ddca3ee02b3885c8cdbbfbdcacac938021a2b001eb51687d708beec\",\n  \"placement\": {\n    \"ingest\": \"sat-a\",\n    \"analyze\": \"sat-b\",\n    \"respond\": \"sat-c\"\n  },\n  \"routes\": [\n    {\n      \"edge_id\": \"ingest-analyze\",\n      \"path\": [\"sat-a\", \"sat-b\"]\n    },\n    {\n      \"edge_id\": \"analyze-respond\",\n      \"path\": [\"sat-b\", \"sat-c\"]\n    }\n  ]\n}",
+          "replayed": false,
+          "request_fingerprint": "6a1312189ba2ad481b942c08c62501cb9ac3b0dc00e58c304ea28e6e7760e36f",
+          "request_id": "req_6a1312189ba2ad48",
+          "usage": {
+            "input_tokens": 1035,
+            "output_tokens": 170
+          }
+        }
+      }
+    ]
+  },
+  "run_key": "structured_llm_plan__s218__r2",
+  "runner_version": "1.0.0",
+  "scenario_hash": "bd14bece8ddca3ee02b3885c8cdbbfbdcacac938021a2b001eb51687d708beec",
+  "scenario_profile": "joint_constraint",
+  "scenario_seed": 218,
+  "schema_failures": 0,
+  "status": "infeasible",
+  "stop_reason": "infeasible_plan",
+  "violation_burden": 2.0,
+  "wall_time_ms": 2347.553599975072,
+  "weighted_objective": null
+}

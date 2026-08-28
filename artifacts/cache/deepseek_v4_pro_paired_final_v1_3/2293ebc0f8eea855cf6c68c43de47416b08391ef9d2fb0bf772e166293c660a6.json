@@ -1,0 +1,41 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:50:07.628001Z",
+  "latency_ms": 2522.552700014785,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2816,
+    "prompt_cache_miss_tokens": 69,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "76d06c7b-e48a-4231-bd26-4c287441518f",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "actions": [
+          "reroute",
+          "move_bottleneck_service",
+          "bounded_backtrack"
+        ],
+        "component": "repair_policy",
+        "op": "set_repair_policy"
+      }
+    ],
+    "rationale": "The current repair policy lacks move_bottleneck_service, which may help resolve the QoS latency violation by relocating the bottleneck service to a better node.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_repair_policy\",\n      \"component\": \"repair_policy\",\n      \"actions\": [\"reroute\", \"move_bottleneck_service\", \"bounded_backtrack\"]\n    }\n  ],\n  \"rationale\": \"The current repair policy lacks move_bottleneck_service, which may help resolve the QoS latency violation by relocating the bottleneck service to a better node.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "c030f7e17ce4c7a3d2cab817c2b5145f98eb8be8aa233cce1ee68bd189a829cc",
+  "request_id": "req_c030f7e17ce4c7a3",
+  "usage": {
+    "input_tokens": 2885,
+    "output_tokens": 101
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T09:43:19.037428Z",
+  "latency_ms": 2156.1112999916077,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 256,
+    "prompt_cache_miss_tokens": 1722,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "4e8a58f2-b34e-4931-aa43-52665adc8ac3",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.8
+      }
+    ],
+    "rationale": "Increase the penalty for dependency latency to encourage placements with lower communication latency, potentially reducing e2e latency."
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.8\n    }\n  ],\n  \"rationale\": \"Increase the penalty for dependency latency to encourage placements with lower communication latency, potentially reducing e2e latency.\"\n}",
+  "replayed": false,
+  "request_fingerprint": "389c9f7a1cec7262ead84e22131c82ff94be1e883cecc7f8cfcb1cfca2855f02",
+  "request_id": "req_389c9f7a1cec7262",
+  "usage": {
+    "input_tokens": 1978,
+    "output_tokens": 75
+  }
+}

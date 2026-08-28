@@ -1,0 +1,106 @@
+{
+  "backend_failures": 0,
+  "billed_input_tokens": 0,
+  "billed_output_tokens": 0,
+  "budget": {
+    "max_evaluator_calls": 100000,
+    "max_wall_time_seconds": 30.0
+  },
+  "cached_responses": 0,
+  "calls_to_first_feasible": 0,
+  "candidate_set_gap_pct": 0.0,
+  "code_tree_hash": "590a1f163866caa221af1f1b05f423912b49b046b9892e9bb934b94c394d1698",
+  "config_hash": "79cc7c29f9ec495e58b150a25b6e38be6a34cfcd2c9ed66c4bf4467e4d0e73ca",
+  "estimated_cost_cny": 0.0,
+  "evaluator_calls": 33,
+  "experiment_id": "deepseek_v4pro_paired_final_v1_3",
+  "final_feasible": true,
+  "infrastructure_failure": false,
+  "llm_calls": 0,
+  "llm_repetition": 0,
+  "method_family": "oracle",
+  "method_id": "exact_enumeration_oracle",
+  "model_snapshot": "not_applicable",
+  "observed_system_fingerprints": [],
+  "prompt_hash": null,
+  "protocol_hash": "828b8d7de318983ec9336e7cab7ff4cf70dcb9483c8febb1e3f06243e816912a",
+  "provider": "deterministic",
+  "request_parameters": {},
+  "result_payload": {
+    "best_signature": "158188e1f9417a1fcb8ead919c3e3c7ad54e615857a467f2747c8fa96d2d7469",
+    "candidates_evaluated": 33,
+    "interface_version": "1.0.0",
+    "objective": {
+      "e2e_latency_ms": 96.04245578201113,
+      "energy_proxy": 0.0,
+      "load_imbalance": 1.4142135623730954,
+      "metric_version": "0.1.0",
+      "migration_cost": 2.0,
+      "planning_time_ms": 12.20679999096319,
+      "weighted_objective": 96.58387713824845
+    },
+    "optimality_proven": true,
+    "placement_assignments_considered": 12,
+    "plan": {
+      "candidate_id": "oracle_000018",
+      "method": "exact_enumeration_oracle",
+      "migrations": [
+        {
+          "cost": 1.0,
+          "service_id": "analyze",
+          "source_node": "sat-a",
+          "target_node": "sat-b"
+        },
+        {
+          "cost": 1.0,
+          "service_id": "ingest",
+          "source_node": "sat-a",
+          "target_node": "sat-b"
+        }
+      ],
+      "placement": {
+        "analyze": "sat-b",
+        "ingest": "sat-b",
+        "respond": "sat-b"
+      },
+      "resource_snapshot": {},
+      "routes": [
+        {
+          "edge_id": "analyze-respond",
+          "path": [
+            "sat-b"
+          ]
+        },
+        {
+          "edge_id": "ingest-analyze",
+          "path": [
+            "sat-b"
+          ]
+        }
+      ],
+      "run_id": "exact_oracle",
+      "status": "complete"
+    },
+    "planning_time_ms": 12.20679999096319,
+    "scope": "all eligible placements x top-3 latency paths",
+    "solver_name": "exact_enumeration_oracle",
+    "status": "feasible",
+    "trace": [],
+    "verification": {
+      "feasible": true,
+      "verifier_version": "0.1.0",
+      "violations": []
+    }
+  },
+  "run_key": "exact_enumeration_oracle__s219__r0",
+  "runner_version": "1.0.0",
+  "scenario_hash": "ed3cc011139843e53476d93bab4cbd8bd5a55be8e82e92d8f7b2f8b930383936",
+  "scenario_profile": "objective_control",
+  "scenario_seed": 219,
+  "schema_failures": 0,
+  "status": "feasible",
+  "stop_reason": "feasible",
+  "violation_burden": 0.0,
+  "wall_time_ms": 12.20679999096319,
+  "weighted_objective": 96.58387713824845
+}

@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:15:23.431735Z",
+  "latency_ms": 3076.886499999091,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2944,
+    "prompt_cache_miss_tokens": 97,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "3dc197a3-286b-4a9c-9cb8-5594046f7cff",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.7
+      }
+    ],
+    "rationale": "The migration budget violation is caused by node_score selecting sat-a for analyze and ingest due to dependency_latency weight. Adjusting this weight may change placement to avoid migrations.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.7\n    }\n  ],\n  \"rationale\": \"The migration budget violation is caused by node_score selecting sat-a for analyze and ingest due to dependency_latency weight. Adjusting this weight may change placement to avoid migrations.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "43b9b2a8703d83f11fa85737c8a1f6677ec801e59d6b1c529f3c2662dd17bc53",
+  "request_id": "req_43b9b2a8703d83f1",
+  "usage": {
+    "input_tokens": 3041,
+    "output_tokens": 98
+  }
+}

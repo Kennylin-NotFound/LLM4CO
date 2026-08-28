@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:12:03.401121Z",
+  "latency_ms": 2096.139800036326,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 2048,
+    "prompt_cache_miss_tokens": 60,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "e0359c24-998a-42d4-803b-9fa0d4d56723",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.8
+      }
+    ],
+    "rationale": "Increase penalty for dependency latency to reduce latency objective, as latency weight is 1.0 and dependency_latency directly affects communication latency.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.8\n    }\n  ],\n  \"rationale\": \"Increase penalty for dependency latency to reduce latency objective, as latency weight is 1.0 and dependency_latency directly affects communication latency.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "9a4cbdb9ef14ea1b1bc3554ca5f05e30af1111e593b957062080c3b29b2a9bdf",
+  "request_id": "req_9a4cbdb9ef14ea1b",
+  "usage": {
+    "input_tokens": 2108,
+    "output_tokens": 91
+  }
+}

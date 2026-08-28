@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:16:21.790921Z",
+  "latency_ms": 2809.99779998092,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 384,
+    "prompt_cache_miss_tokens": 3406,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "d7575fd4-3556-4c3f-a68f-c8bbb50d5cef",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "Reducing the penalty on dependency_latency may allow placement on nodes with higher latency but better residual resources, potentially lowering overall latency by avoiding resource contention.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"Reducing the penalty on dependency_latency may allow placement on nodes with higher latency but better residual resources, potentially lowering overall latency by avoiding resource contention.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "d8cfd364f86f11c22abe712ecc19aeec783561da3a97058bcc1209f0f929f6d2",
+  "request_id": "req_d8cfd364f86f11c2",
+  "usage": {
+    "input_tokens": 3790,
+    "output_tokens": 94
+  }
+}

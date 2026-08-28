@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:18:40.504185Z",
+  "latency_ms": 2118.571700004395,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1280,
+    "prompt_cache_miss_tokens": 1334,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "b36974b1-3829-4fa0-a064-266bd04ccc5b",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "migration_penalty",
+        "op": "add_term",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "Adding a migration penalty to node_score discourages moving services from their previous placement, potentially reducing migration cost while preserving latency constraints.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"add_term\",\n      \"component\": \"node_score\",\n      \"feature\": \"migration_penalty\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"Adding a migration penalty to node_score discourages moving services from their previous placement, potentially reducing migration cost while preserving latency constraints.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "6018d7f7069e633bb7e75e625cf4531d2c7b43fabe14828c2da46b1aa76b8d67",
+  "request_id": "req_6018d7f7069e633b",
+  "usage": {
+    "input_tokens": 2614,
+    "output_tokens": 89
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:36:33.034452Z",
+  "latency_ms": 2361.6619000094943,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 256,
+    "prompt_cache_miss_tokens": 1818,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "3cf67d64-fd9d-496e-936e-19025b4a9150",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "No change needed; parent plan is verifier-approved and no feedback indicates violations. Keeping existing weights preserves feasibility.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"No change needed; parent plan is verifier-approved and no feedback indicates violations. Keeping existing weights preserves feasibility.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "6c96d2d4942a74dcf54ee08f111c14c773c5d75efbeea2bd493a1ca5cdcbed2e",
+  "request_id": "req_6c96d2d4942a74dc",
+  "usage": {
+    "input_tokens": 2074,
+    "output_tokens": 85
+  }
+}

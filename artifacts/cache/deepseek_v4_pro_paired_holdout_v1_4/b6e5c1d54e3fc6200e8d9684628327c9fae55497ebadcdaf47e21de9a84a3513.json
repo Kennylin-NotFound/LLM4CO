@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:13:37.570797Z",
+  "latency_ms": 2709.6462000044994,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1792,
+    "prompt_cache_miss_tokens": 1326,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "2ecdd473-6ece-4760-9b54-73268869d0eb",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "migration_penalty",
+        "op": "add_term",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "Adding migration_penalty with negative weight discourages moving services from their current nodes, potentially reducing migration cost while still allowing placement changes that may lower latency.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"add_term\",\n      \"component\": \"node_score\",\n      \"feature\": \"migration_penalty\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"Adding migration_penalty with negative weight discourages moving services from their current nodes, potentially reducing migration cost while still allowing placement changes that may lower latency.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "2341f8b31fc6b1664ec537fc9b0729003955ee92252244958f57dd204ee2ff0f",
+  "request_id": "req_2341f8b31fc6b166",
+  "usage": {
+    "input_tokens": 3118,
+    "output_tokens": 95
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:19:25.774330Z",
+  "latency_ms": 2673.997799982317,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1792,
+    "prompt_cache_miss_tokens": 1343,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "08b7edb6-62c3-4863-9915-d2bb485ffbee",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "residual_compute_ratio",
+        "op": "set_weight",
+        "weight": 0.0
+      }
+    ],
+    "rationale": "The previous node_score weight change on dependency_latency did not affect placement, so the placement may be insensitive to that feature. Removing the influence of residual_compute_ratio (setting weight to 0) may alter node selection and potentially reduce latency.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"residual_compute_ratio\",\n      \"weight\": 0.0\n    }\n  ],\n  \"rationale\": \"The previous node_score weight change on dependency_latency did not affect placement, so the placement may be insensitive to that feature. Removing the influence of residual_compute_ratio (setting weight to 0) may alter node selection and potentially reduce latency.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "1348d5d5a62c76faa2028c76850c87fae451d0782810338d08366fef8f408f40",
+  "request_id": "req_1348d5d5a62c76fa",
+  "usage": {
+    "input_tokens": 3135,
+    "output_tokens": 116
+  }
+}

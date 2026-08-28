@@ -1,0 +1,52 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:17:07.027298Z",
+  "latency_ms": 2338.1007999996655,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1024,
+    "prompt_cache_miss_tokens": 14,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "ba497f6d-7851-47c8-93e4-1126a4aba63a",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "placement": {
+      "analyze": "sat-b",
+      "ingest": "sat-a",
+      "respond": "sat-c"
+    },
+    "routes": [
+      {
+        "edge_id": "ingest-analyze",
+        "path": [
+          "sat-a",
+          "sat-b"
+        ]
+      },
+      {
+        "edge_id": "analyze-respond",
+        "path": [
+          "sat-b",
+          "sat-c"
+        ]
+      }
+    ],
+    "scenario_hash": "2ba4f183ca526f63d8e3d87a45943f683fbd0d61b3f6196a35e03e93bb237988",
+    "scenario_id": "paired_final_migration_lock_seed_304",
+    "schema_version": "1.0.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"schema_version\": \"1.0.0\",\n  \"scenario_id\": \"paired_final_migration_lock_seed_304\",\n  \"scenario_hash\": \"2ba4f183ca526f63d8e3d87a45943f683fbd0d61b3f6196a35e03e93bb237988\",\n  \"placement\": {\n    \"ingest\": \"sat-a\",\n    \"analyze\": \"sat-b\",\n    \"respond\": \"sat-c\"\n  },\n  \"routes\": [\n    {\n      \"edge_id\": \"ingest-analyze\",\n      \"path\": [\"sat-a\", \"sat-b\"]\n    },\n    {\n      \"edge_id\": \"analyze-respond\",\n      \"path\": [\"sat-b\", \"sat-c\"]\n    }\n  ]\n}",
+  "replayed": false,
+  "request_fingerprint": "379a62565eb61ceb7b9f959c94c8b38211d28f320eb58728a20c3c5004b039ac",
+  "request_id": "req_379a62565eb61ceb",
+  "usage": {
+    "input_tokens": 1038,
+    "output_tokens": 174
+  }
+}

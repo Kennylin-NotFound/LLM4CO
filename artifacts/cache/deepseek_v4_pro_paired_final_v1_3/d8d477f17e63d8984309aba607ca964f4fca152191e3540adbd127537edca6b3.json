@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:39:23.644203Z",
+  "latency_ms": 2816.479299974162,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1664,
+    "prompt_cache_miss_tokens": 1248,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "8bc43004-7956-4d08-85f6-e9f434de4668",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": 0.0
+      }
+    ],
+    "rationale": "The migration budget constraint is violated because two services are migrated. The node_score currently penalizes dependency_latency with weight -1.0, which may favor placing services on nodes with lower dependency latency, potentially causing migrations. Setting this weight to 0 removes the penalty, allowing placement decisions to be driven by other factors and possibly avoiding migrations.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": 0.0\n    }\n  ],\n  \"rationale\": \"The migration budget constraint is violated because two services are migrated. The node_score currently penalizes dependency_latency with weight -1.0, which may favor placing services on nodes with lower dependency latency, potentially causing migrations. Setting this weight to 0 removes the penalty, allowing placement decisions to be driven by other factors and possibly avoiding migrations.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "618bd8c1dc13fa260d3e4c8c8710d98f0fe61e19f3d621e25ed77b46f7a46809",
+  "request_id": "req_618bd8c1dc13fa26",
+  "usage": {
+    "input_tokens": 2912,
+    "output_tokens": 132
+  }
+}

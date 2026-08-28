@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:50:43.197946Z",
+  "latency_ms": 1829.2422000085935,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1792,
+    "prompt_cache_miss_tokens": 1972,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "cfa0ba5e-d9a6-4a58-9620-f7953de8cbdb",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": -0.5
+      }
+    ],
+    "rationale": "Reduce the penalty on dependency_latency in node_score to potentially allow placements with higher latency but better resource balance, which may lower load_imbalance and thus weighted_objective.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"Reduce the penalty on dependency_latency in node_score to potentially allow placements with higher latency but better resource balance, which may lower load_imbalance and thus weighted_objective.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "f8601cc51aed272f69d00f5e7dcf2e98c663418f4092bf250fafe0d765fcfd7e",
+  "request_id": "req_f8601cc51aed272f",
+  "usage": {
+    "input_tokens": 3764,
+    "output_tokens": 99
+  }
+}

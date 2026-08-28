@@ -1,0 +1,38 @@
+pilot_id: "deepseek_v4pro_cover_opt_live_pilot_v1"
+protocol_path: "formal_experiment_protocol.yaml"
+stage_id: "live_pilot"
+base_scenario_path: "../scenarios/small_static.yaml"
+prompt_path: "../prompts/conflict_patch_v2.md"
+expected_prompt_hash: "50946a993beb969645254054cdff3faae5508b0634a120d3a7075c91fd78b0db"
+prompt_version: "conflict_patch_v2_operator_catalog_frozen"
+initial_heuristic: "latency_first"
+features:
+  feedback_mode: "conflict_directed"
+  feasible_masks_enabled: true
+  repair_actions_enabled: true
+  counterexample_memory_enabled: true
+  structural_diversity_enabled: true
+budgets:
+  max_patch_proposals: 4
+  max_evaluator_calls: 5
+  max_wall_time_seconds: 120.0
+  stop_on_first_feasible: true
+cost_policy:
+  input_cache_miss_cny_per_million: 3.0
+  output_cny_per_million: 6.0
+  assumed_max_input_tokens_per_call: 5000
+  max_total_cost_cny: 1.0
+llm:
+  model: "deepseek-v4-pro"
+  base_url: "https://api.deepseek.com"
+  api_key_env: "DEEPSEEK_API_KEY"
+  thinking: "disabled"
+  reasoning_effort: "high"
+  temperature: 0.0
+  top_p: 1.0
+  max_tokens: 2048
+  timeout_seconds: 120.0
+  max_attempts: 3
+  initial_backoff_seconds: 1.0
+  cache_dir: "../../artifacts/cache/deepseek_v4_pro_pilot_v1"
+  expected_system_fingerprint: "a307abda487cd1b463329ccb945ce396"

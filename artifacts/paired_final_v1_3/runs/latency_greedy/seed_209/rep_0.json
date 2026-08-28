@@ -1,0 +1,295 @@
+{
+  "backend_failures": 0,
+  "billed_input_tokens": 0,
+  "billed_output_tokens": 0,
+  "budget": {
+    "max_evaluator_calls": 1,
+    "max_wall_time_seconds": 30.0
+  },
+  "cached_responses": 0,
+  "calls_to_first_feasible": null,
+  "candidate_set_gap_pct": null,
+  "code_tree_hash": "590a1f163866caa221af1f1b05f423912b49b046b9892e9bb934b94c394d1698",
+  "config_hash": "79cc7c29f9ec495e58b150a25b6e38be6a34cfcd2c9ed66c4bf4467e4d0e73ca",
+  "estimated_cost_cny": 0.0,
+  "evaluator_calls": 1,
+  "experiment_id": "deepseek_v4pro_paired_final_v1_3",
+  "final_feasible": false,
+  "infrastructure_failure": false,
+  "llm_calls": 0,
+  "llm_repetition": 0,
+  "method_family": "non_llm",
+  "method_id": "latency_greedy",
+  "model_snapshot": "not_applicable",
+  "observed_system_fingerprints": [],
+  "prompt_hash": null,
+  "protocol_hash": "828b8d7de318983ec9336e7cab7ff4cf70dcb9483c8febb1e3f06243e816912a",
+  "provider": "deterministic",
+  "request_parameters": {},
+  "result_payload": {
+    "best_signature": null,
+    "candidates_evaluated": 1,
+    "interface_version": "1.0.0",
+    "objective": null,
+    "optimality_proven": false,
+    "placement_assignments_considered": 1,
+    "plan": {
+      "candidate_id": "latency_greedy",
+      "method": "latency_greedy",
+      "migrations": [],
+      "placement": {
+        "analyze": "sat-a",
+        "ingest": "sat-a",
+        "respond": "sat-b"
+      },
+      "resource_snapshot": {},
+      "routes": [
+        {
+          "edge_id": "analyze-respond",
+          "path": [
+            "sat-a",
+            "sat-b"
+          ]
+        },
+        {
+          "edge_id": "ingest-analyze",
+          "path": [
+            "sat-a"
+          ]
+        }
+      ],
+      "run_id": "baseline",
+      "status": "complete"
+    },
+    "planning_time_ms": 0.7218000246211886,
+    "scope": "one deterministic typed-heuristic execution without LLM search",
+    "solver_name": "latency_greedy",
+    "status": "infeasible",
+    "trace": [
+      {
+        "scores": {
+          "analyze": 0.7666666666666666,
+          "ingest": 0.76,
+          "respond": 0.0
+        },
+        "selected_order": [
+          "ingest",
+          "analyze",
+          "respond"
+        ],
+        "stage": "service_order"
+      },
+      {
+        "candidate_policy": "eligibility_and_capacity_masked",
+        "eligible_capacity_candidates": [
+          "sat-a",
+          "sat-b"
+        ],
+        "feasible_masks_enabled": true,
+        "raw_features": {
+          "sat-a": {
+            "dependency_latency": 0.0,
+            "migration_penalty": 0.0,
+            "predicted_contact_duration": 11.0,
+            "residual_compute_ratio": 0.8333333333333334,
+            "residual_memory_ratio": 0.875
+          },
+          "sat-b": {
+            "dependency_latency": 0.0,
+            "migration_penalty": 1.0,
+            "predicted_contact_duration": 11.0,
+            "residual_compute_ratio": 0.8,
+            "residual_memory_ratio": 0.8333333333333334
+          }
+        },
+        "scores": {
+          "sat-a": 0.3,
+          "sat-b": 0.0
+        },
+        "selected_node": "sat-a",
+        "service_id": "ingest",
+        "stage": "placement"
+      },
+      {
+        "candidate_policy": "eligibility_and_capacity_masked",
+        "eligible_capacity_candidates": [
+          "sat-a",
+          "sat-b",
+          "sat-c"
+        ],
+        "feasible_masks_enabled": true,
+        "raw_features": {
+          "sat-a": {
+            "dependency_latency": 0.0,
+            "migration_penalty": 0.0,
+            "predicted_contact_duration": 11.0,
+            "residual_compute_ratio": 0.5,
+            "residual_memory_ratio": 0.625
+          },
+          "sat-b": {
+            "dependency_latency": 70.7655356544267,
+            "migration_penalty": 1.0,
+            "predicted_contact_duration": 11.0,
+            "residual_compute_ratio": 0.6,
+            "residual_memory_ratio": 0.6666666666666666
+          },
+          "sat-c": {
+            "dependency_latency": 119.78796745061395,
+            "migration_penalty": 1.0,
+            "predicted_contact_duration": 11.0,
+            "residual_compute_ratio": 0.5,
+            "residual_memory_ratio": 0.6
+          }
+        },
+        "scores": {
+          "sat-a": 0.0,
+          "sat-b": -0.11352963918117476,
+          "sat-c": -0.7
+        },
+        "selected_node": "sat-a",
+        "service_id": "analyze",
+        "stage": "placement"
+      },
+      {
+        "candidate_policy": "eligibility_and_capacity_masked",
+        "eligible_capacity_candidates": [
+          "sat-b",
+          "sat-c"
+        ],
+        "feasible_masks_enabled": true,
+        "raw_features": {
+          "sat-b": {
+            "dependency_latency": 38.11739716201803,
+            "migration_penalty": 0.0,
+            "predicted_contact_duration": 11.0,
+            "residual_compute_ratio": 0.8,
+            "residual_memory_ratio": 0.8333333333333334
+          },
+          "sat-c": {
+            "dependency_latency": 67.55094586276007,
+            "migration_penalty": 1.0,
+            "predicted_contact_duration": 11.0,
+            "residual_compute_ratio": 0.75,
+            "residual_memory_ratio": 0.8
+          }
+        },
+        "scores": {
+          "sat-b": 0.3,
+          "sat-c": -0.7
+        },
+        "selected_node": "sat-b",
+        "service_id": "respond",
+        "stage": "placement"
+      },
+      {
+        "candidate_policy": "contact_window_masked",
+        "candidates": [
+          [
+            "sat-a",
+            "sat-b"
+          ],
+          [
+            "sat-a",
+            "sat-c",
+            "sat-b"
+          ]
+        ],
+        "edge_id": "analyze-respond",
+        "feasible_masks_enabled": true,
+        "raw_features": {
+          "sat-a->sat-b": {
+            "bottleneck_bandwidth": 64.74752,
+            "contact_duration": 11.0,
+            "hop_count": 1.0,
+            "path_latency": 38.11739716201803
+          },
+          "sat-a->sat-c->sat-b": {
+            "bottleneck_bandwidth": 40.4672,
+            "contact_duration": 11.0,
+            "hop_count": 2.0,
+            "path_latency": 118.73875932342474
+          }
+        },
+        "scores": {
+          "sat-a->sat-b": 0.2,
+          "sat-a->sat-c->sat-b": -0.8
+        },
+        "selected_path": [
+          "sat-a",
+          "sat-b"
+        ],
+        "stage": "routing"
+      },
+      {
+        "candidate_policy": "contact_window_masked",
+        "candidates": [
+          [
+            "sat-a"
+          ]
+        ],
+        "edge_id": "ingest-analyze",
+        "feasible_masks_enabled": true,
+        "raw_features": {
+          "sat-a": {
+            "bottleneck_bandwidth": 64.74752,
+            "contact_duration": 11.0,
+            "hop_count": 0.0,
+            "path_latency": 0.0
+          }
+        },
+        "scores": {
+          "sat-a": 0.0
+        },
+        "selected_path": [
+          "sat-a"
+        ],
+        "stage": "routing"
+      }
+    ],
+    "verification": {
+      "feasible": false,
+      "verifier_version": "0.1.0",
+      "violations": [
+        {
+          "contributing_decisions": [
+            "place:analyze@sat-a",
+            "place:ingest@sat-a",
+            "place:respond@sat-b",
+            "route:analyze-respond",
+            "route:ingest-analyze"
+          ],
+          "decision_contributions": {
+            "place:analyze@sat-a": 0.2,
+            "place:ingest@sat-a": 0.2,
+            "place:respond@sat-b": 0.2,
+            "route:analyze-respond": 0.2,
+            "route:ingest-analyze": 0.2
+          },
+          "dsl_components": [
+            "service_order",
+            "node_score",
+            "path_score",
+            "repair_policy"
+          ],
+          "entities": [
+            "paired_final_qos_tight_seed_209"
+          ],
+          "magnitude": 0.23072023636149483,
+          "message": "E2E latency 108.915ms exceeds QoS 88.4969ms",
+          "violation_type": "qos_latency"
+        }
+      ]
+    }
+  },
+  "run_key": "latency_greedy__s209__r0",
+  "runner_version": "1.0.0",
+  "scenario_hash": "f18edb8bcd5ae672d95057a62f5236f32baefc3dd4fe3f453129d03a5645624f",
+  "scenario_profile": "qos_tight",
+  "scenario_seed": 209,
+  "schema_failures": 0,
+  "status": "infeasible",
+  "stop_reason": "infeasible",
+  "violation_burden": 1.0,
+  "wall_time_ms": 0.7218000246211886,
+  "weighted_objective": null
+}

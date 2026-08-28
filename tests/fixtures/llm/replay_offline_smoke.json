@@ -1,0 +1,25 @@
+{
+  "format_version": "1.0",
+  "entries": [
+    {
+      "purpose": "offline_candidate_stub",
+      "provider": "offline-replay",
+      "model": "replay-cover-opt-v1",
+      "raw_text": "{\"artifact_kind\":\"heuristic_candidate_stub\",\"node_score\":\"residual_compute_ratio\",\"path_score\":\"path_latency\",\"repair_policy\":[],\"service_order\":\"service_id_ascending\",\"validation_status\":\"unvalidated_phase_1\",\"version\":\"0.1\"}",
+      "parsed": {
+        "artifact_kind": "heuristic_candidate_stub",
+        "validation_status": "unvalidated_phase_1",
+        "version": "0.1",
+        "service_order": "service_id_ascending",
+        "node_score": "residual_compute_ratio",
+        "path_score": "path_latency",
+        "repair_policy": []
+      },
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    }
+  ]
+}
+

@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:51:11.625445Z",
+  "latency_ms": 2333.256400015671,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 256,
+    "prompt_cache_miss_tokens": 2263,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "05a0d417-ec7b-41fb-93f2-8abe7d88cf4b",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "migration_penalty",
+        "op": "set_weight",
+        "weight": -1.0
+      }
+    ],
+    "rationale": "The migration budget is exceeded because two migrations are selected. Setting a negative weight on migration_penalty discourages migrations, potentially reducing the number of migrations to meet the budget.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"migration_penalty\",\n      \"weight\": -1.0\n    }\n  ],\n  \"rationale\": \"The migration budget is exceeded because two migrations are selected. Setting a negative weight on migration_penalty discourages migrations, potentially reducing the number of migrations to meet the budget.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "01daa31416560979f30760fbdf0b934518231d777939d6359fc79791c1933fec",
+  "request_id": "req_01daa31416560979",
+  "usage": {
+    "input_tokens": 2519,
+    "output_tokens": 99
+  }
+}

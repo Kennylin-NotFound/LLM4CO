@@ -1,0 +1,2840 @@
+{
+  "backend_failures": 0,
+  "billed_input_tokens": 6768,
+  "billed_output_tokens": 193,
+  "budget": {
+    "max_evaluator_calls": 5,
+    "max_llm_calls": 4,
+    "max_wall_time_seconds": 120.0,
+    "stop_on_first_feasible": false
+  },
+  "cached_responses": 0,
+  "calls_to_first_feasible": 1,
+  "candidate_set_gap_pct": 0.0,
+  "code_tree_hash": "590a1f163866caa221af1f1b05f423912b49b046b9892e9bb934b94c394d1698",
+  "config_hash": "79cc7c29f9ec495e58b150a25b6e38be6a34cfcd2c9ed66c4bf4467e4d0e73ca",
+  "estimated_cost_cny": 0.021462,
+  "evaluator_calls": 5,
+  "experiment_id": "deepseek_v4pro_paired_final_v1_3",
+  "final_feasible": true,
+  "infrastructure_failure": false,
+  "llm_calls": 2,
+  "llm_repetition": 0,
+  "method_family": "iterative_llm",
+  "method_id": "cover_opt_full",
+  "model_snapshot": "deepseek-v4-pro",
+  "observed_system_fingerprints": [
+    "a307abda487cd1b463329ccb945ce396"
+  ],
+  "prompt_hash": "4293e7e10e5b2a1930bc778a71bda89273719387845b63e7e144354453ca6bbe",
+  "protocol_hash": "828b8d7de318983ec9336e7cab7ff4cf70dcb9483c8febb1e3f06243e816912a",
+  "provider": "deepseek",
+  "request_parameters": {
+    "expected_system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "max_tokens": 2048,
+    "temperature": 0.0,
+    "thinking": "disabled",
+    "top_p": 1.0
+  },
+  "result_payload": {
+    "generation_trace": [
+      {
+        "adapter_version": "1.0.0",
+        "error": null,
+        "request": {
+          "expected_output": "HeuristicPatch JSON object, schema version 1.0",
+          "metadata": {
+            "allowed_components": [
+              "service_order",
+              "node_score",
+              "path_score",
+              "repair_policy"
+            ],
+            "conflict_graph_signature": "effa849a085720f077a5923057b4ace1187949c3d12cc2dc6af2d69995ed2324",
+            "feedback_mode": "conflict_directed",
+            "prompt_version": "paired_final_v1_3_4293e7e10e5b",
+            "refinement_phase": "feasibility",
+            "scenario_hash": "88dad7f423fb92cfb9d6a3e61c5689101c028b69dd6f6dfe64eb90687a8ba706"
+          },
+          "prompt": "You synthesize one bounded patch for a typed optimization heuristic.\n\nReturn exactly one JSON object and no prose. The object must satisfy the supplied\nHeuristicPatch schema. Use only components listed in `allowed_components`, do not\nexceed `max_patch_operations`, and obey `patch_affordances`. Never invent\nfeatures, operations, entities, measurements, or constraints.\n\nFollow `refinement_phase`:\n\n- `feasibility`: make the smallest causally relevant change supported by\n  `feedback_payload`. In conflict-directed mode, use the constraint-decision\n  graph and modify only authorized components. In generic or no-feedback mode,\n  use only the information actually present; do not assume hidden violations.\n- `objective`: the parent plan is verifier-approved. Use\n  `current_weighted_contributions`, `execution_summary`, and\n  `previous_objective_evaluations` to propose one testable mutation that may\n  reduce `weighted_objective` while preserving hard constraints. Do not repeat\n  a blocked or previously non-improving operation target.\n\nEvery weighted-score component selects the largest score. Use `set_weight` or\n`remove_term` only for an existing term and `add_term` only for an absent term.\nA rationale may state one short causal hypothesis, but must not claim an\nimprovement before deterministic evaluation.\n\nCONTEXT_JSON:\n{\"allowed_components\":[\"service_order\",\"node_score\",\"path_score\",\"repair_policy\"],\"blocked_operator_targets\":[],\"counterexample_summary\":{\"counterexample_id\":\"cex_26605d642d05\",\"entities\":[\"analyze\",\"ingest\",\"paired_final_joint_constraint_seed_210\"],\"max_violation_burden\":2.0594399738774163,\"observation_count\":1,\"repair_failures\":0,\"signature\":\"26605d642d05790545acbf6d1bbc7736f3e4166019392f07714d8f4c6810817c\",\"violation_types\":[\"migration_budget\",\"qos_latency\"]},\"execution_summary\":null,\"feedback\":{\"constraint_decision_graph\":{\"allowed_components\":[\"service_order\",\"node_score\",\"path_score\",\"repair_policy\"],\"edges\":[{\"constraint_id\":\"constraint:000:migration_budget\",\"contribution\":0.5,\"decision_id\":\"decision:migrate:analyze:sat-b->sat-a\"},{\"constraint_id\":\"constraint:000:migration_budget\",\"contribution\":0.5,\"decision_id\":\"decision:migrate:ingest:sat-b->sat-a\"},{\"constraint_id\":\"constraint:001:qos_latency\",\"contribution\":0.2,\"decision_id\":\"decision:place:analyze@sat-a\"},{\"constraint_id\":\"constraint:001:qos_latency\",\"contribution\":0.2,\"decision_id\":\"decision:place:ingest@sat-a\"},{\"constraint_id\":\"constraint:001:qos_latency\",\"contribution\":0.2,\"decision_id\":\"decision:place:respond@sat-b\"},{\"constraint_id\":\"constraint:001:qos_latency\",\"contribution\":0.2,\"decision_id\":\"decision:route:analyze-respond\"},{\"constraint_id\":\"constraint:001:qos_latency\",\"contribution\":0.2,\"decision_id\":\"decision:route:ingest-analyze\"}],\"graph_signature\":\"effa849a085720f077a5923057b4ace1187949c3d12cc2dc6af2d69995ed2324\",\"nodes\":[{\"kind\":\"constraint\",\"label\":\"migration_budget\",\"magnitude\":2.0,\"metadata\":{\"dsl_components\":[\"node_score\",\"repair_policy\"],\"entities\":[\"analyze\",\"ingest\"],\"message\":\"migration count 2 exceeds budget 0\",\"original_index\":1},\"node_id\":\"constraint:000:migration_budget\"},{\"kind\":\"constraint\",\"label\":\"qos_latency\",\"magnitude\":0.05943997387741647,\"metadata\":{\"dsl_components\":[\"service_order\",\"node_score\",\"path_score\",\"repair_policy\"],\"entities\":[\"paired_final_joint_constraint_seed_210\"],\"message\":\"E2E latency 103.935ms exceeds QoS 98.1041ms\",\"original_index\":0},\"node_id\":\"constraint:001:qos_latency\"},{\"kind\":\"decision\",\"label\":\"migrate:analyze:sat-b->sat-a\",\"magnitude\":0.0,\"metadata\":{},\"node_id\":\"decision:migrate:analyze:sat-b->sat-a\"},{\"kind\":\"decision\",\"label\":\"migrate:ingest:sat-b->sat-a\",\"magnitude\":0.0,\"metadata\":{},\"node_id\":\"decision:migrate:ingest:sat-b->sat-a\"},{\"kind\":\"decision\",\"label\":\"place:analyze@sat-a\",\"magnitude\":0.0,\"metadata\":{},\"node_id\":\"decision:place:analyze@sat-a\"},{\"kind\":\"decision\",\"label\":\"place:ingest@sat-a\",\"magnitude\":0.0,\"metadata\":{},\"node_id\":\"decision:place:ingest@sat-a\"},{\"kind\":\"decision\",\"label\":\"place:respond@sat-b\",\"magnitude\":0.0,\"metadata\":{},\"node_id\":\"decision:place:respond@sat-b\"},{\"kind\":\"decision\",\"label\":\"route:analyze-respond\",\"magnitude\":0.0,\"metadata\":{},\"node_id\":\"decision:route:analyze-respond\"},{\"kind\":\"decision\",\"label\":\"route:ingest-analyze\",\"magnitude\":0.0,\"metadata\":{},\"node_id\":\"decision:route:ingest-analyze\"}],\"source_verifier_version\":\"0.1.0\"},\"mode\":\"conflict_directed\"},\"feedback_mode\":\"conflict_directed\",\"max_patch_operations\":4,\"objective_gap\":null,\"operator_catalog\":{\"node_score\":{\"effect\":\"selects the placement node with the largest weighted score\",\"features\":{\"dependency_latency\":\"larger means higher predecessor communication latency\",\"migration_penalty\":\"equals 1 when the node differs from previous placement and 0 otherwise; a negative weight discourages migrations\",\"predicted_contact_duration\":\"larger means a longer contact window\",\"residual_compute_ratio\":\"larger favors remaining compute capacity\",\"residual_memory_ratio\":\"larger favors remaining memory capacity\"}},\"patch_operations\":{\"add_term\":\"adds an available feature that is absent from a score component\",\"remove_term\":\"removes exactly one existing score feature\",\"set_direction\":\"changes only service_order ascending/descending direction\",\"set_repair_policy\":\"replaces the post-construction repair action sequence\",\"set_weight\":\"changes exactly one feature already present in a score component\"},\"path_score\":{\"effect\":\"selects a route after placement; it cannot change node placement\",\"features\":{\"bottleneck_bandwidth\":\"larger means more path bandwidth\",\"contact_duration\":\"minimum remaining contact time on the path\",\"hop_count\":\"number of physical links\",\"path_latency\":\"larger means higher route latency\"}},\"repair_policy\":{\"actions\":[\"reroute\",\"move_bottleneck_service\",\"swap_services\",\"bounded_backtrack\"],\"effect\":\"runs bounded local repair after construction; changing the policy does not directly change the primary node score\"},\"service_order\":{\"effect\":\"orders services before placement; it does not select nodes\",\"features\":{\"critical_path_rank\":\"larger means more downstream critical work\",\"resource_demand_ratio\":\"larger means higher relative resource demand\",\"successor_count\":\"number of direct service successors\",\"workload_ratio\":\"service workload magnitude\"}}},\"parent_dsl\":{\"node_score\":{\"op\":\"weighted_sum\",\"terms\":[{\"feature\":\"dependency_latency\",\"weight\":-0.7},{\"feature\":\"residual_compute_ratio\",\"weight\":0.3}]},\"path_score\":{\"op\":\"weighted_sum\",\"terms\":[{\"feature\":\"bottleneck_bandwidth\",\"weight\":0.2},{\"feature\":\"path_latency\",\"weight\":-0.8}]},\"repair_policy\":[\"reroute\",\"bounded_backtrack\"],\"service_order\":{\"direction\":\"descending\",\"op\":\"weighted_sum\",\"terms\":[{\"feature\":\"critical_path_rank\",\"weight\":0.7},{\"feature\":\"workload_ratio\",\"weight\":0.3}]},\"version\":\"1.0\"},\"patch_affordances\":{\"node_score\":{\"absent_terms_for_add\":[\"residual_memory_ratio\",\"predicted_contact_duration\",\"migration_penalty\"],\"existing_terms_for_set_or_remove\":[\"dependency_latency\",\"residual_compute_ratio\"]},\"path_score\":{\"absent_terms_for_add\":[\"hop_count\",\"contact_duration\"],\"existing_terms_for_set_or_remove\":[\"path_latency\",\"bottleneck_bandwidth\"]},\"repair_policy\":{\"available_actions\":[\"reroute\",\"move_bottleneck_service\",\"swap_services\",\"bounded_backtrack\"],\"current_actions\":[\"reroute\",\"bounded_backtrack\"]},\"service_order\":{\"absent_terms_for_add\":[\"resource_demand_ratio\",\"successor_count\"],\"current_direction\":\"descending\",\"existing_terms_for_set_or_remove\":[\"critical_path_rank\",\"workload_ratio\"]}},\"previous_objective_evaluations\":[],\"previous_patch_rejections\":[],\"refinement_phase\":\"feasibility\",\"scenario_summary\":{\"dependency_count\":2,\"migration_budget\":0,\"node_count\":3,\"objective_weights\":{\"energy_proxy\":0.0,\"latency\":1.0,\"load_imbalance\":0.1,\"migration_cost\":0.2},\"qos_latency_ms\":98.104077,\"scenario_hash\":\"88dad7f423fb92cfb9d6a3e61c5689101c028b69dd6f6dfe64eb90687a8ba706\",\"scenario_id\":\"paired_final_joint_constraint_seed_210\",\"service_count\":3,\"time_slot\":0}}\n\nHEURISTIC_PATCH_JSON_SCHEMA:\n{\"$defs\":{\"AddTermOperation\":{\"additionalProperties\":false,\"properties\":{\"component\":{\"enum\":[\"service_order\",\"node_score\",\"path_score\"],\"title\":\"Component\",\"type\":\"string\"},\"feature\":{\"minLength\":1,\"title\":\"Feature\",\"type\":\"string\"},\"op\":{\"const\":\"add_term\",\"title\":\"Op\",\"type\":\"string\"},\"weight\":{\"title\":\"Weight\",\"type\":\"number\"}},\"required\":[\"component\",\"feature\",\"weight\",\"op\"],\"title\":\"AddTermOperation\",\"type\":\"object\"},\"RemoveTermOperation\":{\"additionalProperties\":false,\"properties\":{\"component\":{\"enum\":[\"service_order\",\"node_score\",\"path_score\"],\"title\":\"Component\",\"type\":\"string\"},\"feature\":{\"minLength\":1,\"title\":\"Feature\",\"type\":\"string\"},\"op\":{\"const\":\"remove_term\",\"title\":\"Op\",\"type\":\"string\"}},\"required\":[\"op\",\"component\",\"feature\"],\"title\":\"RemoveTermOperation\",\"type\":\"object\"},\"RepairAction\":{\"enum\":[\"reroute\",\"move_bottleneck_service\",\"swap_services\",\"bounded_backtrack\"],\"title\":\"RepairAction\",\"type\":\"string\"},\"SetDirectionOperation\":{\"additionalProperties\":false,\"properties\":{\"component\":{\"const\":\"service_order\",\"title\":\"Component\",\"type\":\"string\"},\"direction\":{\"enum\":[\"ascending\",\"descending\"],\"title\":\"Direction\",\"type\":\"string\"},\"op\":{\"const\":\"set_direction\",\"title\":\"Op\",\"type\":\"string\"}},\"required\":[\"op\",\"component\",\"direction\"],\"title\":\"SetDirectionOperation\",\"type\":\"object\"},\"SetRepairPolicyOperation\":{\"additionalProperties\":false,\"properties\":{\"actions\":{\"items\":{\"$ref\":\"#/$defs/RepairAction\"},\"maxItems\":4,\"title\":\"Actions\",\"type\":\"array\"},\"component\":{\"const\":\"repair_policy\",\"title\":\"Component\",\"type\":\"string\"},\"op\":{\"const\":\"set_repair_policy\",\"title\":\"Op\",\"type\":\"string\"}},\"required\":[\"op\",\"component\",\"actions\"],\"title\":\"SetRepairPolicyOperation\",\"type\":\"object\"},\"SetWeightOperation\":{\"additionalProperties\":false,\"properties\":{\"component\":{\"enum\":[\"service_order\",\"node_score\",\"path_score\"],\"title\":\"Component\",\"type\":\"string\"},\"feature\":{\"minLength\":1,\"title\":\"Feature\",\"type\":\"string\"},\"op\":{\"const\":\"set_weight\",\"title\":\"Op\",\"type\":\"string\"},\"weight\":{\"title\":\"Weight\",\"type\":\"number\"}},\"required\":[\"component\",\"feature\",\"weight\",\"op\"],\"title\":\"SetWeightOperation\",\"type\":\"object\"}},\"additionalProperties\":false,\"properties\":{\"operations\":{\"items\":{\"discriminator\":{\"mapping\":{\"add_term\":\"#/$defs/AddTermOperation\",\"remove_term\":\"#/$defs/RemoveTermOperation\",\"set_direction\":\"#/$defs/SetDirectionOperation\",\"set_repair_policy\":\"#/$defs/SetRepairPolicyOperation\",\"set_weight\":\"#/$defs/SetWeightOperation\"},\"propertyName\":\"op\"},\"oneOf\":[{\"$ref\":\"#/$defs/SetWeightOperation\"},{\"$ref\":\"#/$defs/AddTermOperation\"},{\"$ref\":\"#/$defs/RemoveTermOperation\"},{\"$ref\":\"#/$defs/SetDirectionOperation\"},{\"$ref\":\"#/$defs/SetRepairPolicyOperation\"}]},\"maxItems\":8,\"minItems\":1,\"title\":\"Operations\",\"type\":\"array\"},\"rationale\":{\"default\":\"\",\"maxLength\":500,\"title\":\"Rationale\",\"type\":\"string\"},\"version\":{\"const\":\"1.0\",\"default\":\"1.0\",\"title\":\"Version\",\"type\":\"string\"}},\"required\":[\"operations\"],\"title\":\"HeuristicPatch\",\"type\":\"object\"}\n",
+          "purpose": "conflict_patch",
+          "request_id": "req_653091ca5b27e848"
+        },
+        "request_fingerprint": "653091ca5b27e848c1a4b4b8235fcd24ae61cca8fe7eadeab4af2382925d7c61",
+        "response": {
+          "cached": false,
+          "created_at": "2026-08-25T10:49:02.660877Z",
+          "latency_ms": 2848.4626000281423,
+          "metadata": {
+            "api": "chat_completions",
+            "finish_reason": "stop",
+            "prompt_cache_hit_tokens": 256,
+            "prompt_cache_miss_tokens": 2756,
+            "reasoning_effort": null,
+            "requested_model": "deepseek-v4-pro",
+            "response_id": "a4bfd6e4-54d9-4766-b337-ace47b4a3039",
+            "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+            "thinking": "disabled"
+          },
+          "model": "deepseek-v4-pro",
+          "parsed": {
+            "operations": [
+              {
+                "actions": [
+                  "reroute",
+                  "move_bottleneck_service",
+                  "bounded_backtrack"
+                ],
+                "component": "repair_policy",
+                "op": "set_repair_policy"
+              }
+            ],
+            "rationale": "The current repair policy lacks move_bottleneck_service, which may help resolve QoS latency violations by relocating bottleneck services. Adding this action could reduce latency without affecting migration budget.",
+            "version": "1.0"
+          },
+          "provider": "deepseek",
+          "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_repair_policy\",\n      \"component\": \"repair_policy\",\n      \"actions\": [\"reroute\", \"move_bottleneck_service\", \"bounded_backtrack\"]\n    }\n  ],\n  \"rationale\": \"The current repair policy lacks move_bottleneck_service, which may help resolve QoS latency violations by relocating bottleneck services. Adding this action could reduce latency without affecting migration budget.\",\n  \"version\": \"1.0\"\n}",
+          "replayed": false,
+          "request_fingerprint": "5b70ffd2e5d65e40445c97c07a37a1ff1b87f542724421a52f73f9481d8529db",
+          "request_id": "req_5b70ffd2e5d65e40",
+          "usage": {
+            "input_tokens": 3012,
+            "output_tokens": 106
+          }
+        },
+        "status": "schema_valid"
+      },
+      {
+        "adapter_version": "1.0.0",
+        "error": null,
+        "request": {
+          "expected_output": "HeuristicPatch JSON object, schema version 1.0",
+          "metadata": {
+            "allowed_components": [
+              "service_order",
+              "node_score",
+              "path_score"
+            ],
+            "conflict_graph_signature": "bdfdba7b07c8b8458bdfaad5de46bf7b2903cb0b1c1cc90cb4371fb549c3538d",
+            "feedback_mode": "conflict_directed",
+            "prompt_version": "paired_final_v1_3_4293e7e10e5b",
+            "refinement_phase": "objective",
+            "scenario_hash": "88dad7f423fb92cfb9d6a3e61c5689101c028b69dd6f6dfe64eb90687a8ba706"
+          },
+          "prompt": "You synthesize one bounded patch for a typed optimization heuristic.\n\nReturn exactly one JSON object and no prose. The object must satisfy the supplied\nHeuristicPatch schema. Use only components listed in `allowed_components`, do not\nexceed `max_patch_operations`, and obey `patch_affordances`. Never invent\nfeatures, operations, entities, measurements, or constraints.\n\nFollow `refinement_phase`:\n\n- `feasibility`: make the smallest causally relevant change supported by\n  `feedback_payload`. In conflict-directed mode, use the constraint-decision\n  graph and modify only authorized components. In generic or no-feedback mode,\n  use only the information actually present; do not assume hidden violations.\n- `objective`: the parent plan is verifier-approved. Use\n  `current_weighted_contributions`, `execution_summary`, and\n  `previous_objective_evaluations` to propose one testable mutation that may\n  reduce `weighted_objective` while preserving hard constraints. Do not repeat\n  a blocked or previously non-improving operation target.\n\nEvery weighted-score component selects the largest score. Use `set_weight` or\n`remove_term` only for an existing term and `add_term` only for an absent term.\nA rationale may state one short causal hypothesis, but must not claim an\nimprovement before deterministic evaluation.\n\nCONTEXT_JSON:\n{\"allowed_components\":[\"service_order\",\"node_score\",\"path_score\"],\"blocked_operator_targets\":[],\"counterexample_summary\":null,\"execution_summary\":{\"decision_trace\":[{\"scores\":{\"analyze\":0.7666666666666666,\"ingest\":0.7599999999999999,\"respond\":0.0},\"selected_order\":[\"ingest\",\"analyze\",\"respond\"],\"stage\":\"service_order\"},{\"candidate_policy\":\"eligibility_and_capacity_masked\",\"eligible_capacity_candidates\":[\"sat-a\",\"sat-b\"],\"feasible_masks_enabled\":true,\"raw_features\":{\"sat-a\":{\"dependency_latency\":0.0,\"migration_penalty\":1.0,\"predicted_contact_duration\":11.0,\"residual_compute_ratio\":0.8333333333333334,\"residual_memory_ratio\":0.875},\"sat-b\":{\"dependency_latency\":0.0,\"migration_penalty\":0.0,\"predicted_contact_duration\":11.0,\"residual_compute_ratio\":0.8,\"residual_memory_ratio\":0.8333333333333334}},\"scores\":{\"sat-a\":0.3,\"sat-b\":0.0},\"selected_node\":\"sat-a\",\"service_id\":\"ingest\",\"stage\":\"placement\"},{\"candidate_policy\":\"eligibility_and_capacity_masked\",\"eligible_capacity_candidates\":[\"sat-a\",\"sat-b\",\"sat-c\"],\"feasible_masks_enabled\":true,\"raw_features\":{\"sat-a\":{\"dependency_latency\":0.0,\"migration_penalty\":1.0,\"predicted_contact_duration\":11.0,\"residual_compute_ratio\":0.5,\"residual_memory_ratio\":0.625},\"sat-b\":{\"dependency_latency\":45.67363042998921,\"migration_penalty\":0.0,\"predicted_contact_duration\":11.0,\"residual_compute_ratio\":0.6,\"residual_memory_ratio\":0.6666666666666666},\"sat-c\":{\"dependency_latency\":79.35453897183798,\"migration_penalty\":1.0,\"predicted_contact_duration\":11.0,\"residual_compute_ratio\":0.5,\"residual_memory_ratio\":0.6}},\"scores\":{\"sat-a\":0.0,\"sat-b\":-0.10289492844686271,\"sat-c\":-0.7},\"selected_node\":\"sat-a\",\"service_id\":\"analyze\",\"stage\":\"placement\"},{\"candidate_policy\":\"eligibility_and_capacity_masked\",\"eligible_capacity_candidates\":[\"sat-b\",\"sat-c\"],\"feasible_masks_enabled\":true,\"raw_features\":{\"sat-b\":{\"dependency_latency\":25.452119499934287,\"migration_penalty\":0.0,\"predicted_contact_duration\":11.0,\"residual_compute_ratio\":0.8,\"residual_memory_ratio\":0.8333333333333334},\"sat-c\":{\"dependency_latency\":47.0001214837501,\"migration_penalty\":1.0,\"predicted_contact_duration\":11.0,\"residual_compute_ratio\":0.75,\"residual_memory_ratio\":0.8}},\"scores\":{\"sat-b\":0.3,\"sat-c\":-0.7},\"selected_node\":\"sat-b\",\"service_id\":\"respond\",\"stage\":\"placement\"},{\"candidate_policy\":\"contact_window_masked\",\"candidates\":[[\"sat-a\",\"sat-b\"],[\"sat-a\",\"sat-c\",\"sat-b\"]],\"edge_id\":\"analyze-respond\",\"feasible_masks_enabled\":true,\"raw_features\":{\"sat-a->sat-b\":{\"bottleneck_bandwidth\":85.77816,\"contact_duration\":11.0,\"hop_count\":1.0,\"path_latency\":25.452119499934287},\"sat-a->sat-c->sat-b\":{\"bottleneck_bandwidth\":53.61135,\"contact_duration\":11.0,\"hop_count\":2.0,\"path_latency\":81.28498805498778}},\"scores\":{\"sat-a->sat-b\":0.2,\"sat-a->sat-c->sat-b\":-0.8},\"selected_path\":[\"sat-a\",\"sat-b\"],\"stage\":\"routing\"},{\"candidate_policy\":\"contact_window_masked\",\"candidates\":[[\"sat-a\"]],\"edge_id\":\"ingest-analyze\",\"feasible_masks_enabled\":true,\"raw_features\":{\"sat-a\":{\"bottleneck_bandwidth\":85.77816,\"contact_duration\":11.0,\"hop_count\":0.0,\"path_latency\":0.0}},\"scores\":{\"sat-a\":0.0},\"selected_path\":[\"sat-a\"],\"stage\":\"routing\"}],\"latency_breakdown\":{\"e2e_latency_ms\":93.43245389787354,\"edge_timings\":{\"analyze-respond\":{\"edge_id\":\"analyze-respond\",\"link_ids\":[],\"path\":[\"sat-b\"],\"propagation_ms\":0.0,\"source_service\":\"analyze\",\"target_service\":\"respond\",\"total_ms\":0.0,\"transmission_ms\":0.0},\"ingest-analyze\":{\"edge_id\":\"ingest-analyze\",\"link_ids\":[],\"path\":[\"sat-b\"],\"propagation_ms\":0.0,\"source_service\":\"ingest\",\"target_service\":\"analyze\",\"total_ms\":0.0,\"transmission_ms\":0.0}},\"metric\":\"dag_sink_completion_ms\",\"service_timings\":{\"analyze\":{\"critical_predecessor\":\"ingest\",\"finish_ms\":74.74596311829883,\"node_id\":\"sat-b\",\"processing_ms\":49.830642078865885,\"ready_ms\":24.915321039432943,\"service_id\":\"analyze\"},\"ingest\":{\"critical_predecessor\":null,\"finish_ms\":24.915321039432943,\"node_id\":\"sat-b\",\"processing_ms\":24.915321039432943,\"ready_ms\":0.0,\"service_id\":\"ingest\"},\"respond\":{\"critical_predecessor\":\"analyze\",\"finish_ms\":93.43245389787354,\"node_id\":\"sat-b\",\"processing_ms\":18.68649077957471,\"ready_ms\":74.74596311829883,\"service_id\":\"respond\"}},\"sink_services\":[\"respond\"]},\"placement\":{\"analyze\":\"sat-b\",\"ingest\":\"sat-b\",\"respond\":\"sat-b\"},\"routes\":[{\"edge_id\":\"analyze-respond\",\"path\":[\"sat-b\"]},{\"edge_id\":\"ingest-analyze\",\"path\":[\"sat-b\"]}],\"trace_truncated\":false},\"feedback\":{\"current_objective\":{\"e2e_latency_ms\":93.43245389787354,\"energy_proxy\":0.0,\"load_imbalance\":1.4142135623730954,\"metric_version\":\"0.1.0\",\"migration_cost\":0.0,\"planning_time_ms\":5.421499954536557,\"weighted_objective\":93.57387525411086},\"current_weighted_contributions\":{\"energy_proxy\":0.0,\"latency\":93.43245389787354,\"load_imbalance\":0.14142135623730953,\"migration_cost\":0.0},\"incumbent_objective\":{\"e2e_latency_ms\":93.43245389787354,\"energy_proxy\":0.0,\"load_imbalance\":1.4142135623730954,\"metric_version\":\"0.1.0\",\"migration_cost\":0.0,\"planning_time_ms\":5.421499954536557,\"weighted_objective\":93.57387525411086},\"mode\":\"objective_directed\",\"requirement\":\"minimize weighted_objective while preserving all hard constraints\"},\"feedback_mode\":\"conflict_directed\",\"max_patch_operations\":4,\"objective_gap\":0.0,\"operator_catalog\":{\"node_score\":{\"effect\":\"selects the placement node with the largest weighted score\",\"features\":{\"dependency_latency\":\"larger means higher predecessor communication latency\",\"migration_penalty\":\"equals 1 when the node differs from previous placement and 0 otherwise; a negative weight discourages migrations\",\"predicted_contact_duration\":\"larger means a longer contact window\",\"residual_compute_ratio\":\"larger favors remaining compute capacity\",\"residual_memory_ratio\":\"larger favors remaining memory capacity\"}},\"patch_operations\":{\"add_term\":\"adds an available feature that is absent from a score component\",\"remove_term\":\"removes exactly one existing score feature\",\"set_direction\":\"changes only service_order ascending/descending direction\",\"set_repair_policy\":\"replaces the post-construction repair action sequence\",\"set_weight\":\"changes exactly one feature already present in a score component\"},\"path_score\":{\"effect\":\"selects a route after placement; it cannot change node placement\",\"features\":{\"bottleneck_bandwidth\":\"larger means more path bandwidth\",\"contact_duration\":\"minimum remaining contact time on the path\",\"hop_count\":\"number of physical links\",\"path_latency\":\"larger means higher route latency\"}},\"repair_policy\":{\"actions\":[\"reroute\",\"move_bottleneck_service\",\"swap_services\",\"bounded_backtrack\"],\"effect\":\"runs bounded local repair after construction; changing the policy does not directly change the primary node score\"},\"service_order\":{\"effect\":\"orders services before placement; it does not select nodes\",\"features\":{\"critical_path_rank\":\"larger means more downstream critical work\",\"resource_demand_ratio\":\"larger means higher relative resource demand\",\"successor_count\":\"number of direct service successors\",\"workload_ratio\":\"service workload magnitude\"}}},\"parent_dsl\":{\"node_score\":{\"op\":\"weighted_sum\",\"terms\":[{\"feature\":\"dependency_latency\",\"weight\":-0.7},{\"feature\":\"residual_compute_ratio\",\"weight\":0.3}]},\"path_score\":{\"op\":\"weighted_sum\",\"terms\":[{\"feature\":\"bottleneck_bandwidth\",\"weight\":0.2},{\"feature\":\"path_latency\",\"weight\":-0.8}]},\"repair_policy\":[\"reroute\",\"move_bottleneck_service\",\"bounded_backtrack\"],\"service_order\":{\"direction\":\"descending\",\"op\":\"weighted_sum\",\"terms\":[{\"feature\":\"critical_path_rank\",\"weight\":0.7},{\"feature\":\"workload_ratio\",\"weight\":0.3}]},\"version\":\"1.0\"},\"patch_affordances\":{\"node_score\":{\"absent_terms_for_add\":[\"residual_memory_ratio\",\"predicted_contact_duration\",\"migration_penalty\"],\"existing_terms_for_set_or_remove\":[\"dependency_latency\",\"residual_compute_ratio\"]},\"path_score\":{\"absent_terms_for_add\":[\"hop_count\",\"contact_duration\"],\"existing_terms_for_set_or_remove\":[\"path_latency\",\"bottleneck_bandwidth\"]},\"repair_policy\":{\"available_actions\":[\"reroute\",\"move_bottleneck_service\",\"swap_services\",\"bounded_backtrack\"],\"current_actions\":[\"reroute\",\"move_bottleneck_service\",\"bounded_backtrack\"]},\"service_order\":{\"absent_terms_for_add\":[\"resource_demand_ratio\",\"successor_count\"],\"current_direction\":\"descending\",\"existing_terms_for_set_or_remove\":[\"critical_path_rank\",\"workload_ratio\"]}},\"previous_objective_evaluations\":[],\"previous_patch_rejections\":[],\"refinement_phase\":\"objective\",\"scenario_summary\":{\"dependency_count\":2,\"migration_budget\":0,\"node_count\":3,\"objective_weights\":{\"energy_proxy\":0.0,\"latency\":1.0,\"load_imbalance\":0.1,\"migration_cost\":0.2},\"qos_latency_ms\":98.104077,\"scenario_hash\":\"88dad7f423fb92cfb9d6a3e61c5689101c028b69dd6f6dfe64eb90687a8ba706\",\"scenario_id\":\"paired_final_joint_constraint_seed_210\",\"service_count\":3,\"time_slot\":0}}\n\nHEURISTIC_PATCH_JSON_SCHEMA:\n{\"$defs\":{\"AddTermOperation\":{\"additionalProperties\":false,\"properties\":{\"component\":{\"enum\":[\"service_order\",\"node_score\",\"path_score\"],\"title\":\"Component\",\"type\":\"string\"},\"feature\":{\"minLength\":1,\"title\":\"Feature\",\"type\":\"string\"},\"op\":{\"const\":\"add_term\",\"title\":\"Op\",\"type\":\"string\"},\"weight\":{\"title\":\"Weight\",\"type\":\"number\"}},\"required\":[\"component\",\"feature\",\"weight\",\"op\"],\"title\":\"AddTermOperation\",\"type\":\"object\"},\"RemoveTermOperation\":{\"additionalProperties\":false,\"properties\":{\"component\":{\"enum\":[\"service_order\",\"node_score\",\"path_score\"],\"title\":\"Component\",\"type\":\"string\"},\"feature\":{\"minLength\":1,\"title\":\"Feature\",\"type\":\"string\"},\"op\":{\"const\":\"remove_term\",\"title\":\"Op\",\"type\":\"string\"}},\"required\":[\"op\",\"component\",\"feature\"],\"title\":\"RemoveTermOperation\",\"type\":\"object\"},\"RepairAction\":{\"enum\":[\"reroute\",\"move_bottleneck_service\",\"swap_services\",\"bounded_backtrack\"],\"title\":\"RepairAction\",\"type\":\"string\"},\"SetDirectionOperation\":{\"additionalProperties\":false,\"properties\":{\"component\":{\"const\":\"service_order\",\"title\":\"Component\",\"type\":\"string\"},\"direction\":{\"enum\":[\"ascending\",\"descending\"],\"title\":\"Direction\",\"type\":\"string\"},\"op\":{\"const\":\"set_direction\",\"title\":\"Op\",\"type\":\"string\"}},\"required\":[\"op\",\"component\",\"direction\"],\"title\":\"SetDirectionOperation\",\"type\":\"object\"},\"SetRepairPolicyOperation\":{\"additionalProperties\":false,\"properties\":{\"actions\":{\"items\":{\"$ref\":\"#/$defs/RepairAction\"},\"maxItems\":4,\"title\":\"Actions\",\"type\":\"array\"},\"component\":{\"const\":\"repair_policy\",\"title\":\"Component\",\"type\":\"string\"},\"op\":{\"const\":\"set_repair_policy\",\"title\":\"Op\",\"type\":\"string\"}},\"required\":[\"op\",\"component\",\"actions\"],\"title\":\"SetRepairPolicyOperation\",\"type\":\"object\"},\"SetWeightOperation\":{\"additionalProperties\":false,\"properties\":{\"component\":{\"enum\":[\"service_order\",\"node_score\",\"path_score\"],\"title\":\"Component\",\"type\":\"string\"},\"feature\":{\"minLength\":1,\"title\":\"Feature\",\"type\":\"string\"},\"op\":{\"const\":\"set_weight\",\"title\":\"Op\",\"type\":\"string\"},\"weight\":{\"title\":\"Weight\",\"type\":\"number\"}},\"required\":[\"component\",\"feature\",\"weight\",\"op\"],\"title\":\"SetWeightOperation\",\"type\":\"object\"}},\"additionalProperties\":false,\"properties\":{\"operations\":{\"items\":{\"discriminator\":{\"mapping\":{\"add_term\":\"#/$defs/AddTermOperation\",\"remove_term\":\"#/$defs/RemoveTermOperation\",\"set_direction\":\"#/$defs/SetDirectionOperation\",\"set_repair_policy\":\"#/$defs/SetRepairPolicyOperation\",\"set_weight\":\"#/$defs/SetWeightOperation\"},\"propertyName\":\"op\"},\"oneOf\":[{\"$ref\":\"#/$defs/SetWeightOperation\"},{\"$ref\":\"#/$defs/AddTermOperation\"},{\"$ref\":\"#/$defs/RemoveTermOperation\"},{\"$ref\":\"#/$defs/SetDirectionOperation\"},{\"$ref\":\"#/$defs/SetRepairPolicyOperation\"}]},\"maxItems\":8,\"minItems\":1,\"title\":\"Operations\",\"type\":\"array\"},\"rationale\":{\"default\":\"\",\"maxLength\":500,\"title\":\"Rationale\",\"type\":\"string\"},\"version\":{\"const\":\"1.0\",\"default\":\"1.0\",\"title\":\"Version\",\"type\":\"string\"}},\"required\":[\"operations\"],\"title\":\"HeuristicPatch\",\"type\":\"object\"}\n",
+          "purpose": "conflict_patch",
+          "request_id": "req_774471055433f4cb"
+        },
+        "request_fingerprint": "774471055433f4cb61436c3d80e99a94d22c4e049da5d528a78c4b02526b97ab",
+        "response": {
+          "cached": false,
+          "created_at": "2026-08-25T10:49:05.004695Z",
+          "latency_ms": 2330.055699974764,
+          "metadata": {
+            "api": "chat_completions",
+            "finish_reason": "stop",
+            "prompt_cache_hit_tokens": 384,
+            "prompt_cache_miss_tokens": 3372,
+            "reasoning_effort": null,
+            "requested_model": "deepseek-v4-pro",
+            "response_id": "d4d569e1-f504-44d3-b21e-4c43bee07fa8",
+            "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+            "thinking": "disabled"
+          },
+          "model": "deepseek-v4-pro",
+          "parsed": {
+            "operations": [
+              {
+                "component": "node_score",
+                "feature": "dependency_latency",
+                "op": "set_weight",
+                "weight": -0.5
+              }
+            ],
+            "rationale": "Reduce the penalty on dependency_latency to allow more flexible placement, potentially lowering latency by avoiding over-penalization.",
+            "version": "1.0"
+          },
+          "provider": "deepseek",
+          "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": -0.5\n    }\n  ],\n  \"rationale\": \"Reduce the penalty on dependency_latency to allow more flexible placement, potentially lowering latency by avoiding over-penalization.\",\n  \"version\": \"1.0\"\n}",
+          "replayed": false,
+          "request_fingerprint": "49cc36d030439f2ac2f4f8260af84981e5a5ceffd546d5be4411760ad2b2e2b9",
+          "request_id": "req_49cc36d030439f2a",
+          "usage": {
+            "input_tokens": 3756,
+            "output_tokens": 87
+          }
+        },
+        "status": "schema_valid"
+      }
+    ],
+    "search_result": {
+      "best_candidate_id": "candidate_001",
+      "controller_version": "0.6.0",
+      "counterexamples": [
+        {
+          "archive_version": "1.0.0",
+          "ast_signatures": [
+            "79ea2b13d646ddf352883fae498440397f600e094c3e95778892f09cd4cf4d79"
+          ],
+          "candidate_ids": [
+            "candidate_000"
+          ],
+          "counterexample_id": "cex_26605d642d05",
+          "entities": [
+            "analyze",
+            "ingest",
+            "paired_final_joint_constraint_seed_210"
+          ],
+          "first_iteration": 0,
+          "last_iteration": 0,
+          "latest_conflict_graph_signature": "effa849a085720f077a5923057b4ace1187949c3d12cc2dc6af2d69995ed2324",
+          "max_violation_burden": 2.0594399738774163,
+          "observation_count": 1,
+          "repair_failures": 0,
+          "scenario_hash": "88dad7f423fb92cfb9d6a3e61c5689101c028b69dd6f6dfe64eb90687a8ba706",
+          "scenario_id": "paired_final_joint_constraint_seed_210",
+          "signature": "26605d642d05790545acbf6d1bbc7736f3e4166019392f07714d8f4c6810817c",
+          "violation_types": [
+            "migration_budget",
+            "qos_latency"
+          ]
+        }
+      ],
+      "diverse_candidate_ids": [
+        "candidate_001",
+        "candidate_002_probe_01"
+      ],
+      "features": {
+        "counterexample_memory_enabled": true,
+        "counterfactual_weight_probe_enabled": true,
+        "feasible_masks_enabled": true,
+        "feedback_mode": "conflict_directed",
+        "objective_refinement_enabled": true,
+        "repair_actions_enabled": true,
+        "structural_diversity_enabled": true
+      },
+      "objective_patch_evaluations": [
+        {
+          "child_candidate_id": "candidate_002",
+          "child_weighted_objective": 93.57387525411086,
+          "improved": false,
+          "improvement": 0.0,
+          "occurrence_count": 1,
+          "parent_candidate_id": "candidate_001",
+          "parent_weighted_objective": 93.57387525411086,
+          "patch": {
+            "operations": [
+              {
+                "component": "node_score",
+                "feature": "dependency_latency",
+                "op": "set_weight",
+                "weight": -0.5
+              }
+            ],
+            "rationale": "Reduce the penalty on dependency_latency to allow more flexible placement, potentially lowering latency by avoiding over-penalization.",
+            "version": "1.0"
+          },
+          "patch_signature": "182939e5e5856545109657eb982ed7b13125eb77e674d39746b4444825bef56c",
+          "source": "llm_proposal"
+        },
+        {
+          "child_candidate_id": "candidate_002_probe_01",
+          "child_weighted_objective": 93.57387525411086,
+          "improved": false,
+          "improvement": 0.0,
+          "occurrence_count": 1,
+          "parent_candidate_id": "candidate_001",
+          "parent_weighted_objective": 93.57387525411086,
+          "patch": {
+            "operations": [
+              {
+                "component": "node_score",
+                "feature": "dependency_latency",
+                "op": "set_weight",
+                "weight": 0.5
+              }
+            ],
+            "rationale": "LLM-selected feature sign-flip probe.",
+            "version": "1.0"
+          },
+          "patch_signature": "8124caf9f32b2a98f1044dd025bb95d25efa95187f695b2ef58176db193ad75b",
+          "source": "counterfactual_probe"
+        },
+        {
+          "child_candidate_id": "candidate_002_probe_02",
+          "child_weighted_objective": 93.57387525411086,
+          "improved": false,
+          "improvement": 0.0,
+          "occurrence_count": 1,
+          "parent_candidate_id": "candidate_001",
+          "parent_weighted_objective": 93.57387525411086,
+          "patch": {
+            "operations": [
+              {
+                "component": "node_score",
+                "feature": "residual_compute_ratio",
+                "op": "set_weight",
+                "weight": -0.3
+              }
+            ],
+            "rationale": "Component-neighborhood sign-flip probe.",
+            "version": "1.0"
+          },
+          "patch_signature": "034ea6841eb46e982480d2afd01cf39cd5c3a70d7515fd8119b0a3a31f0a8673",
+          "source": "counterfactual_probe"
+        }
+      ],
+      "records": [
+        {
+          "ast_signature": "79ea2b13d646ddf352883fae498440397f600e094c3e95778892f09cd4cf4d79",
+          "candidate_id": "candidate_000",
+          "category": "repairable",
+          "conflict_graph": {
+            "allowed_components": [
+              "service_order",
+              "node_score",
+              "path_score",
+              "repair_policy"
+            ],
+            "edges": [
+              {
+                "constraint_id": "constraint:000:migration_budget",
+                "contribution": 0.5,
+                "decision_id": "decision:migrate:analyze:sat-b->sat-a"
+              },
+              {
+                "constraint_id": "constraint:000:migration_budget",
+                "contribution": 0.5,
+                "decision_id": "decision:migrate:ingest:sat-b->sat-a"
+              },
+              {
+                "constraint_id": "constraint:001:qos_latency",
+                "contribution": 0.2,
+                "decision_id": "decision:place:analyze@sat-a"
+              },
+              {
+                "constraint_id": "constraint:001:qos_latency",
+                "contribution": 0.2,
+                "decision_id": "decision:place:ingest@sat-a"
+              },
+              {
+                "constraint_id": "constraint:001:qos_latency",
+                "contribution": 0.2,
+                "decision_id": "decision:place:respond@sat-b"
+              },
+              {
+                "constraint_id": "constraint:001:qos_latency",
+                "contribution": 0.2,
+                "decision_id": "decision:route:analyze-respond"
+              },
+              {
+                "constraint_id": "constraint:001:qos_latency",
+                "contribution": 0.2,
+                "decision_id": "decision:route:ingest-analyze"
+              }
+            ],
+            "graph_signature": "effa849a085720f077a5923057b4ace1187949c3d12cc2dc6af2d69995ed2324",
+            "nodes": [
+              {
+                "kind": "constraint",
+                "label": "migration_budget",
+                "magnitude": 2.0,
+                "metadata": {
+                  "dsl_components": [
+                    "node_score",
+                    "repair_policy"
+                  ],
+                  "entities": [
+                    "analyze",
+                    "ingest"
+                  ],
+                  "message": "migration count 2 exceeds budget 0",
+                  "original_index": 1
+                },
+                "node_id": "constraint:000:migration_budget"
+              },
+              {
+                "kind": "constraint",
+                "label": "qos_latency",
+                "magnitude": 0.05943997387741647,
+                "metadata": {
+                  "dsl_components": [
+                    "service_order",
+                    "node_score",
+                    "path_score",
+                    "repair_policy"
+                  ],
+                  "entities": [
+                    "paired_final_joint_constraint_seed_210"
+                  ],
+                  "message": "E2E latency 103.935ms exceeds QoS 98.1041ms",
+                  "original_index": 0
+                },
+                "node_id": "constraint:001:qos_latency"
+              },
+              {
+                "kind": "decision",
+                "label": "migrate:analyze:sat-b->sat-a",
+                "magnitude": 0.0,
+                "metadata": {},
+                "node_id": "decision:migrate:analyze:sat-b->sat-a"
+              },
+              {
+                "kind": "decision",
+                "label": "migrate:ingest:sat-b->sat-a",
+                "magnitude": 0.0,
+                "metadata": {},
+                "node_id": "decision:migrate:ingest:sat-b->sat-a"
+              },
+              {
+                "kind": "decision",
+                "label": "place:analyze@sat-a",
+                "magnitude": 0.0,
+                "metadata": {},
+                "node_id": "decision:place:analyze@sat-a"
+              },
+              {
+                "kind": "decision",
+                "label": "place:ingest@sat-a",
+                "magnitude": 0.0,
+                "metadata": {},
+                "node_id": "decision:place:ingest@sat-a"
+              },
+              {
+                "kind": "decision",
+                "label": "place:respond@sat-b",
+                "magnitude": 0.0,
+                "metadata": {},
+                "node_id": "decision:place:respond@sat-b"
+              },
+              {
+                "kind": "decision",
+                "label": "route:analyze-respond",
+                "magnitude": 0.0,
+                "metadata": {},
+                "node_id": "decision:route:analyze-respond"
+              },
+              {
+                "kind": "decision",
+                "label": "route:ingest-analyze",
+                "magnitude": 0.0,
+                "metadata": {},
+                "node_id": "decision:route:ingest-analyze"
+              }
+            ],
+            "source_verifier_version": "0.1.0"
+          },
+          "execution": {
+            "executor_version": "0.3.0",
+            "failure_reason": null,
+            "plan": {
+              "candidate_id": "candidate_000",
+              "method": "typed_dsl",
+              "migrations": [
+                {
+                  "cost": 1.0,
+                  "service_id": "analyze",
+                  "source_node": "sat-b",
+                  "target_node": "sat-a"
+                },
+                {
+                  "cost": 1.0,
+                  "service_id": "ingest",
+                  "source_node": "sat-b",
+                  "target_node": "sat-a"
+                }
+              ],
+              "placement": {
+                "analyze": "sat-a",
+                "ingest": "sat-a",
+                "respond": "sat-b"
+              },
+              "resource_snapshot": {},
+              "routes": [
+                {
+                  "edge_id": "analyze-respond",
+                  "path": [
+                    "sat-a",
+                    "sat-b"
+                  ]
+                },
+                {
+                  "edge_id": "ingest-analyze",
+                  "path": [
+                    "sat-a"
+                  ]
+                }
+              ],
+              "run_id": "search_controller",
+              "status": "complete"
+            },
+            "planning_time_ms": 2.032299991697073,
+            "static_verification": {
+              "ast_signature": "79ea2b13d646ddf352883fae498440397f600e094c3e95778892f09cd4cf4d79",
+              "errors": [],
+              "valid": true,
+              "verifier_version": "0.1.0",
+              "warnings": []
+            },
+            "trace": [
+              {
+                "scores": {
+                  "analyze": 0.7666666666666666,
+                  "ingest": 0.7599999999999999,
+                  "respond": 0.0
+                },
+                "selected_order": [
+                  "ingest",
+                  "analyze",
+                  "respond"
+                ],
+                "stage": "service_order"
+              },
+              {
+                "candidate_policy": "eligibility_and_capacity_masked",
+                "eligible_capacity_candidates": [
+                  "sat-a",
+                  "sat-b"
+                ],
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-a": {
+                    "dependency_latency": 0.0,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.8333333333333334,
+                    "residual_memory_ratio": 0.875
+                  },
+                  "sat-b": {
+                    "dependency_latency": 0.0,
+                    "migration_penalty": 0.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.8,
+                    "residual_memory_ratio": 0.8333333333333334
+                  }
+                },
+                "scores": {
+                  "sat-a": 0.3,
+                  "sat-b": 0.0
+                },
+                "selected_node": "sat-a",
+                "service_id": "ingest",
+                "stage": "placement"
+              },
+              {
+                "candidate_policy": "eligibility_and_capacity_masked",
+                "eligible_capacity_candidates": [
+                  "sat-a",
+                  "sat-b",
+                  "sat-c"
+                ],
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-a": {
+                    "dependency_latency": 0.0,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.5,
+                    "residual_memory_ratio": 0.625
+                  },
+                  "sat-b": {
+                    "dependency_latency": 45.67363042998921,
+                    "migration_penalty": 0.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.6,
+                    "residual_memory_ratio": 0.6666666666666666
+                  },
+                  "sat-c": {
+                    "dependency_latency": 79.35453897183798,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.5,
+                    "residual_memory_ratio": 0.6
+                  }
+                },
+                "scores": {
+                  "sat-a": 0.0,
+                  "sat-b": -0.10289492844686271,
+                  "sat-c": -0.7
+                },
+                "selected_node": "sat-a",
+                "service_id": "analyze",
+                "stage": "placement"
+              },
+              {
+                "candidate_policy": "eligibility_and_capacity_masked",
+                "eligible_capacity_candidates": [
+                  "sat-b",
+                  "sat-c"
+                ],
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-b": {
+                    "dependency_latency": 25.452119499934287,
+                    "migration_penalty": 0.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.8,
+                    "residual_memory_ratio": 0.8333333333333334
+                  },
+                  "sat-c": {
+                    "dependency_latency": 47.0001214837501,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.75,
+                    "residual_memory_ratio": 0.8
+                  }
+                },
+                "scores": {
+                  "sat-b": 0.3,
+                  "sat-c": -0.7
+                },
+                "selected_node": "sat-b",
+                "service_id": "respond",
+                "stage": "placement"
+              },
+              {
+                "candidate_policy": "contact_window_masked",
+                "candidates": [
+                  [
+                    "sat-a",
+                    "sat-b"
+                  ],
+                  [
+                    "sat-a",
+                    "sat-c",
+                    "sat-b"
+                  ]
+                ],
+                "edge_id": "analyze-respond",
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-a->sat-b": {
+                    "bottleneck_bandwidth": 85.77816,
+                    "contact_duration": 11.0,
+                    "hop_count": 1.0,
+                    "path_latency": 25.452119499934287
+                  },
+                  "sat-a->sat-c->sat-b": {
+                    "bottleneck_bandwidth": 53.61135,
+                    "contact_duration": 11.0,
+                    "hop_count": 2.0,
+                    "path_latency": 81.28498805498778
+                  }
+                },
+                "scores": {
+                  "sat-a->sat-b": 0.2,
+                  "sat-a->sat-c->sat-b": -0.8
+                },
+                "selected_path": [
+                  "sat-a",
+                  "sat-b"
+                ],
+                "stage": "routing"
+              },
+              {
+                "candidate_policy": "contact_window_masked",
+                "candidates": [
+                  [
+                    "sat-a"
+                  ]
+                ],
+                "edge_id": "ingest-analyze",
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-a": {
+                    "bottleneck_bandwidth": 85.77816,
+                    "contact_duration": 11.0,
+                    "hop_count": 0.0,
+                    "path_latency": 0.0
+                  }
+                },
+                "scores": {
+                  "sat-a": 0.0
+                },
+                "selected_path": [
+                  "sat-a"
+                ],
+                "stage": "routing"
+              },
+              {
+                "accepted_actions": 0,
+                "action_trace": [
+                  {
+                    "accepted_rounds": 0,
+                    "action": "reroute",
+                    "after_profile": [
+                      1,
+                      2,
+                      2.0594399738774163,
+                      [
+                        "migration_budget",
+                        "qos_latency"
+                      ]
+                    ],
+                    "before_profile": [
+                      1,
+                      2,
+                      2.0594399738774163,
+                      [
+                        "migration_budget",
+                        "qos_latency"
+                      ]
+                    ],
+                    "rounds": [
+                      {
+                        "accepted": false,
+                        "after_profile": [
+                          1,
+                          2,
+                          2.0594399738774163,
+                          [
+                            "migration_budget",
+                            "qos_latency"
+                          ]
+                        ],
+                        "attempts": [
+                          {
+                            "plan_signature": "65da1350e259c13678d15f31cba2da7ff524f4969f65dccc5179ef93add17326",
+                            "profile": [
+                              1,
+                              2,
+                              2.628558712490629,
+                              [
+                                "migration_budget",
+                                "qos_latency"
+                              ]
+                            ],
+                            "selected": false
+                          }
+                        ],
+                        "before_profile": [
+                          1,
+                          2,
+                          2.0594399738774163,
+                          [
+                            "migration_budget",
+                            "qos_latency"
+                          ]
+                        ]
+                      }
+                    ],
+                    "status": "no_improvement"
+                  },
+                  {
+                    "action": "bounded_backtrack",
+                    "attempts": [],
+                    "before_profile": [
+                      1,
+                      2,
+                      2.0594399738774163,
+                      [
+                        "migration_budget",
+                        "qos_latency"
+                      ]
+                    ],
+                    "status": "not_applicable"
+                  }
+                ],
+                "actions": [
+                  "reroute",
+                  "bounded_backtrack"
+                ],
+                "attempt_count": 1,
+                "budget_exhausted": false,
+                "final_feasible": false,
+                "stage": "repair_policy"
+              }
+            ]
+          },
+          "iteration": 0,
+          "objective": null,
+          "parent_id": null,
+          "program": {
+            "node_score": {
+              "op": "weighted_sum",
+              "terms": [
+                {
+                  "feature": "dependency_latency",
+                  "weight": -0.7
+                },
+                {
+                  "feature": "residual_compute_ratio",
+                  "weight": 0.3
+                }
+              ]
+            },
+            "path_score": {
+              "op": "weighted_sum",
+              "terms": [
+                {
+                  "feature": "path_latency",
+                  "weight": -0.8
+                },
+                {
+                  "feature": "bottleneck_bandwidth",
+                  "weight": 0.2
+                }
+              ]
+            },
+            "repair_policy": [
+              "reroute",
+              "bounded_backtrack"
+            ],
+            "service_order": {
+              "direction": "descending",
+              "op": "weighted_sum",
+              "terms": [
+                {
+                  "feature": "critical_path_rank",
+                  "weight": 0.7
+                },
+                {
+                  "feature": "workload_ratio",
+                  "weight": 0.3
+                }
+              ]
+            },
+            "version": "1.0"
+          },
+          "verification": {
+            "feasible": false,
+            "verifier_version": "0.1.0",
+            "violations": [
+              {
+                "contributing_decisions": [
+                  "place:analyze@sat-a",
+                  "place:ingest@sat-a",
+                  "place:respond@sat-b",
+                  "route:analyze-respond",
+                  "route:ingest-analyze"
+                ],
+                "decision_contributions": {
+                  "place:analyze@sat-a": 0.2,
+                  "place:ingest@sat-a": 0.2,
+                  "place:respond@sat-b": 0.2,
+                  "route:analyze-respond": 0.2,
+                  "route:ingest-analyze": 0.2
+                },
+                "dsl_components": [
+                  "service_order",
+                  "node_score",
+                  "path_score",
+                  "repair_policy"
+                ],
+                "entities": [
+                  "paired_final_joint_constraint_seed_210"
+                ],
+                "magnitude": 0.05943997387741647,
+                "message": "E2E latency 103.935ms exceeds QoS 98.1041ms",
+                "violation_type": "qos_latency"
+              },
+              {
+                "contributing_decisions": [
+                  "migrate:analyze:sat-b->sat-a",
+                  "migrate:ingest:sat-b->sat-a"
+                ],
+                "decision_contributions": {
+                  "migrate:analyze:sat-b->sat-a": 0.5,
+                  "migrate:ingest:sat-b->sat-a": 0.5
+                },
+                "dsl_components": [
+                  "node_score",
+                  "repair_policy"
+                ],
+                "entities": [
+                  "analyze",
+                  "ingest"
+                ],
+                "magnitude": 2.0,
+                "message": "migration count 2 exceeds budget 0",
+                "violation_type": "migration_budget"
+              }
+            ]
+          }
+        },
+        {
+          "ast_signature": "f281781566254b07bbb0c95df893723bba8f9f5eba5c097fb09c4a7b515a9981",
+          "candidate_id": "candidate_001",
+          "category": "feasible_elite",
+          "conflict_graph": null,
+          "execution": {
+            "executor_version": "0.3.0",
+            "failure_reason": null,
+            "plan": {
+              "candidate_id": "candidate_001",
+              "method": "typed_dsl",
+              "migrations": [],
+              "placement": {
+                "analyze": "sat-b",
+                "ingest": "sat-b",
+                "respond": "sat-b"
+              },
+              "resource_snapshot": {},
+              "routes": [
+                {
+                  "edge_id": "analyze-respond",
+                  "path": [
+                    "sat-b"
+                  ]
+                },
+                {
+                  "edge_id": "ingest-analyze",
+                  "path": [
+                    "sat-b"
+                  ]
+                }
+              ],
+              "run_id": "search_controller",
+              "status": "complete"
+            },
+            "planning_time_ms": 5.421499954536557,
+            "static_verification": {
+              "ast_signature": "f281781566254b07bbb0c95df893723bba8f9f5eba5c097fb09c4a7b515a9981",
+              "errors": [],
+              "valid": true,
+              "verifier_version": "0.1.0",
+              "warnings": []
+            },
+            "trace": [
+              {
+                "scores": {
+                  "analyze": 0.7666666666666666,
+                  "ingest": 0.7599999999999999,
+                  "respond": 0.0
+                },
+                "selected_order": [
+                  "ingest",
+                  "analyze",
+                  "respond"
+                ],
+                "stage": "service_order"
+              },
+              {
+                "candidate_policy": "eligibility_and_capacity_masked",
+                "eligible_capacity_candidates": [
+                  "sat-a",
+                  "sat-b"
+                ],
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-a": {
+                    "dependency_latency": 0.0,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.8333333333333334,
+                    "residual_memory_ratio": 0.875
+                  },
+                  "sat-b": {
+                    "dependency_latency": 0.0,
+                    "migration_penalty": 0.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.8,
+                    "residual_memory_ratio": 0.8333333333333334
+                  }
+                },
+                "scores": {
+                  "sat-a": 0.3,
+                  "sat-b": 0.0
+                },
+                "selected_node": "sat-a",
+                "service_id": "ingest",
+                "stage": "placement"
+              },
+              {
+                "candidate_policy": "eligibility_and_capacity_masked",
+                "eligible_capacity_candidates": [
+                  "sat-a",
+                  "sat-b",
+                  "sat-c"
+                ],
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-a": {
+                    "dependency_latency": 0.0,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.5,
+                    "residual_memory_ratio": 0.625
+                  },
+                  "sat-b": {
+                    "dependency_latency": 45.67363042998921,
+                    "migration_penalty": 0.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.6,
+                    "residual_memory_ratio": 0.6666666666666666
+                  },
+                  "sat-c": {
+                    "dependency_latency": 79.35453897183798,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.5,
+                    "residual_memory_ratio": 0.6
+                  }
+                },
+                "scores": {
+                  "sat-a": 0.0,
+                  "sat-b": -0.10289492844686271,
+                  "sat-c": -0.7
+                },
+                "selected_node": "sat-a",
+                "service_id": "analyze",
+                "stage": "placement"
+              },
+              {
+                "candidate_policy": "eligibility_and_capacity_masked",
+                "eligible_capacity_candidates": [
+                  "sat-b",
+                  "sat-c"
+                ],
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-b": {
+                    "dependency_latency": 25.452119499934287,
+                    "migration_penalty": 0.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.8,
+                    "residual_memory_ratio": 0.8333333333333334
+                  },
+                  "sat-c": {
+                    "dependency_latency": 47.0001214837501,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.75,
+                    "residual_memory_ratio": 0.8
+                  }
+                },
+                "scores": {
+                  "sat-b": 0.3,
+                  "sat-c": -0.7
+                },
+                "selected_node": "sat-b",
+                "service_id": "respond",
+                "stage": "placement"
+              },
+              {
+                "candidate_policy": "contact_window_masked",
+                "candidates": [
+                  [
+                    "sat-a",
+                    "sat-b"
+                  ],
+                  [
+                    "sat-a",
+                    "sat-c",
+                    "sat-b"
+                  ]
+                ],
+                "edge_id": "analyze-respond",
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-a->sat-b": {
+                    "bottleneck_bandwidth": 85.77816,
+                    "contact_duration": 11.0,
+                    "hop_count": 1.0,
+                    "path_latency": 25.452119499934287
+                  },
+                  "sat-a->sat-c->sat-b": {
+                    "bottleneck_bandwidth": 53.61135,
+                    "contact_duration": 11.0,
+                    "hop_count": 2.0,
+                    "path_latency": 81.28498805498778
+                  }
+                },
+                "scores": {
+                  "sat-a->sat-b": 0.2,
+                  "sat-a->sat-c->sat-b": -0.8
+                },
+                "selected_path": [
+                  "sat-a",
+                  "sat-b"
+                ],
+                "stage": "routing"
+              },
+              {
+                "candidate_policy": "contact_window_masked",
+                "candidates": [
+                  [
+                    "sat-a"
+                  ]
+                ],
+                "edge_id": "ingest-analyze",
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-a": {
+                    "bottleneck_bandwidth": 85.77816,
+                    "contact_duration": 11.0,
+                    "hop_count": 0.0,
+                    "path_latency": 0.0
+                  }
+                },
+                "scores": {
+                  "sat-a": 0.0
+                },
+                "selected_path": [
+                  "sat-a"
+                ],
+                "stage": "routing"
+              },
+              {
+                "accepted_actions": 2,
+                "action_trace": [
+                  {
+                    "accepted_rounds": 0,
+                    "action": "reroute",
+                    "after_profile": [
+                      1,
+                      2,
+                      2.0594399738774163,
+                      [
+                        "migration_budget",
+                        "qos_latency"
+                      ]
+                    ],
+                    "before_profile": [
+                      1,
+                      2,
+                      2.0594399738774163,
+                      [
+                        "migration_budget",
+                        "qos_latency"
+                      ]
+                    ],
+                    "rounds": [
+                      {
+                        "accepted": false,
+                        "after_profile": [
+                          1,
+                          2,
+                          2.0594399738774163,
+                          [
+                            "migration_budget",
+                            "qos_latency"
+                          ]
+                        ],
+                        "attempts": [
+                          {
+                            "plan_signature": "65da1350e259c13678d15f31cba2da7ff524f4969f65dccc5179ef93add17326",
+                            "profile": [
+                              1,
+                              2,
+                              2.628558712490629,
+                              [
+                                "migration_budget",
+                                "qos_latency"
+                              ]
+                            ],
+                            "selected": false
+                          }
+                        ],
+                        "before_profile": [
+                          1,
+                          2,
+                          2.0594399738774163,
+                          [
+                            "migration_budget",
+                            "qos_latency"
+                          ]
+                        ]
+                      }
+                    ],
+                    "status": "no_improvement"
+                  },
+                  {
+                    "accepted_rounds": 2,
+                    "action": "move_bottleneck_service",
+                    "after_profile": [
+                      0,
+                      0,
+                      0,
+                      []
+                    ],
+                    "before_profile": [
+                      1,
+                      2,
+                      2.0594399738774163,
+                      [
+                        "migration_budget",
+                        "qos_latency"
+                      ]
+                    ],
+                    "rounds": [
+                      {
+                        "accepted": true,
+                        "after_profile": [
+                          1,
+                          2,
+                          1.3671503185334097,
+                          [
+                            "migration_budget",
+                            "qos_latency"
+                          ]
+                        ],
+                        "attempts": [
+                          {
+                            "plan_signature": "7d5e581b29af6a9ce420304f364fd3c5df7ee3448e0c4aa8e4258e59042c5bb5",
+                            "profile": [
+                              1,
+                              2,
+                              1.3671503185334097,
+                              [
+                                "migration_budget",
+                                "qos_latency"
+                              ]
+                            ],
+                            "selected": true
+                          },
+                          {
+                            "plan_signature": "335f639ce3a30b08c444e06c44d8830ceadb4e839bb795fd942a09e4f1e348b3",
+                            "profile": [
+                              1,
+                              2,
+                              3.132505241216288,
+                              [
+                                "migration_budget",
+                                "qos_latency"
+                              ]
+                            ],
+                            "selected": false
+                          },
+                          {
+                            "plan_signature": "f22b290fbafbc8571aab8a743c66a161fce42849e599da47ce748980d04fbf14",
+                            "profile": [
+                              1,
+                              2,
+                              1.5757966451488439,
+                              [
+                                "migration_budget",
+                                "qos_latency"
+                              ]
+                            ],
+                            "selected": false
+                          },
+                          {
+                            "plan_signature": "6c854d33c4b79a1037291a92271579a3fe314779992752d9ae5591ede90ee2b9",
+                            "profile": [
+                              1,
+                              2,
+                              3.306295164886575,
+                              [
+                                "migration_budget",
+                                "qos_latency"
+                              ]
+                            ],
+                            "selected": false
+                          }
+                        ],
+                        "before_profile": [
+                          1,
+                          2,
+                          2.0594399738774163,
+                          [
+                            "migration_budget",
+                            "qos_latency"
+                          ]
+                        ]
+                      },
+                      {
+                        "accepted": true,
+                        "after_profile": [
+                          0,
+                          0,
+                          0,
+                          []
+                        ],
+                        "attempts": [
+                          {
+                            "plan_signature": "158188e1f9417a1fcb8ead919c3e3c7ad54e615857a467f2747c8fa96d2d7469",
+                            "profile": [
+                              0,
+                              0,
+                              0,
+                              []
+                            ],
+                            "selected": true
+                          },
+                          {
+                            "plan_signature": "4298275c03183766d159e90c22caa1a88d26671b50e05ff3e3152e6453375fb3",
+                            "profile": [
+                              1,
+                              2,
+                              2.7438356346190407,
+                              [
+                                "migration_budget",
+                                "qos_latency"
+                              ]
+                            ],
+                            "selected": false
+                          }
+                        ],
+                        "before_profile": [
+                          1,
+                          2,
+                          1.3671503185334097,
+                          [
+                            "migration_budget",
+                            "qos_latency"
+                          ]
+                        ]
+                      }
+                    ],
+                    "status": "accepted"
+                  }
+                ],
+                "actions": [
+                  "reroute",
+                  "move_bottleneck_service",
+                  "bounded_backtrack"
+                ],
+                "attempt_count": 7,
+                "budget_exhausted": false,
+                "final_feasible": true,
+                "stage": "repair_policy"
+              }
+            ]
+          },
+          "iteration": 1,
+          "objective": {
+            "e2e_latency_ms": 93.43245389787354,
+            "energy_proxy": 0.0,
+            "load_imbalance": 1.4142135623730954,
+            "metric_version": "0.1.0",
+            "migration_cost": 0.0,
+            "planning_time_ms": 5.421499954536557,
+            "weighted_objective": 93.57387525411086
+          },
+          "parent_id": "candidate_000",
+          "program": {
+            "node_score": {
+              "op": "weighted_sum",
+              "terms": [
+                {
+                  "feature": "dependency_latency",
+                  "weight": -0.7
+                },
+                {
+                  "feature": "residual_compute_ratio",
+                  "weight": 0.3
+                }
+              ]
+            },
+            "path_score": {
+              "op": "weighted_sum",
+              "terms": [
+                {
+                  "feature": "path_latency",
+                  "weight": -0.8
+                },
+                {
+                  "feature": "bottleneck_bandwidth",
+                  "weight": 0.2
+                }
+              ]
+            },
+            "repair_policy": [
+              "reroute",
+              "move_bottleneck_service",
+              "bounded_backtrack"
+            ],
+            "service_order": {
+              "direction": "descending",
+              "op": "weighted_sum",
+              "terms": [
+                {
+                  "feature": "critical_path_rank",
+                  "weight": 0.7
+                },
+                {
+                  "feature": "workload_ratio",
+                  "weight": 0.3
+                }
+              ]
+            },
+            "version": "1.0"
+          },
+          "verification": {
+            "feasible": true,
+            "verifier_version": "0.1.0",
+            "violations": []
+          }
+        },
+        {
+          "ast_signature": "60d0e244c92d4f9da15baef81af0ad51fe752cbe6e6590a509a9c6e01e791b68",
+          "candidate_id": "candidate_002",
+          "category": "feasible_elite",
+          "conflict_graph": null,
+          "execution": {
+            "executor_version": "0.3.0",
+            "failure_reason": null,
+            "plan": {
+              "candidate_id": "candidate_002",
+              "method": "typed_dsl",
+              "migrations": [],
+              "placement": {
+                "analyze": "sat-b",
+                "ingest": "sat-b",
+                "respond": "sat-b"
+              },
+              "resource_snapshot": {},
+              "routes": [
+                {
+                  "edge_id": "analyze-respond",
+                  "path": [
+                    "sat-b"
+                  ]
+                },
+                {
+                  "edge_id": "ingest-analyze",
+                  "path": [
+                    "sat-b"
+                  ]
+                }
+              ],
+              "run_id": "search_controller",
+              "status": "complete"
+            },
+            "planning_time_ms": 3.7385000032372773,
+            "static_verification": {
+              "ast_signature": "60d0e244c92d4f9da15baef81af0ad51fe752cbe6e6590a509a9c6e01e791b68",
+              "errors": [],
+              "valid": true,
+              "verifier_version": "0.1.0",
+              "warnings": []
+            },
+            "trace": [
+              {
+                "scores": {
+                  "analyze": 0.7666666666666666,
+                  "ingest": 0.7599999999999999,
+                  "respond": 0.0
+                },
+                "selected_order": [
+                  "ingest",
+                  "analyze",
+                  "respond"
+                ],
+                "stage": "service_order"
+              },
+              {
+                "candidate_policy": "eligibility_and_capacity_masked",
+                "eligible_capacity_candidates": [
+                  "sat-a",
+                  "sat-b"
+                ],
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-a": {
+                    "dependency_latency": 0.0,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.8333333333333334,
+                    "residual_memory_ratio": 0.875
+                  },
+                  "sat-b": {
+                    "dependency_latency": 0.0,
+                    "migration_penalty": 0.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.8,
+                    "residual_memory_ratio": 0.8333333333333334
+                  }
+                },
+                "scores": {
+                  "sat-a": 0.3,
+                  "sat-b": 0.0
+                },
+                "selected_node": "sat-a",
+                "service_id": "ingest",
+                "stage": "placement"
+              },
+              {
+                "candidate_policy": "eligibility_and_capacity_masked",
+                "eligible_capacity_candidates": [
+                  "sat-a",
+                  "sat-b",
+                  "sat-c"
+                ],
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-a": {
+                    "dependency_latency": 0.0,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.5,
+                    "residual_memory_ratio": 0.625
+                  },
+                  "sat-b": {
+                    "dependency_latency": 45.67363042998921,
+                    "migration_penalty": 0.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.6,
+                    "residual_memory_ratio": 0.6666666666666666
+                  },
+                  "sat-c": {
+                    "dependency_latency": 79.35453897183798,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.5,
+                    "residual_memory_ratio": 0.6
+                  }
+                },
+                "scores": {
+                  "sat-a": 0.0,
+                  "sat-b": 0.012217908252240894,
+                  "sat-c": -0.5
+                },
+                "selected_node": "sat-b",
+                "service_id": "analyze",
+                "stage": "placement"
+              },
+              {
+                "candidate_policy": "eligibility_and_capacity_masked",
+                "eligible_capacity_candidates": [
+                  "sat-b",
+                  "sat-c"
+                ],
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-b": {
+                    "dependency_latency": 0.0,
+                    "migration_penalty": 0.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.4,
+                    "residual_memory_ratio": 0.5
+                  },
+                  "sat-c": {
+                    "dependency_latency": 34.28486657123768,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.75,
+                    "residual_memory_ratio": 0.8
+                  }
+                },
+                "scores": {
+                  "sat-b": 0.0,
+                  "sat-c": -0.2
+                },
+                "selected_node": "sat-b",
+                "service_id": "respond",
+                "stage": "placement"
+              },
+              {
+                "candidate_policy": "contact_window_masked",
+                "candidates": [
+                  [
+                    "sat-b"
+                  ]
+                ],
+                "edge_id": "analyze-respond",
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-b": {
+                    "bottleneck_bandwidth": 85.77816,
+                    "contact_duration": 11.0,
+                    "hop_count": 0.0,
+                    "path_latency": 0.0
+                  }
+                },
+                "scores": {
+                  "sat-b": 0.0
+                },
+                "selected_path": [
+                  "sat-b"
+                ],
+                "stage": "routing"
+              },
+              {
+                "candidate_policy": "contact_window_masked",
+                "candidates": [
+                  [
+                    "sat-a",
+                    "sat-b"
+                  ],
+                  [
+                    "sat-a",
+                    "sat-c",
+                    "sat-b"
+                  ]
+                ],
+                "edge_id": "ingest-analyze",
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-a->sat-b": {
+                    "bottleneck_bandwidth": 85.77816,
+                    "contact_duration": 11.0,
+                    "hop_count": 1.0,
+                    "path_latency": 45.67363042998921
+                  },
+                  "sat-a->sat-c->sat-b": {
+                    "bottleneck_bandwidth": 53.61135,
+                    "contact_duration": 11.0,
+                    "hop_count": 2.0,
+                    "path_latency": 140.60142011648222
+                  }
+                },
+                "scores": {
+                  "sat-a->sat-b": 0.2,
+                  "sat-a->sat-c->sat-b": -0.8
+                },
+                "selected_path": [
+                  "sat-a",
+                  "sat-b"
+                ],
+                "stage": "routing"
+              },
+              {
+                "accepted_actions": 1,
+                "action_trace": [
+                  {
+                    "accepted_rounds": 0,
+                    "action": "reroute",
+                    "after_profile": [
+                      1,
+                      2,
+                      1.3671503185334097,
+                      [
+                        "migration_budget",
+                        "qos_latency"
+                      ]
+                    ],
+                    "before_profile": [
+                      1,
+                      2,
+                      1.3671503185334097,
+                      [
+                        "migration_budget",
+                        "qos_latency"
+                      ]
+                    ],
+                    "rounds": [
+                      {
+                        "accepted": false,
+                        "after_profile": [
+                          1,
+                          2,
+                          1.3671503185334097,
+                          [
+                            "migration_budget",
+                            "qos_latency"
+                          ]
+                        ],
+                        "attempts": [
+                          {
+                            "plan_signature": "3742422f38b7a0549743ce8bd2a3e22ecc7e2b657e33dc4bfb5e6d4032ccbfad",
+                            "profile": [
+                              1,
+                              2,
+                              2.3347736078946975,
+                              [
+                                "migration_budget",
+                                "qos_latency"
+                              ]
+                            ],
+                            "selected": false
+                          }
+                        ],
+                        "before_profile": [
+                          1,
+                          2,
+                          1.3671503185334097,
+                          [
+                            "migration_budget",
+                            "qos_latency"
+                          ]
+                        ]
+                      }
+                    ],
+                    "status": "no_improvement"
+                  },
+                  {
+                    "accepted_rounds": 1,
+                    "action": "move_bottleneck_service",
+                    "after_profile": [
+                      0,
+                      0,
+                      0,
+                      []
+                    ],
+                    "before_profile": [
+                      1,
+                      2,
+                      1.3671503185334097,
+                      [
+                        "migration_budget",
+                        "qos_latency"
+                      ]
+                    ],
+                    "rounds": [
+                      {
+                        "accepted": true,
+                        "after_profile": [
+                          0,
+                          0,
+                          0,
+                          []
+                        ],
+                        "attempts": [
+                          {
+                            "plan_signature": "bddcb94c94ebb468cb8265d6e11645fcb46758750c7b4aedc4cf303e5fba601f",
+                            "profile": [
+                              1,
+                              2,
+                              2.0594399738774163,
+                              [
+                                "migration_budget",
+                                "qos_latency"
+                              ]
+                            ],
+                            "selected": false
+                          },
+                          {
+                            "plan_signature": "335f639ce3a30b08c444e06c44d8830ceadb4e839bb795fd942a09e4f1e348b3",
+                            "profile": [
+                              1,
+                              2,
+                              3.132505241216288,
+                              [
+                                "migration_budget",
+                                "qos_latency"
+                              ]
+                            ],
+                            "selected": false
+                          },
+                          {
+                            "plan_signature": "158188e1f9417a1fcb8ead919c3e3c7ad54e615857a467f2747c8fa96d2d7469",
+                            "profile": [
+                              0,
+                              0,
+                              0,
+                              []
+                            ],
+                            "selected": true
+                          },
+                          {
+                            "plan_signature": "4298275c03183766d159e90c22caa1a88d26671b50e05ff3e3152e6453375fb3",
+                            "profile": [
+                              1,
+                              2,
+                              2.7438356346190407,
+                              [
+                                "migration_budget",
+                                "qos_latency"
+                              ]
+                            ],
+                            "selected": false
+                          }
+                        ],
+                        "before_profile": [
+                          1,
+                          2,
+                          1.3671503185334097,
+                          [
+                            "migration_budget",
+                            "qos_latency"
+                          ]
+                        ]
+                      }
+                    ],
+                    "status": "accepted"
+                  }
+                ],
+                "actions": [
+                  "reroute",
+                  "move_bottleneck_service",
+                  "bounded_backtrack"
+                ],
+                "attempt_count": 5,
+                "budget_exhausted": false,
+                "final_feasible": true,
+                "stage": "repair_policy"
+              }
+            ]
+          },
+          "iteration": 2,
+          "objective": {
+            "e2e_latency_ms": 93.43245389787354,
+            "energy_proxy": 0.0,
+            "load_imbalance": 1.4142135623730954,
+            "metric_version": "0.1.0",
+            "migration_cost": 0.0,
+            "planning_time_ms": 3.7385000032372773,
+            "weighted_objective": 93.57387525411086
+          },
+          "parent_id": "candidate_001",
+          "program": {
+            "node_score": {
+              "op": "weighted_sum",
+              "terms": [
+                {
+                  "feature": "dependency_latency",
+                  "weight": -0.5
+                },
+                {
+                  "feature": "residual_compute_ratio",
+                  "weight": 0.3
+                }
+              ]
+            },
+            "path_score": {
+              "op": "weighted_sum",
+              "terms": [
+                {
+                  "feature": "path_latency",
+                  "weight": -0.8
+                },
+                {
+                  "feature": "bottleneck_bandwidth",
+                  "weight": 0.2
+                }
+              ]
+            },
+            "repair_policy": [
+              "reroute",
+              "move_bottleneck_service",
+              "bounded_backtrack"
+            ],
+            "service_order": {
+              "direction": "descending",
+              "op": "weighted_sum",
+              "terms": [
+                {
+                  "feature": "critical_path_rank",
+                  "weight": 0.7
+                },
+                {
+                  "feature": "workload_ratio",
+                  "weight": 0.3
+                }
+              ]
+            },
+            "version": "1.0"
+          },
+          "verification": {
+            "feasible": true,
+            "verifier_version": "0.1.0",
+            "violations": []
+          }
+        },
+        {
+          "ast_signature": "bc0e4f52aab139570d1be5f1da902fd94cbaa6b27117a0b328e7931c1999cfea",
+          "candidate_id": "candidate_002_probe_01",
+          "category": "feasible_elite",
+          "conflict_graph": null,
+          "execution": {
+            "executor_version": "0.3.0",
+            "failure_reason": null,
+            "plan": {
+              "candidate_id": "candidate_002_probe_01",
+              "method": "typed_dsl",
+              "migrations": [],
+              "placement": {
+                "analyze": "sat-b",
+                "ingest": "sat-b",
+                "respond": "sat-b"
+              },
+              "resource_snapshot": {},
+              "routes": [
+                {
+                  "edge_id": "analyze-respond",
+                  "path": [
+                    "sat-b"
+                  ]
+                },
+                {
+                  "edge_id": "ingest-analyze",
+                  "path": [
+                    "sat-b"
+                  ]
+                }
+              ],
+              "run_id": "search_controller",
+              "status": "complete"
+            },
+            "planning_time_ms": 5.479799991007894,
+            "static_verification": {
+              "ast_signature": "bc0e4f52aab139570d1be5f1da902fd94cbaa6b27117a0b328e7931c1999cfea",
+              "errors": [],
+              "valid": true,
+              "verifier_version": "0.1.0",
+              "warnings": []
+            },
+            "trace": [
+              {
+                "scores": {
+                  "analyze": 0.7666666666666666,
+                  "ingest": 0.7599999999999999,
+                  "respond": 0.0
+                },
+                "selected_order": [
+                  "ingest",
+                  "analyze",
+                  "respond"
+                ],
+                "stage": "service_order"
+              },
+              {
+                "candidate_policy": "eligibility_and_capacity_masked",
+                "eligible_capacity_candidates": [
+                  "sat-a",
+                  "sat-b"
+                ],
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-a": {
+                    "dependency_latency": 0.0,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.8333333333333334,
+                    "residual_memory_ratio": 0.875
+                  },
+                  "sat-b": {
+                    "dependency_latency": 0.0,
+                    "migration_penalty": 0.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.8,
+                    "residual_memory_ratio": 0.8333333333333334
+                  }
+                },
+                "scores": {
+                  "sat-a": 0.3,
+                  "sat-b": 0.0
+                },
+                "selected_node": "sat-a",
+                "service_id": "ingest",
+                "stage": "placement"
+              },
+              {
+                "candidate_policy": "eligibility_and_capacity_masked",
+                "eligible_capacity_candidates": [
+                  "sat-a",
+                  "sat-b",
+                  "sat-c"
+                ],
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-a": {
+                    "dependency_latency": 0.0,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.5,
+                    "residual_memory_ratio": 0.625
+                  },
+                  "sat-b": {
+                    "dependency_latency": 45.67363042998921,
+                    "migration_penalty": 0.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.6,
+                    "residual_memory_ratio": 0.6666666666666666
+                  },
+                  "sat-c": {
+                    "dependency_latency": 79.35453897183798,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.5,
+                    "residual_memory_ratio": 0.6
+                  }
+                },
+                "scores": {
+                  "sat-a": 0.0,
+                  "sat-b": 0.5877820917477591,
+                  "sat-c": 0.5
+                },
+                "selected_node": "sat-b",
+                "service_id": "analyze",
+                "stage": "placement"
+              },
+              {
+                "candidate_policy": "eligibility_and_capacity_masked",
+                "eligible_capacity_candidates": [
+                  "sat-b",
+                  "sat-c"
+                ],
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-b": {
+                    "dependency_latency": 0.0,
+                    "migration_penalty": 0.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.4,
+                    "residual_memory_ratio": 0.5
+                  },
+                  "sat-c": {
+                    "dependency_latency": 34.28486657123768,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.75,
+                    "residual_memory_ratio": 0.8
+                  }
+                },
+                "scores": {
+                  "sat-b": 0.0,
+                  "sat-c": 0.8
+                },
+                "selected_node": "sat-c",
+                "service_id": "respond",
+                "stage": "placement"
+              },
+              {
+                "candidate_policy": "contact_window_masked",
+                "candidates": [
+                  [
+                    "sat-b",
+                    "sat-c"
+                  ],
+                  [
+                    "sat-b",
+                    "sat-a",
+                    "sat-c"
+                  ]
+                ],
+                "edge_id": "analyze-respond",
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-b->sat-a->sat-c": {
+                    "bottleneck_bandwidth": 53.61135,
+                    "contact_duration": 11.0,
+                    "hop_count": 2.0,
+                    "path_latency": 72.45224098368439
+                  },
+                  "sat-b->sat-c": {
+                    "bottleneck_bandwidth": 64.33362,
+                    "contact_duration": 11.0,
+                    "hop_count": 1.0,
+                    "path_latency": 34.28486657123768
+                  }
+                },
+                "scores": {
+                  "sat-b->sat-a->sat-c": -0.8,
+                  "sat-b->sat-c": 0.2
+                },
+                "selected_path": [
+                  "sat-b",
+                  "sat-c"
+                ],
+                "stage": "routing"
+              },
+              {
+                "candidate_policy": "contact_window_masked",
+                "candidates": [
+                  [
+                    "sat-a",
+                    "sat-b"
+                  ],
+                  [
+                    "sat-a",
+                    "sat-c",
+                    "sat-b"
+                  ]
+                ],
+                "edge_id": "ingest-analyze",
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-a->sat-b": {
+                    "bottleneck_bandwidth": 85.77816,
+                    "contact_duration": 11.0,
+                    "hop_count": 1.0,
+                    "path_latency": 45.67363042998921
+                  },
+                  "sat-a->sat-c->sat-b": {
+                    "bottleneck_bandwidth": 53.61135,
+                    "contact_duration": 11.0,
+                    "hop_count": 2.0,
+                    "path_latency": 140.60142011648222
+                  }
+                },
+                "scores": {
+                  "sat-a->sat-b": 0.2,
+                  "sat-a->sat-c->sat-b": -0.8
+                },
+                "selected_path": [
+                  "sat-a",
+                  "sat-b"
+                ],
+                "stage": "routing"
+              },
+              {
+                "accepted_actions": 2,
+                "action_trace": [
+                  {
+                    "accepted_rounds": 0,
+                    "action": "reroute",
+                    "after_profile": [
+                      1,
+                      2,
+                      2.7438356346190407,
+                      [
+                        "migration_budget",
+                        "qos_latency"
+                      ]
+                    ],
+                    "before_profile": [
+                      1,
+                      2,
+                      2.7438356346190407,
+                      [
+                        "migration_budget",
+                        "qos_latency"
+                      ]
+                    ],
+                    "rounds": [
+                      {
+                        "accepted": false,
+                        "after_profile": [
+                          1,
+                          2,
+                          2.7438356346190407,
+                          [
+                            "migration_budget",
+                            "qos_latency"
+                          ]
+                        ],
+                        "attempts": [
+                          {
+                            "plan_signature": "aa1513d41f18a08e2949acdc2af594be22621bab9a1ca3f1a6f1decabf339f7a",
+                            "profile": [
+                              1,
+                              2,
+                              3.132885463939046,
+                              [
+                                "migration_budget",
+                                "qos_latency"
+                              ]
+                            ],
+                            "selected": false
+                          },
+                          {
+                            "plan_signature": "8ef0899cf18a9209be0bf1d3c15bb04f4bb2c8d83a48512c1058db109a7829ed",
+                            "profile": [
+                              1,
+                              2,
+                              3.7114589239803277,
+                              [
+                                "migration_budget",
+                                "qos_latency"
+                              ]
+                            ],
+                            "selected": false
+                          }
+                        ],
+                        "before_profile": [
+                          1,
+                          2,
+                          2.7438356346190407,
+                          [
+                            "migration_budget",
+                            "qos_latency"
+                          ]
+                        ]
+                      }
+                    ],
+                    "status": "no_improvement"
+                  },
+                  {
+                    "accepted_rounds": 2,
+                    "action": "move_bottleneck_service",
+                    "after_profile": [
+                      0,
+                      0,
+                      0,
+                      []
+                    ],
+                    "before_profile": [
+                      1,
+                      2,
+                      2.7438356346190407,
+                      [
+                        "migration_budget",
+                        "qos_latency"
+                      ]
+                    ],
+                    "rounds": [
+                      {
+                        "accepted": true,
+                        "after_profile": [
+                          1,
+                          2,
+                          1.3290662645132232,
+                          [
+                            "migration_budget",
+                            "qos_latency"
+                          ]
+                        ],
+                        "attempts": [
+                          {
+                            "plan_signature": "6c854d33c4b79a1037291a92271579a3fe314779992752d9ae5591ede90ee2b9",
+                            "profile": [
+                              1,
+                              2,
+                              3.306295164886575,
+                              [
+                                "migration_budget",
+                                "qos_latency"
+                              ]
+                            ],
+                            "selected": false
+                          },
+                          {
+                            "plan_signature": "50ad503e459a4644100bc020a7e15189e5c43f472a4b0b809e748b479657b7d7",
+                            "profile": [
+                              1,
+                              2,
+                              3.810241693612234,
+                              [
+                                "migration_budget",
+                                "qos_latency"
+                              ]
+                            ],
+                            "selected": false
+                          },
+                          {
+                            "plan_signature": "e24f9cd999567e82df50955f53c41fc9a00180abd5a6301e3eb1dab289b9d995",
+                            "profile": [
+                              1,
+                              2,
+                              1.3290662645132232,
+                              [
+                                "migration_budget",
+                                "qos_latency"
+                              ]
+                            ],
+                            "selected": true
+                          },
+                          {
+                            "plan_signature": "7d5e581b29af6a9ce420304f364fd3c5df7ee3448e0c4aa8e4258e59042c5bb5",
+                            "profile": [
+                              1,
+                              2,
+                              1.3671503185334097,
+                              [
+                                "migration_budget",
+                                "qos_latency"
+                              ]
+                            ],
+                            "selected": false
+                          }
+                        ],
+                        "before_profile": [
+                          1,
+                          2,
+                          2.7438356346190407,
+                          [
+                            "migration_budget",
+                            "qos_latency"
+                          ]
+                        ]
+                      },
+                      {
+                        "accepted": true,
+                        "after_profile": [
+                          0,
+                          0,
+                          0,
+                          []
+                        ],
+                        "attempts": [
+                          {
+                            "plan_signature": "737839da941cc34faae4761de9065cbcf8040191eccafe485b4fe23ea1147d61",
+                            "profile": [
+                              1,
+                              2,
+                              2.8226518361580024,
+                              [
+                                "migration_budget",
+                                "qos_latency"
+                              ]
+                            ],
+                            "selected": false
+                          },
+                          {
+                            "plan_signature": "51b84ec066ae172a8ce49b0592f685868c7261688c9ea52ffc800172a8f470da",
+                            "profile": [
+                              1,
+                              2,
+                              2.676459347142503,
+                              [
+                                "migration_budget",
+                                "qos_latency"
+                              ]
+                            ],
+                            "selected": false
+                          },
+                          {
+                            "plan_signature": "158188e1f9417a1fcb8ead919c3e3c7ad54e615857a467f2747c8fa96d2d7469",
+                            "profile": [
+                              0,
+                              0,
+                              0,
+                              []
+                            ],
+                            "selected": true
+                          }
+                        ],
+                        "before_profile": [
+                          1,
+                          2,
+                          1.3290662645132232,
+                          [
+                            "migration_budget",
+                            "qos_latency"
+                          ]
+                        ]
+                      }
+                    ],
+                    "status": "accepted"
+                  }
+                ],
+                "actions": [
+                  "reroute",
+                  "move_bottleneck_service",
+                  "bounded_backtrack"
+                ],
+                "attempt_count": 9,
+                "budget_exhausted": false,
+                "final_feasible": true,
+                "stage": "repair_policy"
+              }
+            ]
+          },
+          "iteration": 2,
+          "objective": {
+            "e2e_latency_ms": 93.43245389787354,
+            "energy_proxy": 0.0,
+            "load_imbalance": 1.4142135623730954,
+            "metric_version": "0.1.0",
+            "migration_cost": 0.0,
+            "planning_time_ms": 5.479799991007894,
+            "weighted_objective": 93.57387525411086
+          },
+          "parent_id": "candidate_001",
+          "program": {
+            "node_score": {
+              "op": "weighted_sum",
+              "terms": [
+                {
+                  "feature": "dependency_latency",
+                  "weight": 0.5
+                },
+                {
+                  "feature": "residual_compute_ratio",
+                  "weight": 0.3
+                }
+              ]
+            },
+            "path_score": {
+              "op": "weighted_sum",
+              "terms": [
+                {
+                  "feature": "path_latency",
+                  "weight": -0.8
+                },
+                {
+                  "feature": "bottleneck_bandwidth",
+                  "weight": 0.2
+                }
+              ]
+            },
+            "repair_policy": [
+              "reroute",
+              "move_bottleneck_service",
+              "bounded_backtrack"
+            ],
+            "service_order": {
+              "direction": "descending",
+              "op": "weighted_sum",
+              "terms": [
+                {
+                  "feature": "critical_path_rank",
+                  "weight": 0.7
+                },
+                {
+                  "feature": "workload_ratio",
+                  "weight": 0.3
+                }
+              ]
+            },
+            "version": "1.0"
+          },
+          "verification": {
+            "feasible": true,
+            "verifier_version": "0.1.0",
+            "violations": []
+          }
+        },
+        {
+          "ast_signature": "df87e68301281b2b22a52d161a845e675403b5e1907a2f63b9ecb5cf372e2c06",
+          "candidate_id": "candidate_002_probe_02",
+          "category": "feasible_elite",
+          "conflict_graph": null,
+          "execution": {
+            "executor_version": "0.3.0",
+            "failure_reason": null,
+            "plan": {
+              "candidate_id": "candidate_002_probe_02",
+              "method": "typed_dsl",
+              "migrations": [],
+              "placement": {
+                "analyze": "sat-b",
+                "ingest": "sat-b",
+                "respond": "sat-b"
+              },
+              "resource_snapshot": {},
+              "routes": [
+                {
+                  "edge_id": "analyze-respond",
+                  "path": [
+                    "sat-b"
+                  ]
+                },
+                {
+                  "edge_id": "ingest-analyze",
+                  "path": [
+                    "sat-b"
+                  ]
+                }
+              ],
+              "run_id": "search_controller",
+              "status": "complete"
+            },
+            "planning_time_ms": 0.7379000307992101,
+            "static_verification": {
+              "ast_signature": "df87e68301281b2b22a52d161a845e675403b5e1907a2f63b9ecb5cf372e2c06",
+              "errors": [],
+              "valid": true,
+              "verifier_version": "0.1.0",
+              "warnings": []
+            },
+            "trace": [
+              {
+                "scores": {
+                  "analyze": 0.7666666666666666,
+                  "ingest": 0.7599999999999999,
+                  "respond": 0.0
+                },
+                "selected_order": [
+                  "ingest",
+                  "analyze",
+                  "respond"
+                ],
+                "stage": "service_order"
+              },
+              {
+                "candidate_policy": "eligibility_and_capacity_masked",
+                "eligible_capacity_candidates": [
+                  "sat-a",
+                  "sat-b"
+                ],
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-a": {
+                    "dependency_latency": 0.0,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.8333333333333334,
+                    "residual_memory_ratio": 0.875
+                  },
+                  "sat-b": {
+                    "dependency_latency": 0.0,
+                    "migration_penalty": 0.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.8,
+                    "residual_memory_ratio": 0.8333333333333334
+                  }
+                },
+                "scores": {
+                  "sat-a": -0.3,
+                  "sat-b": 0.0
+                },
+                "selected_node": "sat-b",
+                "service_id": "ingest",
+                "stage": "placement"
+              },
+              {
+                "candidate_policy": "eligibility_and_capacity_masked",
+                "eligible_capacity_candidates": [
+                  "sat-a",
+                  "sat-b",
+                  "sat-c"
+                ],
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-a": {
+                    "dependency_latency": 45.67363042998921,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.6666666666666666,
+                    "residual_memory_ratio": 0.75
+                  },
+                  "sat-b": {
+                    "dependency_latency": 0.0,
+                    "migration_penalty": 0.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.4,
+                    "residual_memory_ratio": 0.5
+                  },
+                  "sat-c": {
+                    "dependency_latency": 61.24688114464424,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.5,
+                    "residual_memory_ratio": 0.6
+                  }
+                },
+                "scores": {
+                  "sat-a": -0.8220109286134354,
+                  "sat-b": 0.0,
+                  "sat-c": -0.8125
+                },
+                "selected_node": "sat-b",
+                "service_id": "analyze",
+                "stage": "placement"
+              },
+              {
+                "candidate_policy": "eligibility_and_capacity_masked",
+                "eligible_capacity_candidates": [
+                  "sat-b",
+                  "sat-c"
+                ],
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-b": {
+                    "dependency_latency": 0.0,
+                    "migration_penalty": 0.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.2,
+                    "residual_memory_ratio": 0.3333333333333333
+                  },
+                  "sat-c": {
+                    "dependency_latency": 34.28486657123768,
+                    "migration_penalty": 1.0,
+                    "predicted_contact_duration": 11.0,
+                    "residual_compute_ratio": 0.75,
+                    "residual_memory_ratio": 0.8
+                  }
+                },
+                "scores": {
+                  "sat-b": 0.0,
+                  "sat-c": -1.0
+                },
+                "selected_node": "sat-b",
+                "service_id": "respond",
+                "stage": "placement"
+              },
+              {
+                "candidate_policy": "contact_window_masked",
+                "candidates": [
+                  [
+                    "sat-b"
+                  ]
+                ],
+                "edge_id": "analyze-respond",
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-b": {
+                    "bottleneck_bandwidth": 85.77816,
+                    "contact_duration": 11.0,
+                    "hop_count": 0.0,
+                    "path_latency": 0.0
+                  }
+                },
+                "scores": {
+                  "sat-b": 0.0
+                },
+                "selected_path": [
+                  "sat-b"
+                ],
+                "stage": "routing"
+              },
+              {
+                "candidate_policy": "contact_window_masked",
+                "candidates": [
+                  [
+                    "sat-b"
+                  ]
+                ],
+                "edge_id": "ingest-analyze",
+                "feasible_masks_enabled": true,
+                "raw_features": {
+                  "sat-b": {
+                    "bottleneck_bandwidth": 85.77816,
+                    "contact_duration": 11.0,
+                    "hop_count": 0.0,
+                    "path_latency": 0.0
+                  }
+                },
+                "scores": {
+                  "sat-b": 0.0
+                },
+                "selected_path": [
+                  "sat-b"
+                ],
+                "stage": "routing"
+              },
+              {
+                "accepted_actions": 0,
+                "action_trace": [],
+                "actions": [
+                  "reroute",
+                  "move_bottleneck_service",
+                  "bounded_backtrack"
+                ],
+                "attempt_count": 0,
+                "budget_exhausted": false,
+                "final_feasible": true,
+                "stage": "repair_policy"
+              }
+            ]
+          },
+          "iteration": 2,
+          "objective": {
+            "e2e_latency_ms": 93.43245389787354,
+            "energy_proxy": 0.0,
+            "load_imbalance": 1.4142135623730954,
+            "metric_version": "0.1.0",
+            "migration_cost": 0.0,
+            "planning_time_ms": 0.7379000307992101,
+            "weighted_objective": 93.57387525411086
+          },
+          "parent_id": "candidate_001",
+          "program": {
+            "node_score": {
+              "op": "weighted_sum",
+              "terms": [
+                {
+                  "feature": "dependency_latency",
+                  "weight": -0.7
+                },
+                {
+                  "feature": "residual_compute_ratio",
+                  "weight": -0.3
+                }
+              ]
+            },
+            "path_score": {
+              "op": "weighted_sum",
+              "terms": [
+                {
+                  "feature": "path_latency",
+                  "weight": -0.8
+                },
+                {
+                  "feature": "bottleneck_bandwidth",
+                  "weight": 0.2
+                }
+              ]
+            },
+            "repair_policy": [
+              "reroute",
+              "move_bottleneck_service",
+              "bounded_backtrack"
+            ],
+            "service_order": {
+              "direction": "descending",
+              "op": "weighted_sum",
+              "terms": [
+                {
+                  "feature": "critical_path_rank",
+                  "weight": 0.7
+                },
+                {
+                  "feature": "workload_ratio",
+                  "weight": 0.3
+                }
+              ]
+            },
+            "version": "1.0"
+          },
+          "verification": {
+            "feasible": true,
+            "verifier_version": "0.1.0",
+            "violations": []
+          }
+        }
+      ],
+      "replay_queue": [
+        "cex_26605d642d05"
+      ],
+      "semantic_patch_rejections": [],
+      "statistics": {
+        "accepted_patches": 4,
+        "evaluator_calls": 5,
+        "first_feasible_patch_proposal": 1,
+        "numeric_probes": 2,
+        "patch_proposals": 2,
+        "rejected_patches": 0,
+        "wall_time_ms": 5214.615500008222
+      },
+      "stop_reason": "evaluator_budget",
+      "trajectory": [
+        {
+          "ast_signature": "79ea2b13d646ddf352883fae498440397f600e094c3e95778892f09cd4cf4d79",
+          "candidate_id": "candidate_000",
+          "category": "repairable",
+          "counterexample_id": "cex_26605d642d05",
+          "event": "candidate_evaluated",
+          "feasible": false
+        },
+        {
+          "accepted": true,
+          "allowed_components": [
+            "service_order",
+            "node_score",
+            "path_score",
+            "repair_policy"
+          ],
+          "changed_components": [
+            "repair_policy"
+          ],
+          "child_signature": "f281781566254b07bbb0c95df893723bba8f9f5eba5c097fb09c4a7b515a9981",
+          "conflict_graph_signature": "effa849a085720f077a5923057b4ace1187949c3d12cc2dc6af2d69995ed2324",
+          "errors": [],
+          "event": "patch_evaluated",
+          "feedback_mode": "conflict_directed",
+          "parent_id": "candidate_000",
+          "parent_signature": "79ea2b13d646ddf352883fae498440397f600e094c3e95778892f09cd4cf4d79",
+          "patch": {
+            "operations": [
+              {
+                "actions": [
+                  "reroute",
+                  "move_bottleneck_service",
+                  "bounded_backtrack"
+                ],
+                "component": "repair_policy",
+                "op": "set_repair_policy"
+              }
+            ],
+            "rationale": "The current repair policy lacks move_bottleneck_service, which may help resolve QoS latency violations by relocating bottleneck services. Adding this action could reduce latency without affecting migration budget.",
+            "version": "1.0"
+          },
+          "patch_signature": "20dae7f641b72b662d2f6136e5ea6e4ec97e392fe88f23e28f0a918f635caf24",
+          "refinement_phase": "feasibility"
+        },
+        {
+          "ast_signature": "f281781566254b07bbb0c95df893723bba8f9f5eba5c097fb09c4a7b515a9981",
+          "candidate_id": "candidate_001",
+          "category": "feasible_elite",
+          "counterexample_id": null,
+          "event": "candidate_evaluated",
+          "feasible": true,
+          "parent_id": "candidate_000"
+        },
+        {
+          "accepted": true,
+          "allowed_components": [
+            "service_order",
+            "node_score",
+            "path_score"
+          ],
+          "changed_components": [
+            "node_score"
+          ],
+          "child_signature": "60d0e244c92d4f9da15baef81af0ad51fe752cbe6e6590a509a9c6e01e791b68",
+          "conflict_graph_signature": "bdfdba7b07c8b8458bdfaad5de46bf7b2903cb0b1c1cc90cb4371fb549c3538d",
+          "errors": [],
+          "event": "patch_evaluated",
+          "feedback_mode": "conflict_directed",
+          "parent_id": "candidate_001",
+          "parent_signature": "f281781566254b07bbb0c95df893723bba8f9f5eba5c097fb09c4a7b515a9981",
+          "patch": {
+            "operations": [
+              {
+                "component": "node_score",
+                "feature": "dependency_latency",
+                "op": "set_weight",
+                "weight": -0.5
+              }
+            ],
+            "rationale": "Reduce the penalty on dependency_latency to allow more flexible placement, potentially lowering latency by avoiding over-penalization.",
+            "version": "1.0"
+          },
+          "patch_signature": "182939e5e5856545109657eb982ed7b13125eb77e674d39746b4444825bef56c",
+          "refinement_phase": "objective"
+        },
+        {
+          "ast_signature": "60d0e244c92d4f9da15baef81af0ad51fe752cbe6e6590a509a9c6e01e791b68",
+          "candidate_id": "candidate_002",
+          "category": "feasible_elite",
+          "counterexample_id": null,
+          "event": "candidate_evaluated",
+          "feasible": true,
+          "parent_id": "candidate_001"
+        },
+        {
+          "accepted": true,
+          "changed_components": [
+            "node_score"
+          ],
+          "errors": [],
+          "event": "counterfactual_probe_evaluated",
+          "parent_id": "candidate_001",
+          "patch": {
+            "operations": [
+              {
+                "component": "node_score",
+                "feature": "dependency_latency",
+                "op": "set_weight",
+                "weight": 0.5
+              }
+            ],
+            "rationale": "LLM-selected feature sign-flip probe.",
+            "version": "1.0"
+          },
+          "patch_signature": "8124caf9f32b2a98f1044dd025bb95d25efa95187f695b2ef58176db193ad75b",
+          "source_patch_signature": "182939e5e5856545109657eb982ed7b13125eb77e674d39746b4444825bef56c"
+        },
+        {
+          "ast_signature": "bc0e4f52aab139570d1be5f1da902fd94cbaa6b27117a0b328e7931c1999cfea",
+          "candidate_id": "candidate_002_probe_01",
+          "category": "feasible_elite",
+          "counterexample_id": null,
+          "event": "candidate_evaluated",
+          "feasible": true,
+          "parent_id": "candidate_001",
+          "source": "counterfactual_probe"
+        },
+        {
+          "accepted": true,
+          "changed_components": [
+            "node_score"
+          ],
+          "errors": [],
+          "event": "counterfactual_probe_evaluated",
+          "parent_id": "candidate_001",
+          "patch": {
+            "operations": [
+              {
+                "component": "node_score",
+                "feature": "residual_compute_ratio",
+                "op": "set_weight",
+                "weight": -0.3
+              }
+            ],
+            "rationale": "Component-neighborhood sign-flip probe.",
+            "version": "1.0"
+          },
+          "patch_signature": "034ea6841eb46e982480d2afd01cf39cd5c3a70d7515fd8119b0a3a31f0a8673",
+          "source_patch_signature": "182939e5e5856545109657eb982ed7b13125eb77e674d39746b4444825bef56c"
+        },
+        {
+          "ast_signature": "df87e68301281b2b22a52d161a845e675403b5e1907a2f63b9ecb5cf372e2c06",
+          "candidate_id": "candidate_002_probe_02",
+          "category": "feasible_elite",
+          "counterexample_id": null,
+          "event": "candidate_evaluated",
+          "feasible": true,
+          "parent_id": "candidate_001",
+          "source": "counterfactual_probe"
+        }
+      ]
+    }
+  },
+  "run_key": "cover_opt_full__s210__r0",
+  "runner_version": "1.0.0",
+  "scenario_hash": "88dad7f423fb92cfb9d6a3e61c5689101c028b69dd6f6dfe64eb90687a8ba706",
+  "scenario_profile": "joint_constraint",
+  "scenario_seed": 210,
+  "schema_failures": 0,
+  "status": "feasible",
+  "stop_reason": "evaluator_budget",
+  "violation_burden": 0.0,
+  "wall_time_ms": 5215.469199989457,
+  "weighted_objective": 93.57387525411086
+}

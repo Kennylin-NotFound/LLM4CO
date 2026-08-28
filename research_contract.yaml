@@ -1,0 +1,123 @@
+contract_version: "0.1.0"
+method_name: "COVER-Opt"
+status: "implementation_started"
+
+scope:
+  problem: "time-slotted microservice placement with deterministic route selection"
+  first_version:
+    decisions:
+      - placement
+      - deterministic_route_selection
+    dynamic_state:
+      - link_availability
+      - resource_state
+      - previous_placement
+    excluded:
+      - natural_language_to_ir_as_solver_metric
+      - arbitrary_generated_code_execution
+      - joint_two_population_evolution
+      - online_model_training
+      - energy_objective_without_provenance
+
+symbols:
+  I_t:
+    meaning: "scenario instance at time slot t"
+    schema: "cover_opt.domain.models.ScenarioInstance"
+  G_t:
+    meaning: "active compute-network graph"
+    schema_fields: ["nodes", "links"]
+  S:
+    meaning: "microservice set"
+    schema_field: "services"
+  A:
+    meaning: "service dependency DAG"
+    schema_field: "service_edges"
+  Q_t:
+    meaning: "QoS threshold and objective preference"
+    schema_fields: ["qos_latency_ms", "objective"]
+  X_previous:
+    meaning: "placement from the previous time slot"
+    schema_field: "previous_placement"
+  Pi_t:
+    meaning: "placement and route plan"
+    schema: "cover_opt.domain.models.DeploymentPlan"
+
+hard_constraints:
+  - id: "unique_placement"
+    verifier_key: "unique_placement"
+    description: "Every service is placed exactly once."
+    planned_tests: ["test_unique_placement_accepts_complete_plan", "test_unique_placement_rejects_missing_service"]
+  - id: "node_eligibility"
+    verifier_key: "node_eligibility"
+    description: "Every selected node is eligible for its service."
+    planned_tests: ["test_eligibility_accepts_allowed_node", "test_eligibility_rejects_disallowed_node"]
+  - id: "node_capacity"
+    verifier_key: "node_capacity"
+    description: "Allocated compute and memory do not exceed node capacity."
+    planned_tests: ["test_capacity_accepts_within_limits", "test_capacity_rejects_compute_overflow"]
+  - id: "route_connectivity"
+    verifier_key: "route_connectivity"
+    description: "Every dependency route is a connected active path."
+    planned_tests: ["test_route_accepts_connected_path", "test_route_rejects_broken_path"]
+  - id: "link_bandwidth"
+    verifier_key: "link_bandwidth"
+    description: "A selected route has sufficient bandwidth and availability window."
+    planned_tests: ["test_bandwidth_accepts_sufficient_path", "test_bandwidth_rejects_bottleneck"]
+  - id: "qos_latency"
+    verifier_key: "qos_latency"
+    description: "End-to-end latency does not exceed the scenario threshold."
+    planned_tests: ["test_qos_accepts_within_threshold", "test_qos_rejects_threshold_violation"]
+  - id: "migration_budget"
+    verifier_key: "migration_budget"
+    description: "Placement changes do not exceed the migration budget."
+    planned_tests: ["test_migration_accepts_within_budget", "test_migration_rejects_over_budget"]
+
+objective:
+  comparison_order:
+    - feasible
+    - latency_ms
+    - migration_cost
+    - load_imbalance
+    - planning_time_ms
+    - llm_cost
+  default_weights:
+    latency: 1.0
+    load_imbalance: 0.1
+    migration_cost: 0.2
+    energy_proxy: 0.0
+  rule: "An infeasible plan never enters the feasible elite regardless of weighted objective."
+
+reproducibility:
+  required_manifest_fields:
+    - run_id
+    - command
+    - config_hash
+    - code_tree_hash
+    - seeds
+    - scenario_hashes
+    - model
+    - prompt_hash
+    - budgets
+    - statistics
+    - artifact_paths
+  persist_llm_trace: true
+  online_llm_allowed_before_gate_b: false
+
+claims:
+  - id: "C1_typed_heuristic_reliability"
+    status: "planned"
+    mechanism: "typed DSL plus deterministic execution skeleton"
+    required_evidence: ["raw_vs_dsl_validity", "execution_success", "feasible_rate"]
+  - id: "C2_conflict_directed_refinement"
+    status: "planned"
+    mechanism: "constraint-decision conflict graph and component-targeted patch"
+    required_evidence: ["repair_success", "calls_to_first_feasible", "generic_vs_targeted_ablation"]
+  - id: "C3_reproducible_dynamic_solver"
+    status: "planned"
+    mechanism: "rolling-horizon evaluation with replayable traces"
+    required_evidence: ["dynamic_qos", "migration_cost", "planning_time", "llm_cost"]
+
+frozen_non_evidence:
+  - statement: "18 percent improvement"
+    reason: "Historical wording is not traceable to a locked run artifact."
+

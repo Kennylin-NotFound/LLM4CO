@@ -1,0 +1,28 @@
+{
+  "format_version": "1.0",
+  "entries": [
+    {
+      "purpose": "conflict_patch",
+      "provider": "offline-replay",
+      "model": "replay-conflict-patch-v1",
+      "parsed": {
+        "version": "1.0",
+        "operations": [
+          {
+            "op": "add_term",
+            "component": "node_score",
+            "feature": "migration_penalty",
+            "weight": -10.0
+          }
+        ],
+        "rationale": "Penalize placement changes under the zero migration budget."
+      },
+      "raw_text": "offline replay fixture",
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "latency_ms": 0.0
+    }
+  ]
+}

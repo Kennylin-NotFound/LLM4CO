@@ -1,0 +1,7 @@
+experiment_id: "baseline_interface_small_static"
+scenario_path: "../scenarios/small_static.yaml"
+k_paths: 3
+exact_max_candidates: 100000
+exact_max_wall_time_seconds: 30.0
+random_samples: 4
+random_seed: 20250825

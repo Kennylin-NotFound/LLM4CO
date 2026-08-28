@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:19:55.870166Z",
+  "latency_ms": 2080.914499994833,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1280,
+    "prompt_cache_miss_tokens": 1351,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "fdbb01e3-29e4-4416-b1c4-419415433417",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "migration_penalty",
+        "op": "add_term",
+        "weight": -1.0
+      }
+    ],
+    "rationale": "Add a migration penalty to node_score to discourage migrations, addressing the migration budget violation while potentially influencing placement to reduce latency.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"add_term\",\n      \"component\": \"node_score\",\n      \"feature\": \"migration_penalty\",\n      \"weight\": -1.0\n    }\n  ],\n  \"rationale\": \"Add a migration penalty to node_score to discourage migrations, addressing the migration budget violation while potentially influencing placement to reduce latency.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "4f6957ab2542209a37a12eb39c6f4a3b448dc3ca909dbe21d16205a5b5bbf846",
+  "request_id": "req_4f6957ab2542209a",
+  "usage": {
+    "input_tokens": 2631,
+    "output_tokens": 88
+  }
+}

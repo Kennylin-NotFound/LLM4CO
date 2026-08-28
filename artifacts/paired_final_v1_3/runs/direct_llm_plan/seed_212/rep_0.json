@@ -1,0 +1,121 @@
+{
+  "backend_failures": 0,
+  "billed_input_tokens": 769,
+  "billed_output_tokens": 73,
+  "budget": {
+    "max_evaluator_calls": 1,
+    "max_llm_calls": 1,
+    "max_wall_time_seconds": 120.0,
+    "stop_on_first_feasible": true
+  },
+  "cached_responses": 0,
+  "calls_to_first_feasible": null,
+  "candidate_set_gap_pct": null,
+  "code_tree_hash": "590a1f163866caa221af1f1b05f423912b49b046b9892e9bb934b94c394d1698",
+  "config_hash": "79cc7c29f9ec495e58b150a25b6e38be6a34cfcd2c9ed66c4bf4467e4d0e73ca",
+  "estimated_cost_cny": 0.002745,
+  "evaluator_calls": 0,
+  "experiment_id": "deepseek_v4pro_paired_final_v1_3",
+  "final_feasible": false,
+  "infrastructure_failure": false,
+  "llm_calls": 1,
+  "llm_repetition": 0,
+  "method_family": "one_shot_llm",
+  "method_id": "direct_llm_plan",
+  "model_snapshot": "deepseek-v4-pro",
+  "observed_system_fingerprints": [
+    "a307abda487cd1b463329ccb945ce396"
+  ],
+  "prompt_hash": "c8fefef5c9ac12e13c2566d90b94d91f7aedf48a93de0adb47709a89b15cb6ce",
+  "protocol_hash": "828b8d7de318983ec9336e7cab7ff4cf70dcb9483c8febb1e3f06243e816912a",
+  "provider": "deepseek",
+  "request_parameters": {
+    "expected_system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "max_tokens": 2048,
+    "temperature": 0.0,
+    "thinking": "disabled",
+    "top_p": 1.0
+  },
+  "result_payload": {
+    "baseline_name": "direct_llm_plan",
+    "baseline_version": "1.0.0",
+    "evidence_boundary": "one_shot_replay_control_evidence_not_live_llm_performance",
+    "llm_calls": 1,
+    "solver_result": null,
+    "status": "generation_error",
+    "stop_reason": "schema_error",
+    "trajectory": [
+      {
+        "artifact": null,
+        "error": "ValidationError: 1 validation error for DirectPlanArtifact\nroutes\n  Input should be a valid list [type=list_type, input_value={'ingest-analyze': ['sat-...nd': ['sat-b', 'sat-c']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/list_type",
+        "generation_status": "schema_error",
+        "request": {
+          "expected_output": "DirectPlanArtifact JSON object",
+          "metadata": {
+            "baseline": "direct_llm_plan",
+            "one_shot": true,
+            "scenario_hash": "b90481f792120df523759c1d3e62b14d2f9c971f2683a2e025980e49b7ad7557",
+            "scenario_id": "paired_final_migration_lock_seed_212"
+          },
+          "prompt": "Generate one deployment plan for the supplied scenario. Return exactly one JSON\nobject with two fields: `placement` and `routes`. Do not include markdown or\nprose outside the JSON object. This is a one-shot baseline: there is no feedback,\nsearch, repair, or second attempt.\n\nSCENARIO_JSON:\n{\"links\":[{\"available_from\":0,\"available_until\":10,\"bandwidth_mbps\":95.43592,\"bidirectional\":true,\"distance_km\":1561.5975,\"link_class\":\"fixture\",\"link_id\":\"a-b\",\"source\":\"sat-a\",\"target\":\"sat-b\",\"transmission_rate_mbps\":119.2949},{\"available_from\":0,\"available_until\":10,\"bandwidth_mbps\":71.57694,\"bidirectional\":true,\"distance_km\":2186.2365,\"link_class\":\"fixture\",\"link_id\":\"b-c\",\"source\":\"sat-b\",\"target\":\"sat-c\",\"transmission_rate_mbps\":95.43592},{\"available_from\":0,\"available_until\":10,\"bandwidth_mbps\":59.64745,\"bidirectional\":true,\"distance_km\":4372.473,\"link_class\":\"fixture\",\"link_id\":\"a-c\",\"source\":\"sat-a\",\"target\":\"sat-c\",\"transmission_rate_mbps\":71.57694}],\"migration_budget\":0,\"nodes\":[{\"compute_capacity\":12.0,\"compute_rate_mips\":968.879,\"memory_capacity\":16.0,\"node_id\":\"sat-a\",\"position_km\":null},{\"compute_capacity\":10.0,\"compute_rate_mips\":775.1032,\"memory_capacity\":12.0,\"node_id\":\"sat-b\",\"position_km\":null},{\"compute_capacity\":8.0,\"compute_rate_mips\":678.2153,\"memory_capacity\":10.0,\"node_id\":\"sat-c\",\"position_km\":null}],\"objective\":{\"energy_proxy\":0.0,\"latency\":1.0,\"load_imbalance\":0.1,\"migration_cost\":0.2},\"previous_placement\":{\"analyze\":\"sat-b\",\"ingest\":\"sat-b\",\"respond\":\"sat-b\"},\"qos_latency_ms\":300.0,\"scenario_hash\":\"b90481f792120df523759c1d3e62b14d2f9c971f2683a2e025980e49b7ad7557\",\"scenario_id\":\"paired_final_migration_lock_seed_212\",\"service_edges\":[{\"data_volume_mbit\":4.093736,\"edge_id\":\"ingest-analyze\",\"source\":\"ingest\",\"target\":\"analyze\"},{\"data_volume_mbit\":2.046868,\"edge_id\":\"analyze-respond\",\"source\":\"analyze\",\"target\":\"respond\"}],\"services\":[{\"compute_demand\":2.0,\"eligible_nodes\":[\"sat-a\",\"sat-b\"],\"memory_demand\":2.0,\"service_id\":\"ingest\",\"workload_mi\":16.476},{\"compute_demand\":4.0,\"eligible_nodes\":[\"sat-a\",\"sat-b\",\"sat-c\"],\"memory_demand\":4.0,\"service_id\":\"analyze\",\"workload_mi\":32.952},{\"compute_demand\":2.0,\"eligible_nodes\":[\"sat-b\",\"sat-c\"],\"memory_demand\":2.0,\"service_id\":\"respond\",\"workload_mi\":12.357}]}\n",
+          "purpose": "direct_llm_plan",
+          "request_id": "req_7fb9632c3e7c19cb"
+        },
+        "response": {
+          "cached": false,
+          "created_at": "2026-08-25T10:50:49.351416Z",
+          "latency_ms": 2938.5010999976657,
+          "metadata": {
+            "api": "chat_completions",
+            "finish_reason": "stop",
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 769,
+            "reasoning_effort": null,
+            "requested_model": "deepseek-v4-pro",
+            "response_id": "2d0b4123-1102-436d-beec-a1469afe5c3b",
+            "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+            "thinking": "disabled"
+          },
+          "model": "deepseek-v4-pro",
+          "parsed": {
+            "placement": {
+              "analyze": "sat-b",
+              "ingest": "sat-a",
+              "respond": "sat-c"
+            },
+            "routes": {
+              "analyze-respond": [
+                "sat-b",
+                "sat-c"
+              ],
+              "ingest-analyze": [
+                "sat-a",
+                "sat-b"
+              ]
+            }
+          },
+          "provider": "deepseek",
+          "raw_text": "{\n  \"placement\": {\n    \"ingest\": \"sat-a\",\n    \"analyze\": \"sat-b\",\n    \"respond\": \"sat-c\"\n  },\n  \"routes\": {\n    \"ingest-analyze\": [\"sat-a\", \"sat-b\"],\n    \"analyze-respond\": [\"sat-b\", \"sat-c\"]\n  }\n}",
+          "replayed": false,
+          "request_fingerprint": "fe557f20b15749156af06ab2495dd85a10c542b8dd23629be3b939f43d7967b9",
+          "request_id": "req_fe557f20b1574915",
+          "usage": {
+            "input_tokens": 769,
+            "output_tokens": 73
+          }
+        }
+      }
+    ]
+  },
+  "run_key": "direct_llm_plan__s212__r0",
+  "runner_version": "1.0.0",
+  "scenario_hash": "b90481f792120df523759c1d3e62b14d2f9c971f2683a2e025980e49b7ad7557",
+  "scenario_profile": "migration_lock",
+  "scenario_seed": 212,
+  "schema_failures": 1,
+  "status": "generation_error",
+  "stop_reason": "schema_error",
+  "violation_burden": 1.0,
+  "wall_time_ms": 2943.3259000070393,
+  "weighted_objective": null
+}

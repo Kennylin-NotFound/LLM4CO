@@ -1,0 +1,38 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T10:58:21.404734Z",
+  "latency_ms": 2896.902800013777,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 256,
+    "prompt_cache_miss_tokens": 2759,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "b125eb06-bbbd-4e5b-924b-c7ca5743a1da",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "component": "node_score",
+        "feature": "dependency_latency",
+        "op": "set_weight",
+        "weight": 0.0
+      }
+    ],
+    "rationale": "The migration budget violation is caused by two migrations (analyze and ingest) from sat-b to sat-a. The node_score currently has a negative weight on dependency_latency, which may favor placing services on nodes with lower dependency latency, potentially leading to migrations. Setting the weight to 0 removes this incentive, possibly reducing migrations and thus the violation.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_weight\",\n      \"component\": \"node_score\",\n      \"feature\": \"dependency_latency\",\n      \"weight\": 0.0\n    }\n  ],\n  \"rationale\": \"The migration budget violation is caused by two migrations (analyze and ingest) from sat-b to sat-a. The node_score currently has a negative weight on dependency_latency, which may favor placing services on nodes with lower dependency latency, potentially leading to migrations. Setting the weight to 0 removes this incentive, possibly reducing migrations and thus the violation.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "4e23f8e8b4ec93dad20f7f792f4403be254a174918ee00106ac5b2c07129ab75",
+  "request_id": "req_4e23f8e8b4ec93da",
+  "usage": {
+    "input_tokens": 3015,
+    "output_tokens": 134
+  }
+}

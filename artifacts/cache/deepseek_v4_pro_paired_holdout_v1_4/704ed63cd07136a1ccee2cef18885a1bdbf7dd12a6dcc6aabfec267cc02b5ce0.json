@@ -1,0 +1,41 @@
+{
+  "cached": false,
+  "created_at": "2026-08-25T11:13:32.899199Z",
+  "latency_ms": 1986.4922999986447,
+  "metadata": {
+    "api": "chat_completions",
+    "finish_reason": "stop",
+    "prompt_cache_hit_tokens": 1792,
+    "prompt_cache_miss_tokens": 1025,
+    "reasoning_effort": null,
+    "requested_model": "deepseek-v4-pro",
+    "response_id": "0abd70f6-53a7-406e-81cc-6456813a19ac",
+    "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+    "thinking": "disabled"
+  },
+  "model": "deepseek-v4-pro",
+  "parsed": {
+    "operations": [
+      {
+        "actions": [
+          "reroute",
+          "move_bottleneck_service",
+          "bounded_backtrack"
+        ],
+        "component": "repair_policy",
+        "op": "set_repair_policy"
+      }
+    ],
+    "rationale": "The previous node_score weight change did not affect placement or violations. Adding move_bottleneck_service to the repair policy may relocate a bottleneck service to reduce E2E latency below the QoS threshold.",
+    "version": "1.0"
+  },
+  "provider": "deepseek",
+  "raw_text": "{\n  \"operations\": [\n    {\n      \"op\": \"set_repair_policy\",\n      \"component\": \"repair_policy\",\n      \"actions\": [\"reroute\", \"move_bottleneck_service\", \"bounded_backtrack\"]\n    }\n  ],\n  \"rationale\": \"The previous node_score weight change did not affect placement or violations. Adding move_bottleneck_service to the repair policy may relocate a bottleneck service to reduce E2E latency below the QoS threshold.\",\n  \"version\": \"1.0\"\n}",
+  "replayed": false,
+  "request_fingerprint": "c10becc73045873ece1c8a319199c417d9d8f9ef0fd3811d33e1d71d7ce242ca",
+  "request_id": "req_c10becc73045873e",
+  "usage": {
+    "input_tokens": 2817,
+    "output_tokens": 110
+  }
+}
