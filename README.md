@@ -1,120 +1,65 @@
-# COVER-Opt Implementation
+# LLM4CO · LLM 优化求解系统
 
-This directory contains the reproducible implementation of COVER-Opt. The
-current delivery is a complete controlled prototype: a deterministic problem
-kernel, typed heuristic DSL, constraint verifier, conflict-directed patch
-boundary, structural candidate archive, failure-triggered replay scheduler,
-cross-run replay campaign, bounded search controller, live provider adapter,
-and resumable experiment harness.
+面向算力网络微服务部署的研究原型，代码包名为 `cover_opt`（COVER-Opt）。系统把部署问题表示为结构化场景，让模型生成或修改受限启发式策略，再由确定性执行器、约束校验器和失败反馈控制搜索过程。
 
-## Current capabilities
+## 实现内容
 
-- Strict schemas for scenarios, plans, violations, heuristic metadata, and run manifests.
-- YAML-backed experiment and scenario configuration.
-- Provider-independent LLM protocol with deterministic mock and offline replay backends.
-- Run artifact store with request, response, result, and manifest persistence.
-- CLI commands for contract validation, offline smoke runs, and manifest inspection.
-- Deterministic service-DAG completion-time evaluation and K-shortest routing.
-- Simplified, reproducible Walker Delta time-slot scenario generation.
-- Seven-class hard-constraint verification, shared-link bandwidth aggregation, explicit exact/proxy attribution, and feasible-only objective evaluation.
-- Typed DSL validation, deterministic execution, conflict graphs, feature/action-authorized patches, structural diversity, archive-backed counterexample replay, and budgeted search.
-- Optional full typed-DSL LLM initialization with static validation, deduplication, and deterministic multi-start selection.
-- Unified LLM-call accounting across typed initialization and Patch generation,
-  with one total call gate in the search result.
-- Versioned conflict-patch prompt with strict `HeuristicPatch` parsing through Mock and Replay LLM backends.
-- Verifier-guided bounded repair actions for rerouting, service moves, swaps, and capacity-pruned backtracking.
-- Contract-based multi-counterexample regression replay with aggregate violation coverage and replay priority.
-- Shared Random/Greedy/Exact solver result contract and a bounded small-instance enumeration oracle.
-- Real feature switches and a ten-variant offline control-ablation suite,
-  including no-feedback and no-feasible-mask execution paths.
-- A separate six-variant method-completion suite isolating replay, multi-start,
-  and feasible-mask behavior without changing the frozen historical suite.
-- A configured cross-run replay campaign that persists the failed scenario,
-  eligible parent DSL, counterexample state, replay trajectory, and budgets.
-- Replay-only reconstruction of the paper's solver-generation and classified self-correction loop.
-- One-shot DirectLLMPlan and scenario-bound StructuredLLMPlan replay baselines.
-- Machine-validated formal experiment protocol with live-call, budget, metric,
-  artifact, statistical, and claim-upgrade gates.
-- DeepSeek V4 Pro ChatCompletions adapter with strict JSON parsing, bounded
-  retries, local response cache, API-key isolation, and fingerprint drift checks.
-- Frozen v1.3 paired-final scenario profiles, exact-oracle preflight, per-run
-  artifact resumption, cost accounting, scenario-level paired statistics, and
-  automatic claim gates.
-- Outcome-aware rejection and rollback for patches that change the AST but do
-  not improve placement, routes, or the violation profile, plus bounded
-  counterfactual probes during feasibility refinement.
-- A bounded interview demo that runs offline by default and produces a compact
-  evidence summary without API cost.
+- 服务 DAG、网络路由、资源约束与应用完成时间计算。
+- 类型化启发式 DSL、静态检查、确定性执行和硬约束验证。
+- 冲突反馈、受限补丁、修复、候选归档、反例回放及预算控制。
+- Random / Greedy / 小实例 Exact 基线，以及离线 Mock / Replay 和可选真实模型接口。
+- 实验协议、逐次运行记录和统计分析入口。
 
-The candidate emitted by the Phase 1 smoke flow is explicitly marked as an
-unvalidated stub. It is not a working heuristic DSL and is not research
-evidence for solution quality.
+这是研究与仿真实现。离线回放验证执行流程，不等价于重新调用模型，也不等价于完整复现已发表论文的全部场景和指标。
 
-## Run locally
+## 快速复现：离线流程
+
+要求 Python 3.11+。以下命令在仓库根目录执行（PowerShell）：
 
 ```powershell
-python -m pip install -e .
-python -m pytest
+git clone https://github.com/Kennylin-NotFound/LLM4CO.git
+cd LLM4CO
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -e ".[dev]"
 python -m cover_opt validate-contract --contract research_contract.yaml
-python -m cover_opt generate-walker --config configs/scenarios/walker_dynamic.yaml --time-slot 0 --output artifacts/reports/walker_slot_0000.json
-python -m cover_opt simulate-static --scenario configs/scenarios/small_static.yaml --placement configs/placements/small_static_previous.yaml --output artifacts/reports/small_static_result.json
-python -m cover_opt run-scripted-search --config configs/experiments/method_smoke.yaml --output artifacts/reports/method_smoke.json
-python -m cover_opt run-replay-search --config configs/experiments/replay_method_smoke.yaml --output artifacts/reports/replay_method_smoke.json
-python -m cover_opt run-regression-replay --config configs/experiments/regression_replay_suite.yaml --output artifacts/reports/regression_replay_suite.json
-python -m cover_opt run-baseline-smoke --config configs/experiments/baseline_smoke.yaml --output artifacts/reports/baseline_smoke.json
-python -m cover_opt run-ablation-suite --config configs/experiments/ablation_control_suite.yaml --output artifacts/reports/ablation_control_suite.json
-python -m cover_opt run-ablation-suite --config configs/experiments/method_completion_suite.yaml --output artifacts/reports/method_completion_suite.json
-python -m cover_opt run-counterexample-replay-campaign --config configs/experiments/counterexample_replay_campaign.yaml --output artifacts/reports/counterexample_replay_campaign.json
-python -m cover_opt run-current-paper-replay --config configs/experiments/current_paper_replay.yaml --output artifacts/reports/current_paper_replay.json
-python -m cover_opt run-llm-plan-replay-suite --config configs/experiments/llm_plan_replay_suite.yaml --output artifacts/reports/llm_plan_replay_suite.json
-python -m cover_opt validate-experiment-protocol --protocol configs/experiments/formal_experiment_protocol.yaml
-python -m cover_opt run-deepseek-structured-smoke --config configs/experiments/deepseek_v4pro_structured_smoke.yaml --output artifacts/reports/deepseek_v4pro_structured_smoke.json
-python -m cover_opt run-deepseek-search-smoke --config configs/experiments/deepseek_v4pro_search_smoke.yaml --output artifacts/reports/deepseek_v4pro_search_smoke_v2.json
-python -m cover_opt preflight-paired-final --config configs/experiments/deepseek_v4pro_paired_final_v1_3.yaml --output artifacts/paired_final_v1_3/preflight.json
-python -m cover_opt run-deepseek-paired-final --config configs/experiments/deepseek_v4pro_paired_final_v1_3.yaml --preflight artifacts/paired_final_v1_3/preflight.json
-python -m cover_opt analyze-paired-final --protocol configs/experiments/formal_experiment_protocol.yaml --artifacts-root artifacts/paired_final_v1_3 --output artifacts/paired_final_v1_3/analysis.json --markdown-output artifacts/paired_final_v1_3/results.md
-python -m cover_opt run-offline --config configs/experiments/offline_smoke.yaml --llm mock
-python -m cover_opt run-offline --config configs/experiments/offline_smoke.yaml --llm replay --replay-file tests/fixtures/llm/replay_offline_smoke.json
-```
-
-For the shortest end-to-end interview demo, use:
-
-```powershell
+python -m pytest -q
 powershell -ExecutionPolicy Bypass -File scripts/run_interview_demo.ps1
-powershell -ExecutionPolicy Bypass -File scripts/run_interview_demo.ps1 -Verify
 ```
 
-The optional `-Live` switch runs one bounded DeepSeek method smoke. It is not a
-performance experiment and reads `DEEPSEEK_API_KEY` only from the process or
-Windows User environment.
+演示默认不调用付费 API，会依次执行基线、回放搜索、消融和反例回放，结果写入 `artifacts/interview_demo/`。Linux/macOS 可用 `source .venv/bin/activate` 激活环境，并直接执行下列跨平台命令：
 
-Each offline run writes an immutable directory under `artifacts/runs/` with a
-manifest and LLM trace. Later phases will extend the same contracts instead of
-creating a separate experiment path.
+```bash
+python -m cover_opt run-baseline-smoke --config configs/experiments/baseline_smoke.yaml --output artifacts/demo/baseline.json
+python -m cover_opt run-replay-search --config configs/experiments/replay_method_smoke.yaml --output artifacts/demo/replay.json
+python -m cover_opt run-ablation-suite --config configs/experiments/method_completion_suite.yaml --output artifacts/demo/ablation.json
+python -m cover_opt run-counterexample-replay-campaign --config configs/experiments/counterexample_replay_campaign.yaml --output artifacts/demo/campaign.json
+```
 
-## Evidence boundary
+`tests/fixtures/` 中的小型 JSON 回放输入是上述配置的依赖，随仓库保留；模型响应缓存和运行输出不随仓库发布。
 
-- Implemented and tested: schema validation, hashing, manifests, mock/replay,
-  deterministic routing/latency, PlanVerifier, typed DSL, conflict-directed
-  patches, structural-diversity selection, consumed counterexample replay with
-  archive parent selection, failed-scenario campaign replay, typed multi-start
-  initialization with unified LLM-call accounting,
-  strict offline LLM Patch generation, bounded repair actions, bounded search,
-  one-shot plan baselines, real no-feedback/no-mask paths, and a frozen formal
-  experiment contract, DeepSeek V4 Pro live adapter, five-seed pilot, objective
-  refinement, paired-final preflight/runner/statistics, and outcome-aware
-  rejection with feasibility probes.
-- v1.3 completed 440/440 run artifacts with no infrastructure failures, but all
-  four preregistered primary claims were not supported. Do not describe the
-  controlled results as a significant performance improvement.
-- v1.4 holdout was paused after 196 run artifacts to keep the current delivery
-  bounded. It has no final manifest or analysis and is diagnostic evidence only.
-- Deferred: CP-SAT, sandboxed generated-code execution, paper-scale scenario
-  reconstruction, complete dynamic episodes, production Kubernetes integration,
-  and LLM training.
-- See `docs/system_completion_status.md` and
-  `docs/v1_4_partial_holdout_status.md` for the current delivery boundary.
-- Chinese acceptance and interview materials are available at
-  `../06_技术岗位面试支撑材料.md`,
-  `docs/audit/07_完整管线与方法论验收说明.md`, and
-  `docs/planning/08_后续研究TODO与实验重启指南.md`.
+## 论文相关流程与实验边界
+
+原论文求解器生成及分类自纠正流程的离线重建：
+
+```bash
+python -m cover_opt run-current-paper-replay --config configs/experiments/current_paper_replay.yaml --output artifacts/demo/paper_replay.json
+python -m cover_opt validate-experiment-protocol --protocol configs/experiments/formal_experiment_protocol.yaml
+```
+
+真实模型实验需要自行配置 `DEEPSEEK_API_KEY`，检查配置中的模型标识、预算和服务可用性后再运行。不要把密钥写进 YAML 或提交到 Git。实验入口和限制见 [复现说明](docs/reproduction.md)。
+
+历史 v1.3 批次完成了 440 次运行，但四项预注册主要主张均未获支持；v1.4 仅有部分运行，没有最终结论。本仓库不据此宣称普遍性能优势。原始实验数据、缓存和个人面试补充实验留在本地，当前公开版提供源码、协议和可重新生成的离线示例。
+
+## 目录
+
+| 路径 | 内容 |
+|---|---|
+| `src/cover_opt/` | 问题建模、执行、校验、搜索与模型适配 |
+| `configs/` | 场景、提示词、回放和正式实验配置 |
+| `research_contract.yaml` | 研究约束与交付边界 |
+| `scripts/` | 离线演示入口 |
+| `tests/` | 回归测试与必需回放输入 |
+| `docs/` | 建模、方法和复现说明 |
+
+`artifacts/`、`archive/`、开发计划、审计过程及个人补充实验被 `.gitignore` 排除，仅在本地保留。

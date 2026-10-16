@@ -11,3 +11,36 @@ artifacts/runs/*
 artifacts/reports/*
 !artifacts/reports/.gitkeep
 
+
+# Local environments, generated files and developer notes
+.env
+.env.*
+!.env.example
+!.env.production.example
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+*.log
+.coverage
+htmlcov/
+.planning/
+.local/
+/artifacts/
+/archive/
+/docs/planning/
+/docs/audit/
+/docs/research/
+/docs/resume_evidence_*.md
+/scripts/resume_evidence_*.py
+/docs/ablation_control_status.md
+/docs/deepseek_live_smoke_status.md
+/docs/live_pilot_results.md
+/docs/llm_plan_baseline_status.md
+/docs/method_mvp_status.md
+/docs/objective_refinement_status.md
+/docs/system_completion_status.md
+/docs/v1_4_partial_holdout_status.md
